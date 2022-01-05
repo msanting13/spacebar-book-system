@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ProfileController;
 
 
 Route::get('/', function () {
@@ -26,6 +27,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('login', [LoginController::class, 'submit'])->name('admin.submit.auth.login');
     Route::get('/', [HomeController::class, 'index'])->name('admin.dashboard');
     Route::get('/dashboard', [HomeController::class, 'index']);
+
+    Route::get('profile', [ProfileController::class, 'edit'])->name('admin.profile');
+    Route::put('profile', [ProfileController::class, 'update'])->name('admin.profile.update');
 });
 
 
