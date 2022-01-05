@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory, Uuids;
-
+    protected $with = ['roomType'];
+    
     protected $fillable = ['name', 'description', 'capacity', 'room_type_id', 'price'];
 
     public function roomType()

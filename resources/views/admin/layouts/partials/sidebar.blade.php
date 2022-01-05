@@ -16,7 +16,7 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('admin.user.index') }}">Users</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Rooms</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.room.index') }}">Rooms</a></li>
                     </li>
                 </ul>
             </div>

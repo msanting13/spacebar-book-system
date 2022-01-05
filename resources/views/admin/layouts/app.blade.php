@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>{{ config('app.name') }}| @yield('page-title')</title>
+  <title>{{ config('app.name') }} | @yield('page-title')</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="/site-template/vendors/feather/feather.css">
   <link rel="stylesheet" href="/site-template/vendors/mdi/css/materialdesignicons.min.css">
@@ -21,6 +21,14 @@
   <link rel="stylesheet" href="/site-template/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="/site-template/images/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&family=Poppins:ital@0;1&display=swap" rel="stylesheet"> 
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
 </head>
 <body>
   <div class="container-scroller">
