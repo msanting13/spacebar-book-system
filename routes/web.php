@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProfileController;
 
@@ -31,6 +32,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::get('profile', [ProfileController::class, 'edit'])->name('admin.profile');
     Route::put('profile', [ProfileController::class, 'update'])->name('admin.profile.update');
+
+    Route::get('users', [UserController::class, 'index'])->name('admin.user.index');
+    Route::get('user/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+    Route::put('user/edit/{id}', [UserController::class, 'update'])->name('admin.user.update');
 });
 
 

@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('page-title', 'User Profile')
+@section('page-title', 'Administrator Dashboard')
 @section('content')
 @include('templates.success')
 <div class="row">

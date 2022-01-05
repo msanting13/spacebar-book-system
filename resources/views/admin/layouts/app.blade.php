@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>@yield('page-title')</title>
+  <title>{{ config('app.name') }}| @yield('page-title')</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="/site-template/vendors/feather/feather.css">
   <link rel="stylesheet" href="/site-template/vendors/mdi/css/materialdesignicons.min.css">
@@ -15,8 +15,7 @@
   <link rel="stylesheet" href="/site-template/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="/site-template/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="/site-template/js/select.dataTables.min.css">
+  @stack('page-css')
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="/site-template/css/vertical-layout-light/style.css">
@@ -72,6 +71,7 @@
   <script src="/site-template/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 <!-- Code injected by live-server -->
+  @stack('page-scripts')
 </body>
 
 </html>

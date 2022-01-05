@@ -1,15 +1,30 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('home') }}">
-          <i class="mdi mdi-home menu-icon"></i>
-          <span class="menu-title">Home</span>
-        </a>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('home') }}">
+                <i class="mdi mdi-home menu-icon"></i>
+                <span class="menu-title">Home</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
+                aria-controls="ui-basic">
+                <i class="menu-icon mdi mdi-floor-plan"></i>
+                <span class="menu-title">Maintenance</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin.user.index') }}">Users</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Rooms</a></li>
+                    </li>
+                </ul>
+            </div>
+        </li>
     </ul>
-  </nav>
+</nav>
 
-  {{-- <li class="nav-item nav-category">UI Elements</li>
+{{-- <li class="nav-item nav-category">UI Elements</li>
   <li class="nav-item">
     <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
       <i class="menu-icon mdi mdi-floor-plan"></i>
