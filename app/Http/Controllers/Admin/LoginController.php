@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest:admin');
+        $this->middleware('guest:admin')->except('logout');
     }
 
     public function username()
@@ -30,5 +30,11 @@ class LoginController extends Controller
         } else {
             return back()->withErrors(['message' => 'Please check your username or password']);
         }
+    }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect()->route('admin.auth.login');
     }
 }

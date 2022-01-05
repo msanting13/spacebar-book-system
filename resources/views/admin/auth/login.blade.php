@@ -8,6 +8,11 @@
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
+                    @if($errors->any())
+                        <div class='alert alert-danger text-dark'>
+                            {{ $errors->first('message') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('admin.submit.auth.login') }}">
                         @csrf
 
