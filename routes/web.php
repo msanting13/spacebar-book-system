@@ -25,6 +25,7 @@ Route::group(['namespace' => 'User'], function () {
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('login', [LoginController::class, 'login'])->name('admin.auth.login');
     Route::post('login', [LoginController::class, 'submit'])->name('admin.submit.auth.login');
+    Route::post('logout', [LoginController::class, 'logout'])->name('admin.submit.logout');
     Route::get('/', [HomeController::class, 'index'])->name('admin.dashboard');
     Route::get('/dashboard', [HomeController::class, 'index']);
 
