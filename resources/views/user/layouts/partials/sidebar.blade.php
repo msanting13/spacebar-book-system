@@ -6,6 +6,12 @@
           <span class="menu-title">Home</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('user.booking.index') }}">
+          <i class="mdi mdi-book menu-icon"></i>
+          <span class="menu-title">Booking</span>
+        </a>
+      </li>
     </ul>
   </nav>
 

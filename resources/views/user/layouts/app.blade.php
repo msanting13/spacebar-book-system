@@ -98,11 +98,9 @@
   <link rel="stylesheet" href="/site-template/vendors/typicons/typicons.css">
   <link rel="stylesheet" href="/site-template/vendors/simple-line-icons/css/simple-line-icons.css">
   <link rel="stylesheet" href="/site-template/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  @stack('page-css')
   <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="/site-template/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="/site-template/js/select.dataTables.min.css">
-  <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="/site-template/css/vertical-layout-light/style.css">
   <!-- endinject -->
@@ -864,6 +862,8 @@
   <script src="/site-template/vendors/chart.js/Chart.min.js"></script>
   <script src="/site-template/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
   <script src="/site-template/vendors/progressbar.js/progressbar.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
@@ -879,6 +879,13 @@
   <script src="/site-template/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 <!-- Code injected by live-server -->
+@stack('page-js-scripts')
+<script>
+$(function() {
+  $('input[name="daterange"]').daterangepicker();
+});
+</script>
+
 <script type="text/javascript">
 	// <![CDATA[  <-- For SVG support
 	if ('WebSocket' in window) {
@@ -915,6 +922,7 @@
 		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
 	}
 	// ]]>
-</script></body>
+</script>
+</body>
 
 </html>

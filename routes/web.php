@@ -5,7 +5,9 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProfileController;
-
+use App\Http\Controllers\User\BookingController;
+use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\User\SecurityAndLoginController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,9 +15,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['namespace' => 'User'], function () {
+    Route::get('booking', [BookingController::class, 'index'])->name('user.booking.index');
+    Route::post('search/booking', [BookingController::class, 'search'])->name('user.booking.search');
+    Route::get('book/room/{room_id}', [BookingController::class, 'showBookForm'])->name('user.booking.bookform');
+    Route::post('book/{room_id}', [BookingController::class, 'book'])->name('user.booking.book');
+
     Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');
     Route::put('update/profile/{id}', [UserProfileController::class, 'update'])->name('user.profile.update');
     Route::get('/security-and-login', [SecurityAndLoginController::class, 'index'])->name('user.security.login');
