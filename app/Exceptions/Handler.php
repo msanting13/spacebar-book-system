@@ -41,7 +41,7 @@ class Handler extends ExceptionHandler
             break;
 
           default:
-            $login = 'user.auth.login';
+            $login = 'login';
             break;
         }
         return redirect()->guest(route($login));
