@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
-use Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class SecurityAndLoginController extends Controller
 {
@@ -28,15 +28,16 @@ class SecurityAndLoginController extends Controller
     public function updatePassword(Request $request)
     {
         $this->validate($request,[
-            'currentPassword'       =>      ['sometimes', 'required', function ($attribute, $value, $fail) {
+            'currentPassword'       =>      ['nullable',  function ($attribute, $value, $fail) {
                 if (!Hash::check($value, Auth::user()->password)) {
                     return $fail(__('The current password is incorrect.'));
                 }
             }],
-            'password'              =>      ['sometimes', 'required', 'string', 'min:8', 'confirmed'],
+            'password'              =>      ['nullable',  'string', 'min:8', 'confirmed'],
         ]);
 
         $user = User::find(Auth::id());
+        $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
 

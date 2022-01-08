@@ -23,10 +23,9 @@ Route::group(['namespace' => 'User'], function () {
     Route::post('search/booking', [BookingController::class, 'search'])->name('user.booking.search');
     Route::get('book/room/{room_id}', [BookingController::class, 'showBookForm'])->name('user.booking.bookform');
     Route::post('book/{room_id}', [BookingController::class, 'book'])->name('user.booking.book');
-
-    Route::get('/profile', [UserProfileController::class, 'index'])->name('user.profile');
+    Route::get('profile', [UserProfileController::class, 'index'])->name('user.profile');
     Route::put('update/profile/{id}', [UserProfileController::class, 'update'])->name('user.profile.update');
-    Route::get('/security-and-login', [SecurityAndLoginController::class, 'index'])->name('user.security.login');
+    // Route::get('/security-and-login', [SecurityAndLoginController::class, 'index'])->name('user.security.login');
     Route::put('update/password', [SecurityAndLoginController::class, 'updatePassword'])->name('user.update.password');
 });
 

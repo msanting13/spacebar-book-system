@@ -1,52 +1,30 @@
 @extends('user.layouts.app')
-@section('page-title', 'Home')
-@prepend('page-css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
-@endprepend
+@section('page-title', 'Dashboard')
 @section('content')
-@include('templates.success')
-<div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">Booked</h4>
-        <div class="table-responsive">
-          <table class="table table-striped" id="booked-datatables">
-            <thead>
-              <tr>
-                <th>Room</th>
-                <th>Room Type</th>
-                <th>Check In</th>
-                <th>Check Out</th>
-                <th>Price</th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-                @foreach ($bookings as $booking)
-                    <tr>
-                        <td>{{ $booking->room->name }}</td>
-                        <td>{{ $booking->room->roomType->type_name }}</td>
-                        <td>{{ $booking->start_date->format('F d, Y') }}</td>
-                        <td>{{ $booking->end_date->format('F d, Y') }}</td>
-                        <td>{{ $booking->room->price }}</td>
-                        <td>{{ $booking->status }}</td>
-                        <td><button type="button" class="btn btn-danger btn-sm">Cancel</button></td>
-                    </tr> 
-                @endforeach
-            </tbody>
-          </table>
+<!--begin::Card-->
+<div class="card">
+    <!--begin::Card body-->
+    <div class="card-body p-0">
+        <!--begin::Wrapper-->
+        <div class="card-px text-center py-20 my-10">
+            <!--begin::Title-->
+            <h2 class="fs-2x fw-bolder mb-10">Welcome!</h2>
+            <!--end::Title-->
+            <!--begin::Description-->
+            <p class="text-gray-400 fs-4 fw-bold mb-10">There are no book added yet.</p>
+            <!--end::Description-->
+            <!--begin::Action-->
+            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Book</a>
+            <!--end::Action-->
         </div>
-      </div>
+        <!--end::Wrapper-->
+        <!--begin::Illustration-->
+        <div class="text-center px-4">
+            <img class="mw-100 mh-300px" alt="" src="/assets/media/illustrations/sigma-1/2.png" />
+        </div>
+        <!--end::Illustration-->
     </div>
+    <!--end::Card body-->
 </div>
+<!--end::Card-->
 @endsection
-@push('page-js-scripts')
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
-<script>
-    $('#booked-datatables').DataTable();
-</script>
-@endpush
