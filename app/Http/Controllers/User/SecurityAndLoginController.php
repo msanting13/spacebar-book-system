@@ -38,7 +38,9 @@ class SecurityAndLoginController extends Controller
 
         $user = User::find(Auth::id());
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
+        if(!empty($request->password)) {
+            $user->password = bcrypt($request->password);
+        }
         $user->save();
 
         return redirect()->back()->with('success', 'Updated successfully');

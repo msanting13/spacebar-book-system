@@ -5,6 +5,8 @@
 <div class="card">
     <!--begin::Card body-->
     <div class="card-body p-0">
+        @if($bookings->count() === 0)
+
         <!--begin::Wrapper-->
         <div class="card-px text-center py-20 my-10">
             <!--begin::Title-->
@@ -14,7 +16,7 @@
             <p class="text-gray-400 fs-4 fw-bold mb-10">There are no book added yet.</p>
             <!--end::Description-->
             <!--begin::Action-->
-            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Book</a>
+            <a href="{{ route('user.booking.index') }}" class="btn btn-primary">Book Now!</a>
             <!--end::Action-->
         </div>
         <!--end::Wrapper-->
@@ -23,6 +25,9 @@
             <img class="mw-100 mh-300px" alt="" src="/assets/media/illustrations/sigma-1/2.png" />
         </div>
         <!--end::Illustration-->
+        @else
+        <p>Display list of bookings</p>
+        @endif
     </div>
     <!--end::Card body-->
 </div>

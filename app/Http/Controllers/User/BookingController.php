@@ -8,6 +8,7 @@ use App\Models\Room;
 use App\Models\Booking;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use App\Models\RoomType;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -25,8 +26,9 @@ class BookingController extends Controller
                 $query->whereDate('start_date', '>=', date('Y-m-d', strtotime($start_date)))->whereDate('end_date', '<=', date('Y-m-d', strtotime($end_date)));
             })->get();
         }
+        $roomTypes = RoomType::get();
 
-        return view('user.booking')->with(['rooms' => (isset($rooms)) ? $rooms : null, 'selected_date' => $request->daterange]);
+        return view('user.booking')->with(['rooms' => (isset($rooms)) ? $rooms : null, 'selected_date' => $request->daterange, 'roomTypes' => $roomTypes]);
     }
 
     public function showBookForm(Request $request, $room_id)
