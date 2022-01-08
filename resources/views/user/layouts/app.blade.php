@@ -293,7 +293,7 @@
                 </div>
                 <!--end::Header-->
                 <!--begin::Content-->
-                <div class="content fs-6 d-flex flex-column flex-column-fluid" id="kt_content">
+                <div class="content fs-6 d-flex flex-column flex-column-fluid bg-gray-300" id="kt_content">
                     <!--begin::Toolbar-->
                     <div class="toolbar" id="kt_toolbar">
                         <div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap">
@@ -310,7 +310,7 @@
                     <!--begin::Post-->
                     <div class="post fs-6 d-flex flex-column-fluid" id="kt_post">
                         <!--begin::Container-->
-                        <div class="container-xxl">
+                        <div class="container-fluid">
                             @yield('content')
                         </div>
                         <!--end::Container-->
