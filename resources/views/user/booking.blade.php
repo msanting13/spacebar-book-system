@@ -226,6 +226,9 @@
                             </div>
                             <!--end::Info-->
                         </div>
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-primary fs-3 rounded-0" href="{{ route('user.booking.bookform', [$room->id, 'selected_date' => $selected_date]) }}">GET THIS ROOM</a>
+                        </div>
                         <!--end::Card body-->
                     </div>
                     <!--end::Card-->
