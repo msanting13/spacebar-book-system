@@ -28,12 +28,12 @@ class SecurityAndLoginController extends Controller
     public function updatePassword(Request $request)
     {
         $this->validate($request,[
-            'currentPassword'       =>      ['nullable',  function ($attribute, $value, $fail) {
+            'currentPassword'       =>      ['required', 'nullable',  function ($attribute, $value, $fail) {
                 if (!Hash::check($value, Auth::user()->password)) {
                     return $fail(__('The current password is incorrect.'));
                 }
             }],
-            'password'              =>      ['nullable',  'string', 'min:8', 'confirmed'],
+            'password'              =>      ['required', 'nullable',  'string', 'min:8', 'confirmed'],
         ]);
 
         $user = User::find(Auth::id());
