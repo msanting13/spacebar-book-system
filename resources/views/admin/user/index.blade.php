@@ -2,31 +2,29 @@
 @section('page-title', 'List of Users')
 @section('content')
 @prepend('page-css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+<link href="{{ asset('/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
 @endprepend
 @include('templates.success')
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">List of users</h4>
             <table class='table table-bordered table-hovered' id='users-table'>
                 <thead>
                     <tr>
-                        <th>
+                        <th class='fw-bold text-uppercase'>
                             Fullname
                         </th>
-                        <th>
+                        <th class='fw-bold text-uppercase'>
                             Phone #
                         </th>
-                        <th>
+                        <th class='fw-bold text-uppercase'>
                             Email
                         </th>
-                        <th>
+                        <th class='fw-bold text-uppercase'>
                             Registered At
                         </th>
-                        <th>
+                        <th class='fw-bold text-uppercase text-center'>
                             Actions
                         </th>
                     </tr>
@@ -50,9 +48,26 @@
     </div>
 </div>
 @push('page-scripts')
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+<script src="{{ asset('/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+
+<script>
+    $("#bookings_table").DataTable({
+        "language": {
+            "lengthMenu": "Show _MENU_",
+        },
+        "dom": "<'row'" +
+            "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
+            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
+            ">" +
+            "<'table-responsive'tr>" +
+
+            "<'row'" +
+            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
+            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
+            ">"
+    });
+</script>
 <script>
     $('#users-table').DataTable();
 </script>

@@ -20,21 +20,21 @@
           <form class="forms-sample" action="{{ route('admin.user.update', $user->id) }}" method="POST">
             @csrf
             @method('PUT')
-            <div class="form-group">
+            <div class="form-group mb-5">
               <label for="firstname">Firstname</label>
               <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Firstname" value="{{ old('firstname', $user->first_name) }}">
             </div>
-            <div class="form-group">
+            <div class="form-group mb-5">
               <label for="lastname">Lastname</label>
               <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Lastname" value="{{ old('lastname', $user->last_name) }}">
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-5">
               <label for="email">Email address</label>
               <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="{{ old('email', $user->email) }}">
             </div>
 
-            <div class="form-group">
+            <div class="form-group mb-5">
               <label for="phone_number">Phone Number</label>
               <input type="text" class="form-control" name="phone_number" id="phone_number" placeholder="Phone Number" value="{{ old('phone_number', $user->phone_number) }}">
             </div>
