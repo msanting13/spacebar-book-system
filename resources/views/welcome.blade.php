@@ -54,7 +54,7 @@
             <div class="container">
                 <div class="banner_content text-center">
                     <h6>Away from monotonous life</h6>
-                    <h2>Child And Relax</h2>
+                    <h2>Chill And Relax</h2>
                     <p>
                         Find the place where you can just go, chill and relax.
                     </p>
