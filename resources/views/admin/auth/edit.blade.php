@@ -90,9 +90,9 @@
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                                    <input type="tel" name="currentPassword"
+                                    <input type="password" name="currentPassword"
                                         class="form-control form-control-lg form-control-solid active" placeholder="" value="">
-                                    <div class="fv-plugins-message-container invalid-feedback">
+                                    <div class="fv-plugins-message-container invalid-feedback fw-bold">
                                         {{ $errors->first('currentPassword') }}
                                     </div>
                                 </div>
@@ -107,9 +107,9 @@
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                                    <input type="tel" name="password"
+                                    <input type="password" name="password"
                                         class="form-control form-control-lg form-control-solid active" placeholder="" value="">
-                                    <div class="fv-plugins-message-container invalid-feedback">
+                                    <div class="fv-plugins-message-container invalid-feedback fw-bold">
                                         {{ $errors->first('password') }}
                                     </div>
                                 </div>
@@ -125,9 +125,9 @@
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row fv-plugins-icon-container">
-                                    <input type="tel" name="password_confirmation"
+                                    <input type="password" name="password_confirmation"
                                         class="form-control form-control-lg form-control-solid active" placeholder="" value="">
-                                    <div class="fv-plugins-message-container invalid-feedback">
+                                    <div class="fv-plugins-message-container invalid-feedback fw-bold">
                                         {{ $errors->first('password_confirmation') }}
                                     </div>
                                 </div>

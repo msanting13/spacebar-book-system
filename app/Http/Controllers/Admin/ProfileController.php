@@ -6,6 +6,7 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -26,7 +27,12 @@ class ProfileController extends Controller
         $user = Auth::user();
         $this->validate($request, [
             'username' => 'required|unique:admins,username,' . $user->id,
-            'password' => 'nullable|min:8|confirmed',
+            'currentPassword' => ['required', 'nullable',  function ($attribute, $value, $fail) {
+                if (!Hash::check($value, Auth::user()->password)) {
+                    return $fail(__('The current password is incorrect.'));
+                }
+            }],
+            'password' => ['required', 'nullable',  'string', 'min:8', 'confirmed'],
             'fullname' => 'required',
             'email' => 'required|unique:admins,email,' . $user->id,
         ]);
