@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="{{ asset('/theme/royal/image/xfavicon.png.pagespeed.ic.zt2CzDLXlD.png') }}" type="image/png">
-    <title>Chill and Relax</title>
+    <title>Welcome to {{  config('app.name') }}</title>
 
     <link rel="stylesheet"
         href="{{ asset('/theme/royal/A.css%2c%2c_bootstrap.css%2bvendors%2c%2c_linericon%2c%2c_style.css%2bcss%2c%2c_font-awesome.min.css%2bvendors%2c%2c_owl-carousel%2c%2c_owl.carousel.min.css%2bvendors%2c%2c_bootstrap-datepicker%2c%2c_bootst') }}" />
@@ -32,10 +32,14 @@
 
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#accomodation">Accomodation</a></li>
                         <li class="nav-item"><a class="nav-link" href="#facilities">Facilities</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Sign in / Sign Up</a></li>
+                        @auth
+                            <li class="nav-item active"><a class="nav-link" href="{{ route('home') }}">My Account</a></li>
+                            @else
+                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Sign in / Sign Up</a></li>
+                        @endauth
                     </ul>
                 </div>
             </nav>
@@ -54,7 +58,7 @@
                     <p>
                         Find the place where you can just go, chill and relax.
                     </p>
-                    <a href="#" class="btn theme_btn button_hover">Get Started</a>
+                    <a href="{{ route('user.booking.index') }}" class="btn theme_btn button_hover">Get Started</a>
                 </div>
             </div>
         </div>
