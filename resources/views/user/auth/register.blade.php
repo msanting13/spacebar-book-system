@@ -80,7 +80,7 @@
 									<!--begin::Col-->
 									<div class="col-xl-6">
 										<label class="form-label fw-bolder text-dark fs-6">First Name</label>
-										<input class="form-control form-control-lg form-control-solid {{ $errors->has('first_name') ? 'is-invalid border-danger' : '' }}" type="text" placeholder="" name="first_name" autocomplete="off" />
+										<input class="form-control form-control-lg form-control-solid {{ $errors->has('first_name') ? 'is-invalid border-danger' : '' }}" type="text" placeholder="" value="{{ old('first_name') }}" name="first_name" autocomplete="off" />
                                         @error('first_name')
                                             <span class='text-sm text-danger'>{{ $errors->first('first_name') }}</span>
                                         @enderror
@@ -89,7 +89,7 @@
 									<!--begin::Col-->
 									<div class="col-xl-6">
 										<label class="form-label fw-bolder text-dark fs-6">Last Name</label>
-										<input class="form-control form-control-lg form-control-solid {{ $errors->has('last_name') ? 'is-invalid border-danger' : '' }}" type="text" placeholder="" name="last_name" autocomplete="off" />
+										<input class="form-control form-control-lg form-control-solid {{ $errors->has('last_name') ? 'is-invalid border-danger' : '' }}" value="{{ old('last_name') }}" type="text" placeholder="" name="last_name" autocomplete="off" />
                                         @error('last_name')
                                             <span class='text-sm text-danger'>{{ $errors->first('last_name') }}</span>
                                         @enderror
@@ -100,7 +100,7 @@
 								<!--begin::Input group-->
 								<div class="fv-row mb-7">
 									<label class="form-label fw-bolder text-dark fs-6">Email</label>
-									<input class="form-control form-control-lg form-control-solid {{ $errors->has('email') ? 'is-invalid border-danger' : '' }}" type="email" placeholder="" name="email" autocomplete="off" />
+									<input class="form-control form-control-lg form-control-solid {{ $errors->has('email') ? 'is-invalid border-danger' : '' }}" type="email" value="{{ old('email') }}" placeholder="" name="email" autocomplete="off" />
                                     @error('email')
                                         <span class='text-sm text-danger'>{{ $errors->first('email') }}</span>
                                     @enderror
@@ -108,7 +108,7 @@
 								<!--end::Input group-->
                                 <div class="fv-row mb-7">
 									<label class="form-label fw-bolder text-dark fs-6">Mobile No.</label>
-									<input class="form-control form-control-lg form-control-solid {{ $errors->has('phone_number') ? 'is-invalid border-danger' : '' }}" type="text" name="phone_number" autocomplete="off" />
+									<input class="form-control form-control-lg form-control-solid {{ $errors->has('phone_number') ? 'is-invalid border-danger' : '' }}" value="{{ old('phone_number') }}" type="text" name="phone_number" autocomplete="off" />
                                     @error('phone_number')
                                         <span class='text-sm text-danger'>{{ $errors->first('phone_number') }}</span>
                                     @enderror
