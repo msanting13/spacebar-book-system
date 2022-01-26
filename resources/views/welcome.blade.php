@@ -121,7 +121,7 @@
                             @else
                                 <img src="{{ asset('/theme/royal/image/xroom1.jpg.pagespeed.ic.GE_Jw5sZi4.jpg') }}" alt="">
                             @endif
-                                <a href="{{ route('user.booking.index') }}" class="btn theme_btn button_hover">Book Now</a>
+                                <a href="{{ route('user.booking.bookform', $room->id) }}" class="btn theme_btn button_hover">Book Now</a>
                             </div>
                             <a href="#">
                                 <h4 class="sec_h4">{{ $room->name }}</h4>
