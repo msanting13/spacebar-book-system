@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('page-title', 'List of Rooms')
+@section('page-title', 'List of Facilities')
 @section('content')
 @prepend('page-css')
 <link href="{{ asset('/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="float-end">
-                    <a href="{{ route('admin.room.create') }}" class='btn btn-primary'>Add new room</a>
+                    <a href="{{ route('admin.facility.create') }}" class='btn btn-primary'>Add new facility</a>
                 </div>
                 <div class="clearfix"></div>
                 <div class="table-responsive">
@@ -23,31 +23,18 @@
                                 <th class='fw-bold text-uppercase'>
                                     Description
                                 </th>
-                                <th class='fw-bold text-uppercase'>
-                                    Capacity
-                                </th>
-                                <th class='fw-bold text-uppercase text-truncate'>
-                                    Room Type
-                                </th>
-                                <th class='fw-bold text-uppercase'>
-                                    Price
-                                </th>
                                 <th class='fw-bold text-uppercase text-center'>
                                     Actions
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($rooms as $room)
+                            @foreach($facilities as $facility)
                             <tr>
-                                <td>{{ $room->name }}</td>
-                                <td>{{ $room->description }}</td>
-                                <td class='text-center fw-bold'>{{ $room->capacity }}</td>
-                                <td>{{ $room->roomType->type_name }}</td>
-                                <td>{{ $room->price }}</td>
-                                <td>
-                                    <a href="{{ route('admin.room.edit', $room->id) }}" class='btn btn-success p-2
-                                    text-uppercase'>Edit</a>
+                                <td>{{ $facility->title }}</td>
+                                <td>{{ $facility->content }}</td>
+                                <td class='text-center'>
+                                    <a href="{{ route('admin.facility.edit', $facility->id) }}" class="btn btn-success shadow-sm">EDIT</a>
                                 </td>
                             </tr>
                             @endforeach

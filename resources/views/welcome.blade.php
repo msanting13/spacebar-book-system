@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="hotel_booking_area position">
+        {{-- <div class="hotel_booking_area position">
             <div class="container">
                 <div class="hotel_booking_table">
                     <div class="col-md-9">
@@ -101,7 +101,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
 
 
@@ -148,48 +148,14 @@
                 <p>Who are in extremely love with eco friendly system.</p>
             </div>
             <div class="row mb_30">
+                @foreach($facilities as $facility)
                 <div class="col-lg-4 col-md-6">
                     <div class="facilities_item">
-                        <h4 class="sec_h4"><i class="lnr lnr-dinner"></i>Restaurant</h4>
-                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and
-                            power.</p>
+                        <h4 class="sec_h4">{{ $facility->title }}</h4>
+                        <p>{{ $facility->content }}</p>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="facilities_item">
-                        <h4 class="sec_h4"><i class="lnr lnr-bicycle"></i>Sports CLub</h4>
-                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and
-                            power.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="facilities_item">
-                        <h4 class="sec_h4"><i class="lnr lnr-shirt"></i>Swimming Pool</h4>
-                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and
-                            power.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="facilities_item">
-                        <h4 class="sec_h4"><i class="lnr lnr-car"></i>Rent a Car</h4>
-                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and
-                            power.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="facilities_item">
-                        <h4 class="sec_h4"><i class="lnr lnr-construction"></i>Gymnesium</h4>
-                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and
-                            power.</p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="facilities_item">
-                        <h4 class="sec_h4"><i class="lnr lnr-coffee-cup"></i>Bar</h4>
-                        <p>Usage of the Internet is becoming more common due to rapid advancement of technology and
-                            power.</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

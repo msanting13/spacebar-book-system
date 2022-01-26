@@ -1,6 +1,8 @@
 <?php
+
 use App\Models\Page;
 use App\Models\Room;
+use App\Models\Facility;
 use App\Models\RoomType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +13,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\SecurityAndLoginController;
@@ -18,7 +21,8 @@ use App\Http\Controllers\User\SecurityAndLoginController;
 Route::get('/', function () {
     $pages = Page::get();
     $rooms = Room::get();
-    return view('welcome', compact('pages', 'rooms'));
+    $facilities = Facility::get();
+    return view('welcome', compact('pages', 'rooms', 'facilities'));
 });
 
 Auth::routes(['verify' => true]);
@@ -68,6 +72,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('content/{id}/edit', [PageController::class, 'edit'])->name('admin.page.edit');
     Route::put('content/{id}/update', [PageController::class, 'update'])->name('admin.page.update');
     Route::delete('content/{id}/delete', [PageController::class, 'delete'])->name('admin.page.delete');
+
+    Route::get('facility/index', [FacilityController::class, 'index'])->name('admin.facility.index');
+    Route::get('facility/create', [FacilityController::class, 'create'])->name('admin.facility.create');
+    Route::post('facility/create', [FacilityController::class, 'store'])->name('admin.facility.store');
+    Route::get('facility/{id}/edit', [FacilityController::class, 'edit'])->name('admin.facility.edit');
+    Route::put('facility/{id}/edit', [FacilityController::class, 'update'])->name('admin.facility.update');
 });
 
 
