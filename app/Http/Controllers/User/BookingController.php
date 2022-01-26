@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\User;
 
-use Auth;
-use App\Models\User;
 use App\Models\Room;
+use App\Models\User;
 use App\Models\Booking;
-use Illuminate\Support\Carbon;
-use App\Http\Controllers\Controller;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -44,9 +44,10 @@ class BookingController extends Controller
         list($start_date, $end_date) = explode(' - ', $request->daterange);
 
         $user->bookings()->create([
-            'room_id'       =>  $room->id,
-            'start_date'    =>  date('Y-m-d', strtotime($start_date)),
-            'end_date'      =>  date('Y-m-d', strtotime($end_date)),
+            'room_id'    => $room->id,
+            'status'     => 'pending',
+            'start_date' => date('Y-m-d', strtotime($start_date)),
+            'end_date'   => date('Y-m-d', strtotime($end_date)),
         ]);
 
         return redirect()->route('home')->with('success', 'Booked successfully');

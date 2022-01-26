@@ -104,7 +104,7 @@
                             <div class="row mb-6">
                                 <!--begin::Label-->
                                 <label class="col-lg-4 col-form-label fw-bold fs-6">
-                                    <span class="required">Current password</span>
+                                    <span class="">Current password</span>
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
@@ -121,7 +121,7 @@
                             <div class="row mb-6">
                                 <!--begin::Label-->
                                 <label class="col-lg-4 col-form-label fw-bold fs-6">
-                                    <span class="required">New Password</span>
+                                    <span class="">New Password</span>
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
@@ -138,7 +138,8 @@
                             <div class="row mb-6">
                                 <!--begin::Label-->
                                 <label class="col-lg-4 col-form-label fw-bold fs-6">
-                                    <span class="required">Re-type new password</span>
+                                    <span class="
+                                    ">Re-type new password</span>
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Col-->

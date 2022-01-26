@@ -6,6 +6,20 @@
 @section('content')
 <!--begin::Card-->
 <div class="card">
+    @if(Session::has('success'))
+    <div class="alert alert-success rounded-0">
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-column">
+            <!--begin::Title-->
+            <h4 class="mb-1 text-dark">Good Job!</h4>
+            <!--end::Title-->
+            <!--begin::Content-->
+            <span>{{ Session::get('success') }}</span>
+            <!--end::Content-->
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    @endif
     <!--begin::Card body-->
     <div class="card-body p-0">
         @if($bookings->count() === 0)
@@ -28,13 +42,16 @@
         </div>
         <!--end::Illustration-->
         @else
+        <div class='d-grip gap-2'>
+            <a href="{{ route('user.booking.index') }}" class="rounded-0 btn btn-primary w-100 fs-5 text-uppercase">Book Now!</a>
+        </div>
+
 
         {{-- DISPLAY BOOKINGS --}}
         <div class="card">
             <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
                 data-bs-target="#kt_account_signin_method">
                 <div class="card-title m-0">
-                    <a href="{{ route('user.booking.index') }}" class="btn btn-primary ">Book Now!</a>
                 </div>
             </div>
             <div class="card-body">
@@ -44,27 +61,32 @@
                             <th>Name</th>
                             <th>Type</th>
                             <th>Capacity</th>
-                            <th>Status</th>
-                            <th>Check In / Check Out.</th>
+                            <th>Price</th>
+                            <th class='text-center'>Status</th>
+                            <th class='text-center'>Check In / Check Out.</th>
                             <th class='text-center'>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($bookings as $booking)
                         <tr>
-                            <td>{{ $booking->room->name }}</td>
-                            <td>{{ $booking->room->roomType->type_name }}</td>
-                            <td>{{ $booking->room->capacity }}</td>
-                            <td>{{ $booking->status }}</td>
-                            <td>{{ $booking->start_date->format('F d') }} - {{ $booking->end_date->format('d, Y') }}</td>
+                            <td class='fs-5 fw-bolder'>{{ $booking->room->name }}</td>
+                            <td class='fs-5'>{{ $booking->room->roomType->type_name }}</td>
+                            <td class='fs-5'>{{ $booking->room->capacity }}</td>
+                            <td class='fs-5 fw-bolder'>{{ $booking->room->price }}</td>
                             <td class='text-center'>
-                                @if( !Carbon\Carbon::now()->diffInMinutes($booking->created_at) >= 21 )
-                                    <button class='btn btn-danger btn-sm'>CANCEL</button>
+                                <span class='badge bg-primary text-uppercase fs-6'>
+                                    {{ $booking->status }}
+                                </span>
+                            </td>
+                            <td class='fs-5 text-center'>{{ $booking->start_date->format('F d') }} - {{ $booking->end_date->format('d, Y') }}
+                            </td>
+                            <td class='text-center fs-5'>
+                                &nbsp;
+                                {{-- @if( !Carbon\Carbon::parse($booking->created_at)->diffInMinutes(Carbon\Carbon::now()) >= 21 )
+                                <button class='btn btn-danger btn-sm'>CANCEL</button>
                                 @else
-                                    <button class='btn btn-danger btn-sm' disabled>
-                                        <strike>CANCEL</strike>
-                                    </button>
-                                @endif
+                                @endif --}}
                             </td>
                         </tr>
                         @endforeach
@@ -99,7 +121,6 @@
             "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
             ">"
     });
-
 </script>
 @endpush
 @endsection

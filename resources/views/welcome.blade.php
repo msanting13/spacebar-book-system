@@ -72,7 +72,7 @@
                                     <div class="book_tabel_item">
                                         <div class="form-group">
                                             <div class='input-group date' id='datetimepicker11'>
-                                                <input type='text' class="form-control" placeholder="Check In" />
+                                                <input type='text' class="form-control" placeholder="CHECK IN" />
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                                 </span>
@@ -85,7 +85,7 @@
                                     <div class="book_tabel_item">
                                         <div class="form-group">
                                             <div class='input-group date' id='datetimepicker11'>
-                                                <input type='text' class="form-control" placeholder="Check Out" />
+                                                <input type='text' class="form-control" placeholder="CHECK OUT" />
                                                 <span class="input-group-addon">
                                                     <i class="fa fa-calendar" aria-hidden="true"></i>
                                                 </span>
@@ -224,19 +224,19 @@
     <section class="about_history_area section_gap">
         <div class="container">
             <div class="row">
+                @foreach($pages as $page)
                 <div class="col-md-6 d_flex align-items-center">
-                    <div class="about_content ">
-                        <h2 class="title title_color">About Us <br>Our History<br>Mission & Vision</h2>
-                        <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct
-                            standards especially in the workplace. That’s why it’s crucial that, as women, our behavior
-                            on the job is beyond reproach. inappropriate behavior is often laughed.</p>
-                        <a href="#" class="button_hover theme_btn_two">Request Custom Price</a>
+                    <div class="about_content">
+                        <h2 class="title title_color">{{ $page->title ?? 'No title' }}</h2>
+                        <p>{{ $page->content ?? 'No Content' }}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <img class="img-fluid"
                         src="{{ asset('/theme/royal/image/xabout_bg.jpg.pagespeed.ic.2Y8QqB4mwP.jpg') }}" alt="img">
                 </div>
+                @endforeach
+
             </div>
         </div>
     </section>

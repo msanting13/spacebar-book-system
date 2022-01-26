@@ -22,4 +22,5 @@ class RoomTypeTableSeeder extends Seeder
             ]);
         }
     }
+    
 }

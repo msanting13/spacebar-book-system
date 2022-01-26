@@ -1,17 +1,22 @@
 <?php
+use App\Models\Page;
+use App\Models\RoomType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LoginController;
-use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\User\BookingController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\SecurityAndLoginController;
 
 Route::get('/', function () {
-    return view('welcome');
+    $pages = Page::get();
+    return view('welcome', compact('pages'));
 });
 
 Auth::routes(['verify' => true]);
@@ -43,11 +48,23 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('users', [UserController::class, 'index'])->name('admin.user.index');
     Route::get('user/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
     Route::put('user/edit/{id}', [UserController::class, 'update'])->name('admin.user.update');
+
     Route::get('rooms', [RoomController::class, 'index'])->name('admin.room.index');
     Route::get('room/create', [RoomController::class, 'create'])->name('admin.room.create');
     Route::post('room/create', [RoomController::class, 'store'])->name('admin.room.store');
     Route::get('room/edit/{id}', [RoomController::class, 'edit'])->name('admin.room.edit');
     Route::put('room/edit/{id}', [RoomController::class, 'update'])->name('admin.room.update');
+
+    Route::get('room-types', [RoomTypeController::class, 'index'])->name('admin.room-types.index');
+    Route::get('room-types/create', [RoomTypeController::class, 'create'])->name('admin.room-types.create');
+    Route::post('room-types/create', [RoomTypeController::class, 'store'])->name('admin.room-types.store');
+    Route::get('room/{type}/edit', [RoomTypeController::class, 'edit'])->name('admin.room-types.edit');
+
+    Route::get('page', [PageController::class, 'index'])->name('admin.page.index');
+    Route::get('content/create', [PageController::class, 'create'])->name('admin.page.create');
+    Route::post('content/create', [PageController::class, 'store'])->name('admin.page.store');
+    Route::get('content/{id}/edit', [PageController::class, 'edit'])->name('admin.page.edit');
+    Route::put('content/{id}/update', [PageController::class, 'update'])->name('admin.page.update');
 });
 
 
