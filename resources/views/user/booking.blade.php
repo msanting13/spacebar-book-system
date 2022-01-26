@@ -173,11 +173,11 @@
     <!--begin::Toolbar-->
     <div class="d-flex flex-wrap flex-stack pb-7">
         @isset($rooms)
-          <!--begin::Title-->
-          <div class="d-flex flex-wrap align-items-center my-1">
-              <h2 class="fw-bold me-5 my-1">{{ $rooms->count() }} Room/s Found</h2>
-          </div>
-          <!--end::Title-->
+        <!--begin::Title-->
+        <div class="d-flex flex-wrap align-items-center my-1">
+            <h2 class="fw-bold me-5 my-1">{{ $rooms->count() }} Room/s Found</h2>
+        </div>
+        <!--end::Title-->
         @endisset
     </div>
     <!--end::Toolbar-->
@@ -186,19 +186,22 @@
         <!--begin::Tab pane-->
         <div id="kt_project_users_card_pane" class="tab-pane fade show active">
             @isset($rooms)
-            @foreach($rooms as $room)
-
-            <!--begin::Row-->
             <div class="row g-6 g-xl-9">
+                @foreach($rooms as $room)
                 <!--begin::Col-->
                 <div class="col-md-6 col-xxl-4">
                     <!--begin::Card-->
                     <div class="card">
                         <!--begin::Card body-->
                         <div class="card-body d-flex flex-center flex-column pt-12 p-9">
-                            <img src="/assets/media/illustrations/sigma-1/2.png" class='img-fluid mh-250px mb-3' alt="">
+                            @if($room->image->count() != 0)
+                                <img src="{{ asset('/storage/uploads/' . $room->image->first()->photo) }}" class='img-fluid mh-250px mb-3' alt="">
+                                @else
+                                <img src="/assets/media/illustrations/sigma-1/2.png" class='img-fluid mh-250px mb-3' alt="">
+                            @endif
                             <!--begin::Name-->
-                            <a href="#" class="fs-1 text-gray-800 text-hover-primary fw-boldest mb-1">{{ $room->name }}</a>
+                            <a href="#"
+                                class="fs-1 text-gray-800 text-hover-primary fw-boldest mb-1">{{ $room->name }}</a>
                             <!--end::Name-->
                             <!--begin::Position-->
                             <div class="fs-4 fw-bold mb-3">{{ $room->roomType->type_name }}</div>
@@ -227,16 +230,18 @@
                             <!--end::Info-->
                         </div>
                         <div class="d-grid gap-2">
-                            <a class="btn btn-primary fs-3 rounded-0" href="{{ route('user.booking.bookform', [$room->id, 'selected_date' => $selected_date]) }}">GET THIS ROOM</a>
+                            <a class="btn btn-primary fs-3 rounded-0"
+                                href="{{ route('user.booking.bookform', [$room->id, 'selected_date' => $selected_date]) }}">GET
+                                THIS ROOM</a>
                         </div>
                         <!--end::Card body-->
                     </div>
                     <!--end::Card-->
                 </div>
                 <!--end::Col-->
+
+                @endforeach
             </div>
-            <!--end::Row-->
-            @endforeach
             @endisset
         </div>
         <!--end::Tab pane-->

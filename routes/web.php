@@ -65,6 +65,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('content/create', [PageController::class, 'store'])->name('admin.page.store');
     Route::get('content/{id}/edit', [PageController::class, 'edit'])->name('admin.page.edit');
     Route::put('content/{id}/update', [PageController::class, 'update'])->name('admin.page.update');
+    Route::delete('content/{id}/delete', [PageController::class, 'delete'])->name('admin.page.delete');
 });
 
 

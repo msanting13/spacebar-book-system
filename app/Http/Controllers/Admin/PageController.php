@@ -59,4 +59,10 @@ class PageController extends Controller
 
         return back()->with('success', 'You have successfully update a record');
     }
+
+    public function delete(string $id)
+    {
+        Page::find($id)->delete();
+        return back()->with('success', 'Successfully delete a content');
+    }
 }

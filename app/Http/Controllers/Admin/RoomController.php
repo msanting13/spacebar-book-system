@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Room;
+use App\Models\RoomType;
+use App\Models\RoomImage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\RoomType;
 
 class RoomController extends Controller
 {
@@ -36,13 +37,22 @@ class RoomController extends Controller
             'price'  => 'required|integer',
         ]);
 
-        Room::create([
+        $room = Room::create([
             'name' => $request->name,
             'description' => $request->description,
             'capacity' => $request->capacity,
             'room_type_id' => $request->room_type,
             'price' => $request->price,
         ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('storage/uploads'), $imageName);
+
+        RoomImage::create([
+            'photo' => $imageName,
+            'room_id' => $room->id,
+        ]);
+
 
         return back()->with('success', 'You have successfully create new room');
     }

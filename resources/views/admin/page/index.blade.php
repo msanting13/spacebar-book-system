@@ -26,14 +26,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tbody>
                     @foreach($contents as $content)
                     <tr>
                         <td>{{ $content->title }}</td>
                         <td>{{ $content->content }}</td>
                         <td class='text-center'>{{ $content->created_at->format('F d, Y h:i A') }}</td>
-                        <td class='text-center'>
-                            <a href="{{ route('admin.page.edit', $content->id) }}" class='btn btn-success p-2 text-uppercase'>Edit</a>
+                        <td class='text-center' >
+                            <form action="{{ route('admin.page.delete', $content->id) }}" method="POST">
+                                <a href="{{ route('admin.page.edit', $content->id) }}" class='btn btn-success p-2 text-uppercase'>Edit</a>
+                                @csrf
+                                @method('DELETE')
+                                <button class='btn btn-danger p-2 text-uppercase'>Delete</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach

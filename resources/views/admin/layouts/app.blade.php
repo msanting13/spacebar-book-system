@@ -71,7 +71,7 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="menu-title">Dashboard</span>
+                                    <span class="menu-title">DASHBOARD</span>
                                 </span>
                             </a>
 
@@ -97,7 +97,7 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="menu-title">Rooms</span>
+                                    <span class="menu-title">ROOMS</span>
                                 </span>
                             </a>
                             <a href="{{ route('admin.room-types.index') }}" class="menu-item menu-accordion">
@@ -118,7 +118,7 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="menu-title">Room Types</span>
+                                    <span class="menu-title">ROOM TYPES</span>
                                 </span>
                             </a>
                             <a href="{{ route('admin.user.index') }}" class="menu-item menu-accordion">
@@ -139,9 +139,14 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="menu-title">Users</span>
+                                    <span class="menu-title">USERS</span>
                                 </span>
                             </a>
+                            
+                            <div class="menu-content mt-3">
+                                <span class="fw-bold text-muted text-uppercase fs-7">content management</span>
+                            </div>
+
                             <a href="{{ route('admin.page.index') }}" class="menu-item menu-accordion">
                                 <span class="menu-link">
                                     <span class="menu-icon">
@@ -160,7 +165,7 @@
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
-                                    <span class="menu-title">Pages</span>
+                                    <span class="menu-title">LANDING PAGE</span>
                                 </span>
                             </a>
                         </div>
