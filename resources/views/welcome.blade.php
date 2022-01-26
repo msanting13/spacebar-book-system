@@ -108,58 +108,32 @@
     <section class="accomodation_area section_gap" id='accomodation'>
         <div class="container">
             <div class="section_title text-center">
-                <h2 class="title_color">Hotel Accomodation</h2>
+                <h2 class="title_color">Rooms</h2>
                 <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, </p>
             </div>
             <div class="row mb_30">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="accomodation_item text-center">
-                        <div class="hotel_img">
-                            <img src="{{ asset('/theme/royal/image/xroom1.jpg.pagespeed.ic.GE_Jw5sZi4.jpg') }}" alt="">
-                            <a href="#" class="btn theme_btn button_hover">Book Now</a>
+                @foreach($rooms as $room)
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="accomodation_item text-center">
+                            <div class="hotel_img">
+                            @if($room->image->count() != 0)
+                                <img src="{{ asset('/storage/uploads/' . $room->image->first()->photo) }}" height="275px" alt="">
+                            @else
+                                <img src="{{ asset('/theme/royal/image/xroom1.jpg.pagespeed.ic.GE_Jw5sZi4.jpg') }}" alt="">
+                            @endif
+                                <a href="#" class="btn theme_btn button_hover">Book Now</a>
+                            </div>
+                            <a href="#">
+                                <h4 class="sec_h4">{{ $room->name }}</h4>
+                                <h4 class="sec_h4">PHP {{ $room->price }}</h4>
+                                <h4 class="sec_h4">{{ $room->capacity }} CAPACITY</h4>
+                            </a>
                         </div>
-                        <a href="#">
-                            <h4 class="sec_h4">Double Deluxe Room</h4>
-                        </a>
-                        <h5>$250<small>/night</small></h5>
                     </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="accomodation_item text-center">
-                        <div class="hotel_img">
-                            <img src="{{ asset('/theme/royal/image/xroom2.jpg.pagespeed.ic.UewBP6xWNN.jpg') }}" alt="">
-                            <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                        </div>
-                        <a href="#">
-                            <h4 class="sec_h4">Single Deluxe Room</h4>
-                        </a>
-                        <h5>$200<small>/night</small></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="accomodation_item text-center">
-                        <div class="hotel_img">
-                            <img src="{{ asset('/theme/royal/image/xroom3.jpg.pagespeed.ic.mncXFuYF4a.jpg') }}" alt="">
-                            <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                        </div>
-                        <a href="#">
-                            <h4 class="sec_h4">Honeymoon Suit</h4>
-                        </a>
-                        <h5>$750<small>/night</small></h5>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="accomodation_item text-center">
-                        <div class="hotel_img">
-                            <img src="{{ asset('/theme/royal/image/xroom4.jpg.pagespeed.ic.OaqJtFZvAx.jpg') }}" alt="">
-                            <a href="#" class="btn theme_btn button_hover">Book Now</a>
-                        </div>
-                        <a href="#">
-                            <h4 class="sec_h4">Economy Double</h4>
-                        </a>
-                        <h5>$200<small>/night</small></h5>
-                    </div>
-                </div>
+                @endforeach
+                
+                
+                
             </div>
         </div>
     </section>

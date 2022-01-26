@@ -1,5 +1,6 @@
 <?php
 use App\Models\Page;
+use App\Models\Room;
 use App\Models\RoomType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,8 @@ use App\Http\Controllers\User\SecurityAndLoginController;
 
 Route::get('/', function () {
     $pages = Page::get();
-    return view('welcome', compact('pages'));
+    $rooms = Room::get();
+    return view('welcome', compact('pages', 'rooms'));
 });
 
 Auth::routes(['verify' => true]);
