@@ -15,7 +15,7 @@
                         @endforeach
                     </div>
                 @endif
-                <form action="{{ route('admin.room.update', $room->id) }}" method="POST">
+                <form action="{{ route('admin.room.update', $room->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group mb-5">
@@ -50,6 +50,11 @@
                     <div class="form-group mb-5">
                         <label>Room price</label>
                         <input type="number" name="price" class="form-control" value="{{ old('price', $room->price) }}" placeholder="Enter room price">
+                    </div>
+
+                    <div class="form-group mb-5">
+                        <label>Image</label>
+                        <input name="image" type="file" class='form-control form-control-lg'>
                     </div>
 
                     <div class="form-group mb-5">

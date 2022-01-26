@@ -195,7 +195,7 @@
                         <!--begin::Card body-->
                         <div class="card-body d-flex flex-center flex-column pt-12 p-9">
                             @if($room->image->count() != 0)
-                                <img src="{{ asset('/storage/uploads/' . $room->image->first()->photo) }}" class='img-fluid mh-250px mb-3' alt="">
+                                <img src="{{ asset('/storage/uploads/' . $room->image->first()->photo) }}" height="250px" class='mb-3' alt="">
                                 @else
                                 <img src="/assets/media/illustrations/sigma-1/2.png" class='img-fluid mh-250px mb-3' alt="">
                             @endif

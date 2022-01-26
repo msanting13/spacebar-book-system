@@ -73,17 +73,23 @@ class RoomController extends Controller
             'room_type'   => 'required|exists:room_types,id',
             'price'  => 'required',
         ]);
-        
+    
         $room = Room::find($id);
-        
-            $room->name = $request->name;
-            $room->description = $request->description;
-            $room->capacity = $request->capacity;
-            $room->room_type_id = $request->room_type;
-            $room->price = $request->price;
-            $room->save();
+    
+        $room->name = $request->name;
+        $room->description = $request->description;
+        $room->capacity = $request->capacity;
+        $room->room_type_id = $request->room_type;
+        $room->price = $request->price;
+        $room->save();
 
-            return back()->with('success', 'You have successfully update a room');
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('storage/uploads'), $imageName);
 
+        $roomImage = RoomImage::where('room_id', $room->id)->first();
+        $roomImage->photo = $imageName;
+        $roomImage->save();
+
+        return back()->with('success', 'You have successfully update a room');
     }
 }
