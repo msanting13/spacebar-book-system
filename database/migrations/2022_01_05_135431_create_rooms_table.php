@@ -20,6 +20,7 @@ class CreateRoomsTable extends Migration
             $table->integer('capacity');
             $table->uuid('room_type_id');
             $table->decimal('price', 10, 2);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

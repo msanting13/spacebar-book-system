@@ -30,11 +30,16 @@ class FacilityController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'content' => 'required',
+            'image' => 'required'
         ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('storage/uploads'), $imageName);
 
         Facility::create([
             'title' => $request->title,
-            'content' => $request->content
+            'content' => $request->content,
+            'image' => $imageName
         ]);
 
         return back()->with('success', 'You have successfully create new facility');
@@ -51,12 +56,20 @@ class FacilityController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'content' => 'required',
+            'image' => 'required'
         ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('storage/uploads'), $imageName);
 
         $facility = Facility::find($id);
         $facility->title = $request->title;
         $facility->content = $request->content;
+        $facility->image = $imageName;
         $facility->save();
+
+       
+
 
         return back()->with('success', 'You have successfully update a facility');
     }

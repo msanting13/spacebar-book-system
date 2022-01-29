@@ -17,6 +17,7 @@ class CreateFacilitiesTable extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->text('content');
+            $table->string('image');
             $table->timestamps();
         });
     }

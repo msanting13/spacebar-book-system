@@ -92,4 +92,10 @@ class RoomController extends Controller
 
         return back()->with('success', 'You have successfully update a room');
     }
+    
+    public function delete(string $id)
+    {
+        Room::find($id)->delete();
+        return back()->with('success', 'You have successfully delete a room');
+    }
 }

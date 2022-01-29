@@ -15,16 +15,21 @@
                         @endforeach
                     </div>
                 @endif
-                <form action="{{ route('admin.facility.store') }}" method="POST">
+                <form action="{{ route('admin.facility.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mb-5">
                         <label>Title</label>
                         <input type="text" name="title" class="form-control" value="{{ old('title') }}" placeholder="Enter title">
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group  mb-5">
                         <label>Content</label>
                         <textarea name="content" class='form-control' cols="30" rows="10" placeholder="Enter description">{{ old('content') }}</textarea>
+                    </div>
+
+                    <div class="form-group mb-5">
+                        <label>Image</label>
+                        <input name="image" type="file" class='form-control form-control-lg'>
                     </div>
 
 

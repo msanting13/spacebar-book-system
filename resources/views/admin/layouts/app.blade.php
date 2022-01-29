@@ -133,6 +133,21 @@
                                     <span class="menu-title">Landing Page</span>
                                 </span>
                             </a>
+                            <div class="menu-content mt-3">
+                                <span class="fw-bold text-muted text-uppercase fs-7">IMPROVEMENTS</span>
+                            </div>
+                            <a href="{{ route('admin.feedbacks.index') }}" class="menu-item menu-accordion">
+                                <span class="menu-link">
+                                    <span class="menu-icon">
+                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
+                                        <span class="svg-icon svg-icon-2">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path></svg>
+                                        </span>
+                                        <!--end::Svg Icon-->
+                                    </span>
+                                    <span class="menu-title">Feedbacks</span>
+                                </span>
+                            </a>
                         </div>
                     </div>
                     <!--end::Menu-->

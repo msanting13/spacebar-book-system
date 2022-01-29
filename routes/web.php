@@ -3,6 +3,7 @@
 use App\Models\Page;
 use App\Models\Room;
 use App\Models\Facility;
+use App\Models\Feedback;
 use App\Models\RoomType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -13,16 +14,19 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\User\FeedbackController;
 use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\SecurityAndLoginController;
+use App\Http\Controllers\Admin\FeedbackController as CustomerFeedBackController;
 
 Route::get('/', function () {
     $pages = Page::get();
     $rooms = Room::get();
     $facilities = Facility::get();
-    return view('welcome', compact('pages', 'rooms', 'facilities'));
+    $feedbacks = Feedback::where('rating', '>=', 3)->get()->unique('user_id');
+    return view('welcome', compact('pages', 'rooms', 'facilities', 'feedbacks'));
 });
 
 Auth::routes(['verify' => true]);
@@ -30,6 +34,8 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
 Route::group(['namespace' => 'User', 'middleware' => ['verified']], function () {
+    Route::get('feedback', [FeedbackController::class, 'create'])->name('user.feedback.create');
+    Route::post('feedback', [FeedbackController::class, 'store'])->name('user.feedback.store');
     Route::get('booking', [BookingController::class, 'index'])->name('user.booking.index');
     Route::post('search/booking', [BookingController::class, 'search'])->name('user.booking.search');
     Route::get('book/room/{room_id}', [BookingController::class, 'showBookForm'])->name('user.booking.bookform');
@@ -60,6 +66,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('room/create', [RoomController::class, 'store'])->name('admin.room.store');
     Route::get('room/edit/{id}', [RoomController::class, 'edit'])->name('admin.room.edit');
     Route::put('room/edit/{id}', [RoomController::class, 'update'])->name('admin.room.update');
+    Route::delete('room/delete/{id}', [RoomController::class, 'delete'])->name('admin.room.delete');
 
     Route::get('room-types', [RoomTypeController::class, 'index'])->name('admin.room-types.index');
     Route::get('room-types/create', [RoomTypeController::class, 'create'])->name('admin.room-types.create');
@@ -78,6 +85,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::post('facility/create', [FacilityController::class, 'store'])->name('admin.facility.store');
     Route::get('facility/{id}/edit', [FacilityController::class, 'edit'])->name('admin.facility.edit');
     Route::put('facility/{id}/edit', [FacilityController::class, 'update'])->name('admin.facility.update');
+
+    Route::get('feedback/index', [CustomerFeedBackController::class, 'index'])->name('admin.feedbacks.index');
 });
 
 

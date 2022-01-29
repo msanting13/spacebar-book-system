@@ -5,10 +5,11 @@ namespace App\Models;
 use App\Traits\Uuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Room extends Model
 {
-    use HasFactory, Uuids;
+    use SoftDeletes, HasFactory, Uuids;
     protected $with = ['roomType'];
     
     protected $fillable = ['name', 'description', 'capacity', 'room_type_id', 'price'];

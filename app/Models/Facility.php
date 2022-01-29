@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Facility extends Model
 {
     use HasFactory, Uuids;
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'image'];
 }
