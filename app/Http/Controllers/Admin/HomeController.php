@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Feedback;
 
 class HomeController extends Controller
 {
@@ -14,6 +17,13 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('admin.home');
+        $visitors = Visitor::count();
+        $users = User::count();
+        $feedbacks = Feedback::count();
+        return view('admin.home', [
+            'visitors' => $visitors,
+            'users' => $users,
+            'feedbacks' => $feedbacks
+        ]);
     }
 }
