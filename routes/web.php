@@ -68,6 +68,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::put('room/edit/{id}', [RoomController::class, 'update'])->name('admin.room.update');
     Route::delete('room/delete/{id}', [RoomController::class, 'delete'])->name('admin.room.delete');
 
+    Route::resource('extras', ExtraController::class);
+
     Route::get('room-types', [RoomTypeController::class, 'index'])->name('admin.room-types.index');
     Route::get('room-types/create', [RoomTypeController::class, 'create'])->name('admin.room-types.create');
     Route::post('room-types/create', [RoomTypeController::class, 'store'])->name('admin.room-types.store');

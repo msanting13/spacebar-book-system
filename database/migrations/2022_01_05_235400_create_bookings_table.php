@@ -21,6 +21,7 @@ class CreateBookingsTable extends Migration
             $table->enum('status', ['done', 'pending', 'cancelled'])->nullable();
             $table->uuid('room_id');
             $table->uuid('user_id');
+            $table->longText('message')->nullable();
             $table->timestamps();
         });
     }
