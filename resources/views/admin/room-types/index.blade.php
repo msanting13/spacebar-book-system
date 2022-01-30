@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('page-title', 'List of Rooms')
+@section('page-title', 'List of Room types')
 @section('content')
 @prepend('page-css')
 <link href="{{ asset('/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />

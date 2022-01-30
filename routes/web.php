@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('room-types/create', [RoomTypeController::class, 'create'])->name('admin.room-types.create');
     Route::post('room-types/create', [RoomTypeController::class, 'store'])->name('admin.room-types.store');
     Route::get('room/{type}/edit', [RoomTypeController::class, 'edit'])->name('admin.room-types.edit');
+    Route::put('room/{type}/update', [RoomTypeController::class, 'update'])->name('admin.room-types.update');
 
     Route::get('page', [PageController::class, 'index'])->name('admin.page.index');
     Route::get('content/create', [PageController::class, 'create'])->name('admin.page.create');

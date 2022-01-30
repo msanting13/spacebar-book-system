@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('page-title', 'Add new room')
+@section('page-title', 'Add new room type')
 @section('content')
 @include('templates.success')
 <div class="row">

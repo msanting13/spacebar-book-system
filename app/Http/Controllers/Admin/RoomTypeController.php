@@ -41,4 +41,17 @@ class RoomTypeController extends Controller
     {
         return view('admin.room-types.edit', compact('type'));
     }
+
+    public function update(Request $request, $type)
+    {
+        $this->validate($request, [
+            'description' => 'required',
+        ]);
+
+        RoomType::find($type)->update([
+            'description' => $request->description,
+        ]);
+
+        return back()->with('success', 'You have successfully update a room type');
+    }
 }
