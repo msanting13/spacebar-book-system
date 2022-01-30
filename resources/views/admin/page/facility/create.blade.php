@@ -1,6 +1,9 @@
 @extends('admin.layouts.app')
 @section('page-title', 'Add new facility')
 @section('content')
+@prepend('page-css')
+<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+@endpush
 @include('templates.success')
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
@@ -24,7 +27,7 @@
 
                     <div class="form-group  mb-5">
                         <label>Content</label>
-                        <textarea name="content" class='form-control' cols="30" rows="10" placeholder="Enter description">{{ old('content') }}</textarea>
+                        <textarea name="content" class='form-control' cols="30" rows="10" id="content" placeholder="Enter description">{{ old('content') }}</textarea>
                     </div>
 
                     <div class="form-group mb-5">
@@ -44,4 +47,10 @@
         </div>
     </div>
 </div>
+@push('page-scripts')
+
+<script>
+    CKEDITOR.replace( 'content' );
+</script>
+@endpush
 @endsection

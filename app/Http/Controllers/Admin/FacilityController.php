@@ -56,16 +56,21 @@ class FacilityController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'content' => 'required',
-            'image' => 'required'
+            'image' => 'nullable'
         ]);
 
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('storage/uploads'), $imageName);
+        
 
         $facility = Facility::find($id);
         $facility->title = $request->title;
         $facility->content = $request->content;
-        $facility->image = $imageName;
+
+        if($request->has('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('storage/uploads'), $imageName);
+            $facility->image = $imageName;
+        }
+        
         $facility->save();
 
        

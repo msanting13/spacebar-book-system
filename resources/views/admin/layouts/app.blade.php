@@ -57,7 +57,7 @@
                                 <span class="menu-link">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2">
+                                        <span class="svg-icon svg-icon-2 text-primary">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                                         </span>
                                         <!--end::Svg Icon-->
@@ -74,7 +74,10 @@
                                 <span class="menu-link">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                        <span class="svg-icon svg-icon-2 text-primary">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                        </span>
+                                        
                                         <!--end::Svg Icon-->
                                     </span>
                                     <span class="menu-title">Rooms</span>
@@ -84,7 +87,7 @@
                                 <span class="menu-link">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2">
+                                        <span class="svg-icon svg-icon-2 text-primary">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"></path></svg>
                                         </span>
                                         <!--end::Svg Icon-->
@@ -96,7 +99,7 @@
                                 <span class="menu-link">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2">
+                                        <span class="svg-icon svg-icon-2 text-primary">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                                         </span>
                                         <!--end::Svg Icon-->
@@ -108,7 +111,7 @@
                                 <span class="menu-link">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2">
+                                        <span class="svg-icon svg-icon-2 text-primary">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
                                         </span>
                                         <!--end::Svg Icon-->
@@ -125,7 +128,7 @@
                                 <span class="menu-link">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2">
+                                        <span class="svg-icon svg-icon-2 text-primary">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path></svg>
                                         </span>
                                         <!--end::Svg Icon-->
@@ -140,8 +143,10 @@
                                 <span class="menu-link">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path></svg>
+                                        <span class="svg-icon svg-icon-2 text-primary">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                                            </svg>
                                         </span>
                                         <!--end::Svg Icon-->
                                     </span>
@@ -173,7 +178,7 @@
                             <div class="d-flex align-items-center d-lg-none">
                                 <div class="btn btn-icon btn-active-color-primary ms-n2 me-1" id="kt_aside_toggle">
                                     <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
-                                    <span class="svg-icon svg-icon-2x">
+                                    <span class="svg-icon svg-icon-2 text-primaryx">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none">
                                             <path
@@ -199,7 +204,7 @@
                                 data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
                                 data-kt-toggle-name="aside-minimize">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr060.svg-->
-                                <span class="svg-icon svg-icon-2 rotate-180">
+                                <span class="svg-icon svg-icon-2 text-primary rotate-180">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none">
                                         <path d="M9.60001 11H21C21.6 11 22 11.4 22 12C22 12.6 21.6 13 21 13H9.60001V11Z"
@@ -229,7 +234,7 @@
                                     <div data-kt-search-element="toggle" class="d-flex d-lg-none align-items-center">
                                         <div class="btn btn-icon btn-icon-gray-500 btn-active-light-primary">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                                            <span class="svg-icon svg-icon-2">
+                                            <span class="svg-icon svg-icon-2 text-primary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                     viewBox="0 0 24 24" fill="none">
                                                     <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546"

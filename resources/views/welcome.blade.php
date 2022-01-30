@@ -68,11 +68,6 @@
             width: 32px;
         }
 
-        .carousel-control-prev-icon:hover,
-        .carousel-control-next-icon:hover {
-            opacity: 0.85;
-        }
-
         .carousel-control-prev {
             left: 40%;
             top: 110%;
@@ -83,10 +78,6 @@
             top: 110%;
         }
 
-        .midline {
-            width: 60px;
-            border-top: 1px solid #d43025;
-        }
 
         .carousel-caption h2 {
             font-size: 14px;
@@ -289,28 +280,22 @@
                     </div>
                 </div>
                 @endforeach
-
-
-
             </div>
         </div>
     </section>
 
-
-    <section class="facilities_area section_gap">
-        <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background="">
-        </div>
-        <div class="container">
+    <div class='footer-area section_gap'>
+         <div class="container">
             <div class="section_title text-center" id='facilities'>
                 <h2 class="title_w">Chill and Relax Facilities</h2>
-                <p>Who are in extremely love with eco friendly system.</p>
+                <p class='text-white'>Who are in extremely love with eco friendly system.</p>
             </div>
             <div class="row mb_30">
                 @foreach($facilities as $facility)
                 <div class="col-lg-4 col-md-6">
                     <div class="facilities_item">
-                        <h4 class="sec_h4">{{ $facility->title }}</h4>
-                        <p>{{ $facility->content }}</p>
+                        <h1 class="sec_h1">{{ $facility->title }}</>
+                        {!! $facility->content !!}
                         <a href="{{ asset('storage/uploads/' . $facility->image) }}"
                             data-lightbox="{{ $facility->title }}">
                             <img src="{{ asset('storage/uploads/' . $facility->image) }}"
@@ -321,13 +306,10 @@
                 @endforeach
             </div>
         </div>
-    </section>
-
-
+    </div>
     <section class="pt-5 pb-5">
         <div class="container">
-            <h2 class="text-center text-dark">What other say for us</h2>
-            <hr class="midline">
+            <h2 class="text-center text-dark text-uppercase">What other say for us</h2>
             <div class="card col-md-12 mt-2">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="100000">
                     <div class="w-100 carousel-inner mb-5" role="listbox">
@@ -338,16 +320,12 @@
                                 <div class="col-md-12">
                                     <div class="carousel-caption">
                                         <div class="row">
-                                            <div class="col-sm-9 col-8">
-                                                <div class="d-flex align-items-baseline">
-
-                                                    <h2 class='text-uppercase'>{{ $feedback->user->first_name }}
-                                                        {{ $feedback->user->last_name }}</h2> -
-                                                    <div class="rating">
-                                                        <input class="rating-input" name="rating" value="0" checked
-                                                            type="radio" id="kt_rating_2_input_0" />
-                                                        <!--end::Reset rating-->
-
+                                            <div class="col-sm-12 col-12">
+                                                <div class="">
+                                                    <h2 class='text-uppercase '>{{ $feedback->user->first_name }}
+                                                        {{ $feedback->user->last_name }}</h2>
+                                                    <div
+                                                        class="rating d-flex align-items-center justify-content-center">
                                                         @foreach(range(1, $feedback->rating) as $rate)
                                                         <label class="rating-label" for="kt_rating_2_input_1">
                                                             <span class="svg-icon svg-icon-1"><svg><svg
@@ -366,7 +344,7 @@
                                                 </div>
 
                                                 <p>
-                                                    {{ $feedback->content}}
+                                                    {{ $feedback->content }}
                                                 </p>
 
                                             </div>
@@ -382,23 +360,18 @@
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"><i
-                                class="fas fa-chevron-left"></i></span>
+                                class="fas fa-chevron-left text-white"></i></span>
                         <span class="sr-only">Previous</span>
                     </a>
                     <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"><i
-                                class="fas fa-chevron-right"></i></span>
+                                class="fas fa-chevron-right text-white"></i></span>
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
-
-    <div class="container my-3">
-        <hr>
-    </div>
-
 
     <section class="about_history_area section_gap">
         <div class="container">
@@ -407,7 +380,7 @@
                 <div class="col-md-6 d_flex align-items-center">
                     <div class="about_content">
                         <h2 class="title title_color">{{ $page->title ?? 'No title' }}</h2>
-                        <p>{{ $page->content ?? 'No Content' }}</p>
+                        <p>{!! $page->content ?? 'No Content' !!}</p>
                     </div>
                 </div>
                 <div class="col-md-6">

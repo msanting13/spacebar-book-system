@@ -15,7 +15,7 @@
                         @endforeach
                     </div>
                 @endif
-                <form action="{{ route('admin.facility.update', $facility->id) }}" method="POST">
+                <form action="{{ route('admin.facility.update', $facility->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group mb-5">
@@ -44,4 +44,10 @@
         </div>
     </div>
 </div>
+@push('page-scripts')
+<script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'content' );
+</script>
+@endpush
 @endsection
