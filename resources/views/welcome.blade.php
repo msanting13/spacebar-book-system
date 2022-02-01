@@ -256,11 +256,11 @@
         <div class="container">
             <div class="section_title text-center">
                 <h2 class="title_color text-uppercase">Rooms & Function Halls</h2>
-                <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, </p>
+                <p class='text-black fs-3'>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, </p>
             </div>
             <div class="row mb_30">
                 @foreach($rooms as $room)
-                <div class="col-lg-3 col-sm-6">
+                <div class="col-lg-4 col-sm-6 shadow mx-5">
                     <div class="accomodation_item text-center">
                         <div class="hotel_img">
                             @if($room->image->count() != 0)
@@ -278,7 +278,7 @@
                                 <div class="separator separator-dashed border-dark my-3"></div>
                                 <span class='text-capitalize font-weight-bold fs-4 text-black'>&#8369;{{ $room->price }}</span>
                                 <div class="separator separator-dashed border-dark my-3"></div>
-                                <span class='text-capitalize font-weight-bold fs-4 text-black'>Capacity {{ $room->capacity }}</span>
+                                <span class='text-capitalize font-weight-bold fs-4 text-black'>{{ $room->roomType->type_name }}</span>
                             </p>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
          <div class="container">
             <div class="section_title text-center" id='facilities'>
                 <h2 class="title_w text-uppercase">Facilities</h2>
-                <p class='text-white'>Who are in extremely love with eco friendly system.</p>
+                <p class='text-white fs-3'>Who are in extremely love with eco friendly system.</p>
             </div>
             <div class="row mb_30">
                 @foreach($facilities as $facility)
@@ -383,7 +383,7 @@
                 <div class="col-md-6 d_flex align-items-center">
                     <div class="about_content">
                         <h2 class="title title_color">{{ $page->title ?? 'No title' }}</h2>
-                        <p>{!! $page->content ?? 'No Content' !!}</p>
+                        <p class='text-black'>{!! $page->content ?? 'No Content' !!}</p>
                     </div>
                 </div>
                 <div class="col-md-6">
