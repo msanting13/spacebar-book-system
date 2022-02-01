@@ -325,8 +325,8 @@
                                         <div class="row">
                                             <div class="col-sm-12 col-12">
                                                 <div class="">
-                                                    <h2 class='text-uppercase '>{{ $feedback->user->first_name }}
-                                                        {{ $feedback->user->last_name }}</h2>
+                                                    <h2 class='text-uppercase '>{{ $feedback->user->first_name ?? 'Satisfied Customer' }}
+                                                        {{ $feedback->user->last_name ?? '' }}</h2>
                                                     <div
                                                         class="rating d-flex align-items-center justify-content-center">
                                                         @foreach(range(1, $feedback->rating) as $rate)
@@ -346,7 +346,7 @@
                                                     </div>
                                                 </div>
 
-                                                <p>
+                                                <p class='fs-3 text-black mt-3'>
                                                     {{ $feedback->content }}
                                                 </p>
 
@@ -383,7 +383,7 @@
                 <div class="col-md-6 d_flex align-items-center">
                     <div class="about_content">
                         <h2 class="title title_color">{{ $page->title ?? 'No title' }}</h2>
-                        <p class='text-black'>{!! $page->content ?? 'No Content' !!}</p>
+                        <p class='text-black fs-4'>{!! $page->content ?? 'No Content' !!}</p>
                     </div>
                 </div>
                 <div class="col-md-6">

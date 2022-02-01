@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Feedback;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,8 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             RoomTypeTableSeeder::class,
-            RoomTableSeeder::class
+            RoomTableSeeder::class,
+            PageSeeder::class,
+            FeedbackSeeder::class,
         ]);
-        // \App\Models\User::factory(10)->create();
     }
 }

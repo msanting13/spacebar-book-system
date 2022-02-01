@@ -21,8 +21,9 @@ class HomeController extends Controller
     public function index()
     {
         $visitors = Visitor::count();
-        $users = User::count();
-        $rooms = Room::count();
+        $users = User::get()->take(10);
+        $rooms = Room::where('type', 'room')->count();
+        $functionHalls = Room::where('type', 'function hall')->count();
         $feedbacks = Feedback::orderBy('created_at', 'DESC')->get();
 
         $bookings = Booking::whereDay('start_date', date('d'))
@@ -50,7 +51,8 @@ class HomeController extends Controller
             'income' => $income,
             'rooms' => $rooms,
             'bookings' => $bookings,
-            'appliedBookings' => $appliedBookings
+            'appliedBookings' => $appliedBookings,
+            'functionHalls' => $functionHalls,
         ]);
     }
 }

@@ -22,7 +22,7 @@ use App\Http\Controllers\User\SecurityAndLoginController;
 use App\Http\Controllers\Admin\FeedbackController as CustomerFeedBackController;
 
 Route::get('/', function () {
-    $pages = Page::get();
+    $pages = Page::orderBy('index', 'ASC')->get();
     $rooms = Room::get();
     $facilities = Facility::get();
     $feedbacks = Feedback::where('rating', '>=', 3)->get()->unique('user_id');

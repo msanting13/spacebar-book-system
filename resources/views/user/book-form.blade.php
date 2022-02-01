@@ -196,7 +196,7 @@
                             <div class="row mb-6">
                                 <!--begin::Label-->
                                 <label class="col-lg-4 col-form-label fw-bold fs-6">
-                                    <span class="">Type</span>
+                                    <span class="">Classification</span>
                                 </label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
@@ -252,6 +252,21 @@
                                         class="form-control form-control-lg form-control-solid" name="daterange"
                                         placeholder="Select Date" value="{{ $selected_date }}" aria-label="Date"
                                         aria-describedby="basic-addon1">
+
+                                </div>
+                                <!--end::Col-->
+                            </div>
+
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                    <span class="
+                                    ">Type</span>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="text" id="dateRange" value="{{ $room->type }}" class="form-control form-control-lg form-control-solid text-uppercase">
 
                                 </div>
                                 <!--end::Col-->

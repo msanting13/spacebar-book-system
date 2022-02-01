@@ -219,6 +219,10 @@
                                     <div class="fs-2 fw-boldest">{{ $room->capacity }}</div>
                                     <div class="fw-bold">Capacity</div>
                                 </div>
+                                <div class="border border-dashed rounded min-w-75px py-3 px-4 mx-2 mb-3 text-center">
+                                    <div class="fs-2 fw-boldest text-uppercase">{{ $room->type }}</div>
+                                    <div class="fw-bold">Type</div>
+                                </div>
                                 <!--end::Stats-->
                                 <!--begin::Stats-->
                                 {{-- <div class="border border-dashed rounded min-w-75px py-3 px-4 mx-2 mb-3">
@@ -230,9 +234,9 @@
                             <!--end::Info-->
                         </div>
                         <div class="d-grid gap-2">
-                            <a class="btn btn-primary fs-3 rounded-0"
-                                href="{{ route('user.booking.bookform', [$room->id, 'selected_date' => $selected_date]) }}">GET
-                                THIS ROOM</a>
+                            <a class="btn btn-primary fs-3 rounded-0 text-uppercase"
+                                href="{{ route('user.booking.bookform', [$room->id, 'selected_date' => $selected_date]) }}">GET THIS
+                                {{ $room->type }}</a>
                         </div>
                         <!--end::Card body-->
                     </div>
