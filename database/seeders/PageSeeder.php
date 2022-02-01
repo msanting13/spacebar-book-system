@@ -34,12 +34,16 @@ class PageSeeder extends Seeder
             'title' =>  "We Offer",
             'index' => 3,
             'content' => '
-            Rooms and Cottages at affordable prices:
+            <h4>Rooms and Cottages at affordable prices</h4>:
+            <br>
             <br>
             We have budget rooms that could cater 2 persons for 1500 Php. A family room good for 8 persons for 3500 Php, 12 persons for 5000 php and our room for 18 perons would just cost you 7500 php.
             <br>
+            <br>
+
             We also have suite rooms that could cater 4 persons for 5000 php and 10 persons for 7500 php. Last and surely not the least we have rooms located on the second floor of our main build that could conveniently and effectly cater 4 perons for just 5000 php.
 
+            <br>
             <br>
 
             Cottages are also offered to our day-your guests. We offer cottages to any number of groups- we have available cottages for 2-5 persons that costs 500 php only, a cottage good for 8-10 persons for 800 and the cottage good for 15-20 persons would just be 1000 php.
