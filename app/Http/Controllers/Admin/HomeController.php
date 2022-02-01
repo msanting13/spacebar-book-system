@@ -30,10 +30,17 @@ class HomeController extends Controller
                             ->whereMonth('start_date', date('m'))
                             ->get();
 
-        $appliedBookings = Booking::with('extras')->get();
+        $appliedBookings = Booking::with(['extras'])->get();
 
         $extras = Extra::count();
         $income = 0;
+
+        Booking::with(['extras', 'room'])->where('status', 'done')->get()->each(function ($record) use(&$income) {
+            $basePrice = $record->room->price;
+            $daysToStay = $record->end_date->diffInDays($record->start_date) + 1;
+            $priceToPay = ($basePrice * $daysToStay) + $record->extras->sum('price');
+            $income += $priceToPay;
+        });
 
         return view('admin.home', [
             'visitors' => $visitors,

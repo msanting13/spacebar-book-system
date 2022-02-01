@@ -22,6 +22,7 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'content' => 'required',
             'rating' => 'required',
         ]);
 

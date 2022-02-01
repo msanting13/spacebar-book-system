@@ -119,8 +119,8 @@
                         style="background-image:url('../assets/media/misc/bg-blue.png');">
                         <!--begin::Balance-->
                         <div class="d-flex align-items-center align-self-center flex-wrap pt-8">
-                            <div class="fw-bolder fs-3 text-uppercase text-white flex-grow-1 pe-2">Total Income
-                                <span class="fw-boldest fs-2hx d-block mt-n1">{{ $income }}</span></div>
+                            <div class="fw-bolder fs-1 text-uppercase text-white flex-grow-1 pe-2">Total Income
+                                <span class="fw-boldest fs-2hx d-block mt-n1">&#8369; {{ number_format($income, 2, ",", ".") }}</span></div>
                         </div>
                         <!--begin::Balance-->
                     </div>
@@ -580,6 +580,11 @@
                                     <th class='px-2 fw-bold text-uppercase'>
                                         ROOM
                                     </th>
+                                    
+                                    <th class='px-2 fw-bold text-uppercase text-center'>
+                                        EXTRAS
+                                    </th>
+
                                     <th class='px-2 fw-bold text-uppercase text-center'>
                                         STATUS
                                     </th>
@@ -595,7 +600,7 @@
 										<td class='text-uppercase px-2 fw-boldest'>{{ $book->user->first_name }} {{ $book->user->last_name }}</td>
 										<td class='text-uppercase px-2 fw-boldest'>{{ $book->room->name }}</td>
 										<td class='text-uppercase px-2 fw-boldest text-center'>{{ $book->extras->count() }}</td>
-										<td class='text-uppercase px-2 fw-boldest'>
+										<td class='text-uppercase px-2 fw-boldest text-center'>
 											<span class='badge badge-success'>
 												{{ $book->status }}
 											</span>
