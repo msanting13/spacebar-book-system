@@ -4,25 +4,12 @@
 <link href="{{ asset('/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
 @endprepend
 @section('content')
+@include('templates.success')
 <!--begin::Card-->
 <div class="card">
-    @if(Session::has('success'))
-    <div class="alert alert-success rounded-0">
-        <!--begin::Wrapper-->
-        <div class="d-flex flex-column">
-            <!--begin::Title-->
-            <h4 class="mb-1 text-dark">Good Job!</h4>
-            <!--end::Title-->
-            <!--begin::Content-->
-            <span>{{ Session::get('success') }}</span>
-            <!--end::Content-->
-        </div>
-        <!--end::Wrapper-->
-    </div>
-    @endif
     <!--begin::Card body-->
     <div class="card-body p-0">
-        @if($bookings->count() === 0)
+        @if($bookings->count() == 0)
         <!--begin::Wrapper-->
         <div class="card-px text-center py-20 my-10">
             <!--begin::Title-->
@@ -42,11 +29,6 @@
         </div>
         <!--end::Illustration-->
         @else
-        <div class='d-grip gap-2'>
-            <a href="{{ route('user.booking.index') }}" class="rounded-0 btn btn-primary w-100 fs-5 text-uppercase">Book Now!</a>
-        </div>
-
-
         {{-- DISPLAY BOOKINGS --}}
         <div class="card">
             <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"

@@ -11,4 +11,9 @@ class Extra extends Model
 {
     use HasFactory, Uuids, SoftDeletes;
     protected $fillable = ['name', 'description', 'price'];
+    
+    public function booking()
+    {
+        return $this->belongsToMany(Booking::class);
+    }
 }
