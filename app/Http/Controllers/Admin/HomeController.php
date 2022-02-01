@@ -23,7 +23,11 @@ class HomeController extends Controller
         $visitors = Visitor::count();
         $users = User::count();
         $rooms = Room::count();
-        $feedbacks = Feedback::count();
+        $feedbacks = Feedback::orderBy('created_at', 'DESC')->get();
+        $bookings = Booking::whereDay('start_date', date('d'))
+                            ->whereYear('start_date', date('Y'))
+                            ->whereMonth('start_date', date('m'))
+                            ->get();
         $extras = Extra::count();
         $income = 0;
 
@@ -34,6 +38,7 @@ class HomeController extends Controller
             'feedbacks' => $feedbacks,
             'income' => $income,
             'rooms' => $rooms,
+            'bookings' => $bookings,
         ]);
     }
 }

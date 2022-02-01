@@ -137,7 +137,7 @@
 																	{{ $rooms }}
 																</div>
 																<!--end::Symbol-->
-																<a href="#" class="text-gray-800 text-hover-primary fw-boldest fs-5 mt-4 d-block">Offered Rooms</a>
+																<a href="#" class="text-gray-800 text-hover-primary fw-boldest fs-5 mt-4 d-block">Rooms</a>
 															</div>
 														</div>
 														<!--end::Col-->
@@ -194,7 +194,7 @@
 												<div id="kt_stats_widget_8_carousel" class="carousel carousel-custom carousel-stretch slide" data-bs-ride="carousel" data-bs-interval="8000">
 													<!--begin::Heading-->
 													<div class="d-flex flex-stack flex-wrap">
-														<span class="fs-4 text-gray-400 fw-boldest pe-2">Announcements</span>
+														<span class="fs-4 text-gray-400 fw-boldest pe-2">Latest Feedback</span>
 														<!--begin::Carousel Indicators-->
 														<ol class="p-0 m-0 carousel-indicators carousel-indicators-dots">
 															<li data-bs-target="#kt_stats_widget_8_carousel" data-bs-slide-to="0" class="ms-1"></li>
@@ -208,13 +208,12 @@
 														<div class="carousel-item active">
 															<div class="carousel-wrapper">
 																<div class="d-flex flex-column justify-content-between flex-grow-1">
-																	<a href="#" class="fs-2 text-gray-800 text-hover-primary fw-boldest">Craft Admin Launch Day</a>
-																	<p class="text-gray-600 fs-6 fw-bold pt-4 mb-0">To start a blog, think of a topic about and first brainstorm ways to write details</p>
+																	<a href="#" class="fs-2 text-gray-800 text-hover-primary fw-boldest">{{ $feedbacks->first()->user->first_name }} {{ $feedbacks->first()->user->last_name }}</a>
+																	<p class="text-gray-600 fs-6 fw-bold pt-4 mb-0">{{ $feedbacks->first()->content }}</p>
 																</div>
 																<!--begin::Info-->
 																<div class="d-flex flex-stack pt-8">
-																	<span class="badge badge-light-primary fs-7 fw-boldest me-2">OCT 05, 10</span>
-																	<a href="#" class="btn btn-light btn-sm btn-color-muted fs-7 fw-boldest px-5" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">Upgrade Plan</a>
+																	<span class="badge badge-light-primary fs-7 fw-boldest me-2">{{ $feedbacks->first()->created_at->format('F d, Y h:i A') }}</span>
 																</div>
 																<!--end::Info-->
 															</div>
@@ -235,7 +234,7 @@
 												<div id="kt_stats_widget_9_carousel" class="carousel carousel-custom carousel-stretch slide" data-bs-ride="carousel" data-bs-interval="8000">
 													<!--begin::Nav-->
 													<div class="d-flex flex-stack flex-wrap">
-														<span class="text-gray-400 fw-boldest fs-4 pe-2">Today’s Schedule</span>
+														<span class="text-gray-400 fw-boldest fs-4 pe-2">Hey!</span>
 														<!--begin::Carousel Indicators-->
 														<ol class="p-0 m-0 carousel-indicators carousel-indicators-dots">
 															<li data-bs-target="#kt_stats_widget_9_carousel" data-bs-slide-to="0" class="ml-1"></li>
@@ -250,13 +249,13 @@
 															<div class="carousel-wrapper">
 																<!--begin::Title-->
 																<div class="flex-grow-1">
-																	<a href="#" class="fs-2 text-gray-800 text-hover-primary fw-boldest">UI/UX Design Updates</a>
-																	<p class="text-primary fs-1 fw-boldest pt-5 mb-0">11:15AM - 12:30PM</p>
+																	<a href="#" class="fs-2 text-gray-800 text-hover-primary fw-boldest">No. of books for today</a>
+																	<p class="text-primary fs-1 fw-boldest pt-5 mb-0">{{ $bookings->count() }}</p>
 																</div>
 																<!--end::Title-->
 																<!--begin::Info-->
 																<div class="d-flex flex-stack pt-7">
-																	<span class="text-gray-400 fs-6 fw-bold pe-2">234 E St. Broadwey NY..</span>
+																	<span class="text-gray-400 fs-6 fw-bold pe-2">All bookings listed below</span>
 																</div>
 																<!--end::Info-->
 															</div>
@@ -279,7 +278,7 @@
 											<!--begin::Beader-->
 											<div class="card-header border-0 py-5">
 												<h3 class="card-title align-items-start flex-column">
-													<span class="card-label fw-boldest text-dark fs-2">Achievements</span>
+													<span class="card-label fw-boldest text-dark fs-2">Sales</span>
 													<span class="text-gray-400 mt-2 fw-bold fs-6">100k+ sales templates sales</span>
 												</h3>
 											</div>
