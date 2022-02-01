@@ -6,13 +6,13 @@
 @endprepend
 @include('templates.success')
 <div class="row">
+    <div class="text-end mb-3 text-uppercase">
+        <a href="{{ route('admin.room-types.create') }}" class='btn btn-primary'>Add new room type</a>
+    </div>
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="float-end">
-                    <a href="{{ route('admin.room-types.create') }}" class='btn btn-primary'>Add new room type</a>
-                </div>
-                <div class="clearfix"></div>
+               
                 <div class="table-responsive">
                     <table class='table table-bordered table-hovered' id='room-types-table'>
                         <thead>
@@ -28,9 +28,18 @@
                         <tbody>
                             @foreach($roomTypes as $type)
                                 <tr>
-                                    <td>{{ $type->type_name }}</td>
+                                    <td class='fw-boldest align-middle'>{{ $type->type_name }}</td>
                                     <td class='text-center'>
-                                        <a href="{{ route('admin.room-types.edit', $type->id) }}" class='btn btn-success'>EDIT</a>
+                                    <a href="{{ route('admin.room-types.edit', $type->id) }}" class='btn btn-success btn-icon rounded-circle shadow-sm mx-2'>
+                                            <span class="svg-icon svg-icon-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                </svg>
+                                            </span>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

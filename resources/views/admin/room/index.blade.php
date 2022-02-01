@@ -6,13 +6,13 @@
 @endprepend
 @include('templates.success')
 <div class="row">
+    <div class="text-end mb-3 text-uppercase">
+        <a href="{{ route('admin.room.create') }}" class='btn btn-primary'>Add new room</a>
+    </div>
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="float-end">
-                    <a href="{{ route('admin.room.create') }}" class='btn btn-primary'>Add new room</a>
-                </div>
-                <div class="clearfix"></div>
+                
                 <div class="table-responsive">
                     <table class='table table-row-bordered table-hover' id='rooms-table'>
                         <thead>

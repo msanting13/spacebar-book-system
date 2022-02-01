@@ -12,19 +12,19 @@
             <table class='table table-bordered table-hovered' id='users-table'>
                 <thead>
                     <tr>
-                        <th class='fw-bold text-uppercase'>
+                        <th class='fw-bold text-uppercase p-2'>
                             Fullname
                         </th>
-                        <th class='fw-bold text-uppercase'>
+                        <th class='fw-bold text-uppercase p-2'>
                             Phone #
                         </th>
-                        <th class='fw-bold text-uppercase'>
+                        <th class='fw-bold text-uppercase p-2'>
                             Email
                         </th>
-                        <th class='fw-bold text-uppercase'>
+                        <th class='fw-bold text-uppercase p-2'>
                             Registered At
                         </th>
-                        <th class='fw-bold text-uppercase text-center'>
+                        <th class='fw-bold text-uppercase p-2 text-center'>
                             Actions
                         </th>
                     </tr>
@@ -32,12 +32,21 @@
                 <tbody>
                     @foreach($users as $user)
                     <tr>
-                        <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                        <td>{{ $user->phone_number }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->created_at->format('F d, Y') }}</td>
+                        <td class='align-middle p-2'>{{ $user->first_name }} {{ $user->last_name }}</td>
+                        <td class='align-middle p-2'>{{ $user->phone_number }}</td>
+                        <td class='align-middle p-2'>{{ $user->email }}</td>
+                        <td class='align-middle p-2'>{{ $user->created_at->format('F d, Y') }}</td>
                         <td class='text-center'>
-                            <a href="{{ route('admin.user.edit', $user->id) }}" class='btn btn-success p-2 text-uppercase'>Edit</a>
+                            <a href="{{ route('admin.user.edit', $user->id) }}" class='btn btn-success btn-icon rounded-circle shadow-sm mx-2'>
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </span>
+                        </a>
                         </td>
                     </tr>
                     @endforeach

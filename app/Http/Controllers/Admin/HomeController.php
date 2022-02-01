@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Room;
 use App\Models\User;
+use App\Models\Extra;
+use App\Models\Booking;
 use App\Models\Visitor;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Feedback;
 
 class HomeController extends Controller
 {
@@ -19,11 +22,18 @@ class HomeController extends Controller
     {
         $visitors = Visitor::count();
         $users = User::count();
+        $rooms = Room::count();
         $feedbacks = Feedback::count();
+        $extras = Extra::count();
+        $income = 0;
+
         return view('admin.home', [
             'visitors' => $visitors,
             'users' => $users,
-            'feedbacks' => $feedbacks
+            'extras' => $extras,
+            'feedbacks' => $feedbacks,
+            'income' => $income,
+            'rooms' => $rooms,
         ]);
     }
 }
