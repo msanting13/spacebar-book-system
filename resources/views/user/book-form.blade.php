@@ -328,7 +328,7 @@
                                     <!--begin:Input-->
                                     <span class="form-check form-check-custom form-check-solid">
                                         <input class="form-check-input extras-field" type="checkbox"
-                                            data-name="{{ $extra->name }}" name="extras[]" value="{{ $extra->price }}">
+                                            data-name="{{ $extra->name }}" name="extras[]" data-price="{{ $extra->price }}" value="{{ $extra->id }}">
                                     </span>
                                     <!--end:Input-->
                                 </label>

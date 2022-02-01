@@ -211,6 +211,7 @@
                             <!--begin::Item-->
                             <div class="carousel-item active">
                                 <div class="carousel-wrapper">
+                                    @if($feedbacks->count() != 0)
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
                                         <a href="#"
                                             class="fs-2 text-gray-800 text-hover-primary fw-boldest">{{ $feedbacks->first()->user->first_name }}
@@ -223,6 +224,7 @@
                                         <span
                                             class="badge badge-light-primary fs-7 fw-boldest me-2">{{ $feedbacks->first()->created_at->format('F d, Y h:i A') }}</span>
                                     </div>
+                                    @endif
                                     <!--end::Info-->
                                 </div>
                             </div>
@@ -576,11 +578,12 @@
                                         CUSTOMER NAME
                                     </th>
                                     <th class='px-2 fw-bold text-uppercase'>
+                                        ROOM
+                                    </th>
+                                    <th class='px-2 fw-bold text-uppercase text-center'>
                                         STATUS
                                     </th>
-                                    <th class='px-2 fw-bold text-uppercase'>
-                                        PRICE
-                                    </th>
+                                    
                                     <th class='px-2 fw-bold text-uppercase text-center'>
                                         ACTIONS
                                     </th>
@@ -590,12 +593,13 @@
 								@foreach($appliedBookings as $book)
 									<tr>
 										<td class='text-uppercase px-2 fw-boldest'>{{ $book->user->first_name }} {{ $book->user->last_name }}</td>
+										<td class='text-uppercase px-2 fw-boldest'>{{ $book->room->name }}</td>
+										<td class='text-uppercase px-2 fw-boldest text-center'>{{ $book->extras->count() }}</td>
 										<td class='text-uppercase px-2 fw-boldest'>
 											<span class='badge badge-success'>
 												{{ $book->status }}
 											</span>
 										</td>
-										<td class='text-uppercase px-2 fw-boldest'>{{ $book->room->price }}</td>
 										<td class='text-uppercase px-2 fw-boldest text-center'>
 											<button class='btn btn-primary btn-sm text-uppercase'>Approve</button>
 										</td>

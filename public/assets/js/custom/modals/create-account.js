@@ -35,7 +35,9 @@ var KTCreateAccount = (function () {
                             index,
                             element
                         ) {
-                            totalExtras += parseFloat($(element).val());
+                            totalExtras += parseFloat(
+                                $(element).attr("data-price")
+                            );
                             $("#billing-table").append(`
                                 <tr class='dynamic-field'>
                                     <th></th>
@@ -44,7 +46,7 @@ var KTCreateAccount = (function () {
                                     ).attr("data-name")}</th>
                                     <th class="fw-boldest fs-4 text-end">${$(
                                         element
-                                    ).val()}</th>
+                                    ).attr("data-price")}</th>
                                 </tr>
                             `);
                         });

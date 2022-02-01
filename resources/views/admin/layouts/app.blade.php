@@ -349,7 +349,7 @@
                                                 <!--begin::Username-->
                                                 <div class="d-flex flex-column">
                                                     <div class="fw-bolder d-flex align-items-center fs-5">Hello,
-                                                        {{ Auth::user()->first_name }}
+                                                        {{ Auth::user()->name }}
                                                         <span
                                                             class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Verified</span>
                                                     </div>
