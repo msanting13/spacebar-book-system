@@ -34,7 +34,7 @@ class PageSeeder extends Seeder
             'title' =>  "We Offer",
             'index' => 3,
             'content' => '
-            <h4>Rooms and Cottages at affordable prices</h4>:
+            Rooms and Cottages at affordable prices:
             <br>
             <br>
             We have budget rooms that could cater 2 persons for 1500 Php. A family room good for 8 persons for 3500 Php, 12 persons for 5000 php and our room for 18 perons would just cost you 7500 php.
