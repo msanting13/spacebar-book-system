@@ -33,7 +33,8 @@ class RoomController extends Controller
             'name'        => 'required',
             'description' => 'required',
             'capacity'    => 'required|integer',
-            'room_type'   => 'required|exists:room_types,id',
+            'classification'   => 'required|exists:room_types,id',
+            'type' => 'required|in:function hall,room',
             'price'  => 'required|integer',
         ]);
 
@@ -41,17 +42,21 @@ class RoomController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'capacity' => $request->capacity,
-            'room_type_id' => $request->room_type,
+            'room_type_id' => $request->classification,
+            'type' => $request->type,
             'price' => $request->price,
+            'type' => $request->type,
         ]);
 
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('storage/uploads'), $imageName);
+        if($request->has('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('storage/uploads'), $imageName);
 
-        RoomImage::create([
-            'photo' => $imageName,
-            'room_id' => $room->id,
-        ]);
+            RoomImage::create([
+                'photo' => $imageName,
+                'room_id' => $room->id,
+            ]);
+        }
 
 
         return back()->with('success', 'You have successfully create new room');
@@ -70,7 +75,8 @@ class RoomController extends Controller
             'name'        => 'required',
             'description' => 'required',
             'capacity'    => 'required|integer',
-            'room_type'   => 'required|exists:room_types,id',
+            'classification'   => 'required|exists:room_types,id',
+            'type' => 'required|in:function hall,room',
             'price'  => 'required',
         ]);
     
@@ -79,16 +85,19 @@ class RoomController extends Controller
         $room->name = $request->name;
         $room->description = $request->description;
         $room->capacity = $request->capacity;
-        $room->room_type_id = $request->room_type;
+        $room->room_type_id = $request->classification;
+        $room->type = $request->type;
         $room->price = $request->price;
         $room->save();
 
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('storage/uploads'), $imageName);
+        if($request->has('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('storage/uploads'), $imageName);
 
-        $roomImage = RoomImage::where('room_id', $room->id)->first();
-        $roomImage->photo = $imageName;
-        $roomImage->save();
+            $roomImage = RoomImage::where('room_id', $room->id)->first();
+            $roomImage->photo = $imageName;
+            $roomImage->save();
+        }
 
         return back()->with('success', 'You have successfully update a room');
     }

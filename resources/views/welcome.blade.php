@@ -200,11 +200,11 @@
                 data-background=""></div>
             <div class="container">
                 <div class="banner_content text-center">
-                    <h6>Away from monotonous life</h6>
-                    <h2>Chill And Relax</h2>
-                    <p>
+                    <h4>Away from monotonous life</>
+                    <h2>CHILL AND RELAX</h2>
+                    <h4>
                         Find the place where you can just go, chill and relax.
-                    </p>
+                    </h4>
                     <a href="{{ route('user.booking.index') }}" class="btn theme_btn button_hover">Get Started</a>
                 </div>
             </div>
@@ -255,7 +255,7 @@
     <section class="accomodation_area section_gap" id='accomodation'>
         <div class="container">
             <div class="section_title text-center">
-                <h2 class="title_color">Rooms</h2>
+                <h2 class="title_color text-uppercase">Rooms & Function Halls</h2>
                 <p>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, </p>
             </div>
             <div class="row mb_30">
@@ -272,11 +272,14 @@
                             <a href="{{ route('user.booking.bookform', $room->id) }}"
                                 class="btn theme_btn button_hover">Book Now</a>
                         </div>
-                        <a href="#">
                             <h4 class="sec_h4">{{ $room->name }}</h4>
-                            <h4 class="sec_h4">PHP {{ $room->price }}</h4>
-                            <h4 class="sec_h4">{{ $room->capacity }} CAPACITY</h4>
-                        </a>
+                            <p class='fs-4 fw-boldest text-black'>
+                                <span class='text-capitalize'>{{ $room->type }}</span>
+                                <div class="separator separator-dashed border-dark my-3"></div>
+                                <span class='text-capitalize font-weight-bold fs-4 text-black'>&#8369;{{ $room->price }}</span>
+                                <div class="separator separator-dashed border-dark my-3"></div>
+                                <span class='text-capitalize font-weight-bold fs-4 text-black'>Capacity {{ $room->capacity }}</span>
+                            </p>
                     </div>
                 </div>
                 @endforeach
@@ -287,7 +290,7 @@
     <div class='footer-area section_gap'>
          <div class="container">
             <div class="section_title text-center" id='facilities'>
-                <h2 class="title_w">Chill and Relax Facilities</h2>
+                <h2 class="title_w text-uppercase">Facilities</h2>
                 <p class='text-white'>Who are in extremely love with eco friendly system.</p>
             </div>
             <div class="row mb_30">

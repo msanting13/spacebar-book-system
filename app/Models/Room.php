@@ -12,7 +12,7 @@ class Room extends Model
     use SoftDeletes, HasFactory, Uuids;
     protected $with = ['roomType'];
     
-    protected $fillable = ['name', 'description', 'capacity', 'room_type_id', 'price'];
+    protected $fillable = ['name', 'description', 'capacity', 'room_type_id', 'price', 'type'];
 
     public function roomType()
     {

@@ -23,11 +23,14 @@
                                 <th class='fw-bold text-uppercase px-2 fw-bold text-uppercase align-middle'>
                                     Description
                                 </th>
-                                <th class='fw-bold text-uppercase px-2 fw-bold text-uppercase align-middle'>
+                                <th class='fw-bold text-uppercase px-2 fw-bold text-center align-middle'>
                                     Capacity
                                 </th>
                                 <th class='fw-bold text-uppercase text-truncate px-2 fw-bold text-uppercase align-middle'>
-                                    Room Type
+                                    Classification
+                                </th>
+                                <th class='fw-bold text-uppercase text-truncate px-2 fw-bold text-uppercase align-middle'>
+                                    Type
                                 </th>
                                 <th class='fw-bold text-uppercase px-2 fw-bold text-uppercase align-middle'>
                                     Price
@@ -42,8 +45,9 @@
                             <tr>
                                 <td class='align-middle px-2 fw-bold text-uppercase align-middle'>{{ $room->name }}</td>
                                 <td class='align-middle px-2 fw-bold text-uppercase align-middle'>{{ Str::limit($room->description, 50, '...') }}</td>
-                                <td class='align-middle px-2 fw-bold text-uppercase align-middle' class='text-center fw-bold'>{{ $room->capacity }}</td>
+                                <td class='align-middle px-2 fw-bold text-uppercase align-middle text-center' class='text-center fw-bold'>{{ $room->capacity }}</td>
                                 <td class='align-middle px-2 fw-bold text-uppercase align-middle'>{{ $room->roomType->type_name }}</td>
+                                <td class='align-middle px-2 fw-bold text-uppercase align-middle' class='text-center fw-bold'>{{ $room->type }}</td>
                                 <td class='align-middle px-2 fw-bold text-uppercase align-middle'>{{ $room->price }}</td>
                                 <td class='text-center'>
                                     <form action="{{ route('admin.room.delete', $room->id) }}" method="POST">

@@ -2,54 +2,78 @@
 @section('page-title', 'Edit room')
 @section('content')
 @include('templates.success')
+@if($errors->any())
+<div class='alert alert-danger' style='list-style:none;'>
+    @foreach($errors->all() as $error)
+    <li class='p-1'>
+        {{ $error }}
+    </li>
+    @endforeach
+</div>
+@endif
 <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                @if($errors->any())
-                    <div class='alert alert-danger'>
-                        @foreach($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </div>
-                @endif
                 <form action="{{ route('admin.room.update', $room->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group mb-5">
-                        <label>Room name</label>
-                        <input type="text" name="name" class="form-control" value="{{ old('name', $room->name) }}" placeholder="Enter room name">
+                        <label>Name</label>
+                        <input type="text" name="name" class="form-control" value="{{ old('name', $room->name) }}"
+                            placeholder="Enter room name">
                     </div>
 
                     <div class="form-group mb-5">
-                        <label>Room description</label>
-                        <textarea name="description" class='form-control' cols="30" rows="10" placeholder="Enter description">{{ old('description', $room->description) }}</textarea>
+                        <label>Description</label>
+                        <textarea name="description" class='form-control' cols="30" rows="10"
+                            placeholder="Enter description">{{ old('description', $room->description) }}</textarea>
                     </div>
 
                     <div class="form-group mb-5">
-                        <label>Room capacity</label>
-                        <input type="number" name="capacity" class="form-control" value="{{ old('capacity', $room->capacity) }}" placeholder="Enter room capacity">
+                        <label>Capacity</label>
+                        <input type="number" name="capacity" class="form-control"
+                            value="{{ old('capacity', $room->capacity) }}" placeholder="Enter room capacity">
                     </div>
 
                     <div class="form-group mb-5">
-                        <label >Room type</label>
-                        <select name="room_type" class='form-control'>
+                        <label>Classification</label>
+                        <select name="classification" class='form-control'>
                             <option value="" disabled></option>
                             @foreach($types as $type)
-                                @if(old('room_type'))
-                                    <option value="{{ $type->id }}" {{ old('room_type') == $type->id ? 'selected' : '' }}>{{ $type->type_name }}</option>
-                                    @else
-                                    <option value="{{ $type->id }}" {{ $room->room_type_id == $type->id ? 'selected' : '' }}>{{ $type->type_name }}</option>
-                                @endif
+                            @if(old('classification'))
+                            <option value="{{ $type->id }}" {{ old('classification') == $type->id ? 'selected' : '' }}>
+                                {{ $type->type_name }}</option>
+                            @else
+                            <option value="{{ $type->id }}" {{ $room->room_type_id == $type->id ? 'selected' : '' }}>
+                                {{ $type->type_name }}</option>
+                            @endif
                             @endforeach
-                        </select>                    
+                        </select>
                     </div>
 
                     <div class="form-group mb-5">
-                        <label>Room price</label>
-                        <input type="number" name="price" class="form-control" value="{{ old('price', $room->price) }}" placeholder="Enter room price">
+                        <label>Type</label>
+                        <select name="type" class='form-control'>
+                            <option value="" disabled></option>
+                            @if(old('type'))
+                            <option value="room" {{ old('type') == $type->id ? 'selected' : '' }}>Room
+                            </option>
+                            <option value="function hall" {{ old('type') == $type->id ? 'selected' : '' }}>Function
+                                Hall</option>
+                            @else
+                            <option value="room" {{ $room->type === 'room' ? 'selected' : '' }}>Room
+                            </option>
+                            <option value="function hall" {{ $room->type === 'function hall' ? 'selected' : '' }}>
+                                Function Hall</option>
+                            @endif
+                        </select>
+                    </div>
+
+                    <div class="form-group mb-5">
+                        <label>Price</label>
+                        <input type="number" name="price" class="form-control" value="{{ old('price', $room->price) }}"
+                            placeholder="Enter room price">
                     </div>
 
                     <div class="form-group mb-5">
