@@ -90,13 +90,15 @@ class RoomController extends Controller
         $room->price = $request->price;
         $room->save();
 
+        
         if($request->has('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('storage/uploads'), $imageName);
 
-            $roomImage = RoomImage::where('room_id', $room->id)->first();
-            $roomImage->photo = $imageName;
-            $roomImage->save();
+            $roomImage = RoomImage::updateOrCreate([
+                'room_id' => $room->id,
+                'photo' => $imageName,
+            ]);
         }
 
         return back()->with('success', 'You have successfully update a room');

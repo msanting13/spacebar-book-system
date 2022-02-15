@@ -211,7 +211,7 @@
                             <!--begin::Item-->
                             <div class="carousel-item active">
                                 <div class="carousel-wrapper">
-                                    @if($feedbacks->count() != 0)
+                                   @if($feedbacks->count() != 0)
                                     <div class="d-flex flex-column justify-content-between flex-grow-1">
                                         <a href="#"
                                             class="fs-2 text-gray-800 text-hover-primary fw-boldest">{{ $feedbacks->first()->user->first_name }}

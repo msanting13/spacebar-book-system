@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Reports\SalesController;
 use App\Http\Controllers\User\FeedbackController;
 use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\Admin\RoomTypeController;
@@ -90,6 +91,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::put('facility/{id}/edit', [FacilityController::class, 'update'])->name('admin.facility.update');
 
     Route::get('feedback/index', [CustomerFeedBackController::class, 'index'])->name('admin.feedbacks.index');
+
+
+    Route::get('reports', [SalesController::class, 'index'])->name('reports.index');
+    Route::get('generate/report/', [SalesController::class, 'generate'])->name('reports.create');
 });
 
 
