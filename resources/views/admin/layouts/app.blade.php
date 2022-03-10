@@ -206,7 +206,7 @@
                             <div class="menu-content mt-3">
                                 <span class="fw-bold text-muted text-uppercase fs-7">REPORTS</span>
                             </div>
-                            <a href="{{ route('reports.index') }}" class="menu-item menu-accordion">
+                            <a href="{{ route('reports.create') }}" class="menu-item menu-accordion">
                                 <span class="menu-link">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->

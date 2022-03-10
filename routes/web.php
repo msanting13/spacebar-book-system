@@ -93,7 +93,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('feedback/index', [CustomerFeedBackController::class, 'index'])->name('admin.feedbacks.index');
 
 
-    Route::get('reports', [SalesController::class, 'index'])->name('reports.index');
     Route::get('generate/report/', [SalesController::class, 'generate'])->name('reports.create');
 });
 
