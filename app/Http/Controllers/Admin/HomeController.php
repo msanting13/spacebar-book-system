@@ -31,7 +31,7 @@ class HomeController extends Controller
                             ->whereMonth('start_date', date('m'))
                             ->get();
 
-        $appliedBookings = Booking::with(['extras'])->get();
+        $appliedBookings = Booking::with(['extras'])->get() ?? [];
 
         $extras = Extra::count();
         $income = 0;
