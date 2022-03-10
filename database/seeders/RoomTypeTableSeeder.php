@@ -14,7 +14,17 @@ class RoomTypeTableSeeder extends Seeder
      */
     public function run()
     {
-        $roomTypes = ['Matrimonial', '2 Single Size Bed', 'Family Room (6 persons)', 'Family Room (8 persons)', 'Family Room (10 persons)', 'Family Room (18 persons)'];
+        $roomTypes = [
+            'Family Room Good for 4pax',
+            'Family Room Good for 6pax',
+            'Family Room Good for 12pax',
+            'Suite Room Good for 4pax',
+            'Family Room Good for 10pax',
+            'Family Room Good for 18pax',
+            'Family Room Good for 8pax',
+            'Matrimonial Room',
+            'Twin Bed Room',
+        ];
 
         foreach ($roomTypes as $key => $type) {
             RoomType::create([
