@@ -51,6 +51,8 @@
                         <select name="type" class='form-control'>
                             <option value="" disabled></option>
                             <option value="room" {{ old('type') == 'room' ? 'selected' : '' }}>Room</option>
+                            <option value="cottage" {{ old('type') == 'cottage' ? 'selected' : '' }}>
+                                Cottage</option>
                             <option value="function hall" {{ old('type') == 'function_hall' ? 'selected' : '' }}>
                                 Function Hall</option>
                         </select>

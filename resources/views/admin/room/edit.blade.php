@@ -59,10 +59,14 @@
                             @if(old('type'))
                             <option value="room" {{ old('type') == $type->id ? 'selected' : '' }}>Room
                             </option>
+                            <option value="cottage" {{ old('type') == $type->id ? 'selected' : '' }}>Cottage
+                            </option>
                             <option value="function hall" {{ old('type') == $type->id ? 'selected' : '' }}>Function
                                 Hall</option>
                             @else
                             <option value="room" {{ $room->type === 'room' ? 'selected' : '' }}>Room
+                            </option>
+                            <option value="cottage" {{ $room->type === 'cottage' ? 'selected' : '' }}>Cottage
                             </option>
                             <option value="function hall" {{ $room->type === 'function hall' ? 'selected' : '' }}>
                                 Function Hall</option>

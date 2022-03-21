@@ -149,6 +149,27 @@ class RoomTableSeeder extends Seeder
                 'description' => ' Fully air conditioned, 1 Double Sized Bed, With Table, With own CR (Hot and Cold), Located at the backside of the resort',
                 'price' => ' 1,500',
             ],
+            [
+                'name' =>' Umbrella Cottage-01',
+                'room_type_id' => RoomType::where('type_name', 'Umbrella Cottage Good for 10pax')->first()->id,
+                'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis sapiente porro praesentium, maiores at exercitationem nesciunt voluptas corporis eum deserunt, odit repellendus in fugit a cupiditate, enim ullam tenetur iste?',
+                'price' => '500',
+                'capacity' => '10'
+            ],
+            [
+                'name' =>' Cubicle Cottage-01',
+                'room_type_id' => RoomType::where('type_name', 'Cubicle Cottage Good for 12-15pax')->first()->id,
+                'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis sapiente porro praesentium, maiores at exercitationem nesciunt voluptas corporis eum deserunt, odit repellendus in fugit a cupiditate, enim ullam tenetur iste?',
+                'price' => '600',
+                'capacity' => '15'
+            ],
+            [
+                'name' =>' Modern Cottage-01',
+                'room_type_id' => RoomType::where('type_name', 'Modern Cottage Good for 10-15pax')->first()->id,
+                'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis sapiente porro praesentium, maiores at exercitationem nesciunt voluptas corporis eum deserunt, odit repellendus in fugit a cupiditate, enim ullam tenetur iste?',
+                'price' => '1,200',
+                'capacity' => '15'
+            ],
         ];
 
         foreach($rooms as $room) {

@@ -34,7 +34,7 @@ class RoomController extends Controller
             'description' => 'required',
             'capacity'    => 'required|integer',
             'classification'   => 'required|exists:room_types,id',
-            'type' => 'required|in:function hall,room',
+            'type' => 'required|in:function hall,room,cottage',
             'price'  => 'required|integer',
         ]);
 
@@ -76,7 +76,7 @@ class RoomController extends Controller
             'description' => 'required',
             'capacity'    => 'required|integer',
             'classification'   => 'required|exists:room_types,id',
-            'type' => 'required|in:function hall,room',
+            'type' => 'required|in:function hall,room,cottage',
             'price'  => 'required',
         ]);
     

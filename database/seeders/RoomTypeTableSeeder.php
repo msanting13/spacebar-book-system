@@ -24,6 +24,9 @@ class RoomTypeTableSeeder extends Seeder
             'Family Room Good for 8pax',
             'Matrimonial Room',
             'Twin Bed Room',
+            'Umbrella Cottage Good for 10pax',
+            'Cubicle Cottage Good for 12-15pax',
+            'Modern Cottage Good for 10-15pax',
         ];
 
         foreach ($roomTypes as $key => $type) {
