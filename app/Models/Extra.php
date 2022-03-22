@@ -14,6 +14,6 @@ class Extra extends Model
     
     public function booking()
     {
-        return $this->belongsToMany(Booking::class);
+        return $this->belongsToMany(Booking::class, 'booking_extra', 'extra_id', 'booking_id');
     }
 }

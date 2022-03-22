@@ -35,6 +35,6 @@ class Booking extends Model
 
     public function extras()
     {
-        return $this->belongsToMany(Extra::class)->withDefault();
+        return $this->belongsToMany(Extra::class, 'booking_extra', 'booking_id', 'extra_id')->withTimestamps();
     }
 }

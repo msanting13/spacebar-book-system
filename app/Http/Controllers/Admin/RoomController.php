@@ -58,7 +58,6 @@ class RoomController extends Controller
             ]);
         }
 
-
         return back()->with('success', 'You have successfully create new room');
     }
 

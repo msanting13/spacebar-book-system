@@ -601,9 +601,19 @@
 										<td class='text-uppercase px-2 fw-boldest'>{{ $book->room->name }}</td>
 										<td class='text-uppercase px-2 fw-boldest text-center'>{{ $book->extras->count() }}</td>
 										<td class='text-uppercase px-2 fw-boldest text-center'>
-											<span class='badge badge-success'>
-												{{ $book->status }}
-											</span>
+                                            @if ($book->status === "pending")
+                                                <span class='badge badge-warning'>
+                                                    {{ $book->status }}
+                                                </span>
+                                            @elseif ($book->status === "done")
+                                                <span class='badge badge-warning'>
+                                                    approved
+                                                </span>
+                                            @else
+                                                <span class='badge badge-warning'>
+                                                    {{ $book->status }}
+                                                </span>
+                                            @endif
 										</td>
 										<td class='text-uppercase px-2 fw-boldest text-center'>
 											<button class='btn btn-primary btn-sm text-uppercase'>Approve</button>

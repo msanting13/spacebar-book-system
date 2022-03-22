@@ -154,21 +154,24 @@ class RoomTableSeeder extends Seeder
                 'room_type_id' => RoomType::where('type_name', 'Umbrella Cottage Good for 10pax')->first()->id,
                 'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis sapiente porro praesentium, maiores at exercitationem nesciunt voluptas corporis eum deserunt, odit repellendus in fugit a cupiditate, enim ullam tenetur iste?',
                 'price' => '500',
-                'capacity' => '10'
+                'capacity' => '10',
+                'type'  =>  'cottage'
             ],
             [
                 'name' =>' Cubicle Cottage-01',
                 'room_type_id' => RoomType::where('type_name', 'Cubicle Cottage Good for 12-15pax')->first()->id,
                 'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis sapiente porro praesentium, maiores at exercitationem nesciunt voluptas corporis eum deserunt, odit repellendus in fugit a cupiditate, enim ullam tenetur iste?',
                 'price' => '600',
-                'capacity' => '15'
+                'capacity' => '15',
+                'type'  =>  'cottage'
             ],
             [
                 'name' =>' Modern Cottage-01',
                 'room_type_id' => RoomType::where('type_name', 'Modern Cottage Good for 10-15pax')->first()->id,
                 'description' => 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis sapiente porro praesentium, maiores at exercitationem nesciunt voluptas corporis eum deserunt, odit repellendus in fugit a cupiditate, enim ullam tenetur iste?',
                 'price' => '1,200',
-                'capacity' => '15'
+                'capacity' => '15',
+                'type'  =>  'cottage'
             ],
         ];
 
@@ -178,7 +181,7 @@ class RoomTableSeeder extends Seeder
                 'description' => ltrim($room['description']),
                 'capacity'  =>  10,
                 'room_type_id'  =>  $room['room_type_id'],
-                'type' => 'room',
+                'type' => isset($room['type']) ? $room['type'] : 'room',
                 'price'  =>  trim(str_replace(',', '', $room['price'])),
             ]);
         }
