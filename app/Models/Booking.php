@@ -37,4 +37,9 @@ class Booking extends Model
     {
         return $this->belongsToMany(Extra::class, 'booking_extra', 'booking_id', 'extra_id')->withTimestamps();
     }
+
+    public function invoices()
+    {
+        return $this->hasOne(Invoice::class, 'booking_id');
+    }
 }

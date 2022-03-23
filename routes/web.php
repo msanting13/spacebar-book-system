@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomerBookingController;
 use App\Models\Page;
 use App\Models\Room;
 use App\Models\Facility;
@@ -92,8 +93,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
     Route::get('feedback/index', [CustomerFeedBackController::class, 'index'])->name('admin.feedbacks.index');
 
-
     Route::get('generate/report/', [SalesController::class, 'generate'])->name('reports.create');
+
+    Route::patch('approve/booking/{booking_id}', [CustomerBookingController::class, 'approveBooking'])->name('approve.customer.booking');
 });
 
 

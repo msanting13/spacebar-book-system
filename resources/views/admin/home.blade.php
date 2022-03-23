@@ -606,7 +606,7 @@
                                                     {{ $book->status }}
                                                 </span>
                                             @elseif ($book->status === "done")
-                                                <span class='badge badge-warning'>
+                                                <span class='badge badge-success'>
                                                     approved
                                                 </span>
                                             @else
@@ -616,7 +616,13 @@
                                             @endif
 										</td>
 										<td class='text-uppercase px-2 fw-boldest text-center'>
-											<button class='btn btn-primary btn-sm text-uppercase'>Approve</button>
+                                            @if ($book->status !== "done")
+                                                <form action="{{ route('approve.customer.booking', $book->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button class='btn btn-primary btn-sm text-uppercase'>Approve</button>
+                                                </form>
+                                            @endif
 										</td>
 									</tr>
 								@endforeach
