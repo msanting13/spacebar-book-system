@@ -1,5 +1,5 @@
 @extends('user.layouts.app')
-@section('page-title', 'Booking')
+@section('page-title', 'Rooms')
 @prepend('page-css')
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 @endprepend
