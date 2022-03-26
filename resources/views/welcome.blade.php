@@ -260,7 +260,7 @@
             </div>
             <div class="row mb_30">
                 @foreach($rooms as $room)
-                <div class="col-lg-4 col-sm-6 shadow mx-5">
+                <div class="col-lg-3 mb-5 col-sm-6 shadow mx-5">
                     <div class="accomodation_item text-center">
                         <div class="hotel_img">
                             @if($room->image->count() != 0)
