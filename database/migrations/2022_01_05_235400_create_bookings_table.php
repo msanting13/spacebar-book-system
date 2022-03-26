@@ -14,14 +14,14 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->primary('id');
             $table->string('transaction_code')->default('-');
             $table->timestamp('arrival_date')->nullable();
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
             $table->enum('status', ['done', 'pending', 'cancelled'])->nullable();
-            $table->uuid('room_id');
-            $table->uuid('user_id');
+            $table->integer('room_id');
+            $table->integer('user_id');
             $table->longText('message')->nullable();
             $table->timestamps();
         });

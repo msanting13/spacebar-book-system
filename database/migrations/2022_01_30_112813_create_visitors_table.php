@@ -14,7 +14,7 @@ class CreateVisitorsTable extends Migration
     public function up()
     {
         Schema::create('visitors', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->ipAddress('visitor');
             $table->timestamps();
         });

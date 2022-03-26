@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Extra extends Model
 {
-    use HasFactory, Uuids, SoftDeletes;
+    use HasFactory, SoftDeletes;
     protected $fillable = ['name', 'description', 'price'];
     
     public function booking()

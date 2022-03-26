@@ -14,7 +14,7 @@ class CreateExtrasTable extends Migration
     public function up()
     {
         Schema::create('extras', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('name');
             $table->text('description');
             $table->decimal('price', 10, 2);

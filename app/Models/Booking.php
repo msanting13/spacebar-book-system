@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Booking extends Model
 {
-    use HasFactory, Uuids;
+    use HasFactory;
 
     protected $fillable = [
         'start_date',

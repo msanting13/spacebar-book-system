@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Visitor extends Model
 {
-    use HasFactory, Uuids;
+    use HasFactory;
     protected $fillable = ['visitor'];
 }

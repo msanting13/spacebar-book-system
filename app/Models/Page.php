@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Page extends Model
 {
-    use HasFactory, Uuids;
+    use HasFactory;
     protected $fillable = ['title', 'content', 'category'];
 }

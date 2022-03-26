@@ -14,7 +14,7 @@ class CreateFacilitiesTable extends Migration
     public function up()
     {
         Schema::create('facilities', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('title');
             $table->text('content');
             $table->string('image');
