@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\CustomerBookingController;
 use App\Models\Page;
 use App\Models\Room;
 use App\Models\Facility;
@@ -12,6 +11,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\User\RoomsController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -20,6 +20,7 @@ use App\Http\Controllers\User\FeedbackController;
 use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\Admin\CustomerBookingController;
 use App\Http\Controllers\User\SecurityAndLoginController;
 use App\Http\Controllers\Admin\FeedbackController as CustomerFeedBackController;
 
@@ -46,6 +47,7 @@ Route::group(['namespace' => 'User', 'middleware' => ['verified']], function () 
     Route::put('update/profile/{id}', [UserProfileController::class, 'update'])->name('user.profile.update');
     // Route::get('/security-and-login', [SecurityAndLoginController::class, 'index'])->name('user.security.login');
     Route::put('update/password', [SecurityAndLoginController::class, 'updatePassword'])->name('user.update.password');
+    Route::get('rooms', [RoomsController::class, 'index'])->name('user.rooms.index');
 });
 
 
