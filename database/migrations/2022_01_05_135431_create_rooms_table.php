@@ -18,7 +18,7 @@ class CreateRoomsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->integer('capacity');
-            $table->uuid('room_type_id');
+            $table->integer('room_type_id');
             $table->decimal('price', 10, 2);
             $table->enum('type', ['function hall', 'room', 'cottage']);
             $table->softDeletes();

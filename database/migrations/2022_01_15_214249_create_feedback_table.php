@@ -17,7 +17,7 @@ class CreateFeedbackTable extends Migration
             $table->id();
             $table->longText('content');
             $table->integer('rating');
-            $table->uuid('user_id')->nullable();
+            $table->integer('user_id')->nullable();
             $table->timestamps();
         });
     }

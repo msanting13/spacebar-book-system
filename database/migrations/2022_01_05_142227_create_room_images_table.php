@@ -15,9 +15,8 @@ class CreateRoomImagesTable extends Migration
     {
         Schema::create('room_images', function (Blueprint $table) {
             $table->id();
-
             $table->string('photo');
-            $table->uuid('room_id');
+            $table->integer('room_id');
             $table->timestamps();
         });
     }
