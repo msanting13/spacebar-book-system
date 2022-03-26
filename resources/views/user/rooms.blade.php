@@ -56,12 +56,12 @@
                         <div class="d-grid gap-2">
                                 @if($room->bookings->count() != 0)
                                     <a class="btn btn-danger fs-3 rounded-0 text-uppercase"
-                                        href="">
+                                        href="#">
                                             BOOKED
                                     </a>
                                 @else
                                     <a class="btn btn-primary fs-3 rounded-0 text-uppercase"
-                                    href="">
+                                    href="{{ route('user.booking.bookform', [$room->id]) }}">
                                         AVAILABLE
                                     </a>
                                 @endif    
