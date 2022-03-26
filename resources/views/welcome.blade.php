@@ -201,7 +201,7 @@
             <div class="container">
                 <div class="banner_content text-center">
                     <h4>Away from monotonous life</>
-                    <h2 class='text-uppercase'>{{ config('app.name') }}</h2>
+                    <h2>{{ config('app.name') }}</h2>
                     <h4>
                         Find the place where you can just go, chill and relax.
                     </h4>
@@ -283,6 +283,10 @@
                     </div>
                 </div>
                 @endforeach
+                @if($rooms->count() >= 6)
+                    <a href="{{ route('user.rooms.index', $room->id) }}"
+                                class="btn theme_btn button_hover">SEE MORE</a>
+                @endif
             </div>
         </div>
     </section>
