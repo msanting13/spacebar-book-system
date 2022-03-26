@@ -201,7 +201,7 @@
             <div class="container">
                 <div class="banner_content text-center">
                     <h4>Away from monotonous life</>
-                    <h2>CHILL AND RELAX</h2>
+                    <h2 class='text-uppercase'>{{ config('app.name') }}</h2>
                     <h4>
                         Find the place where you can just go, chill and relax.
                     </h4>
@@ -259,10 +259,10 @@
                 <p class='text-black fs-3'>We all live in an age that belongs to the young at heart. Life that is becoming extremely fast, </p>
             </div>
             <div class="row mb_30">
-                @foreach($rooms as $room)
-                <div class="col-lg-3 mb-5 col-sm-6 shadow mx-5">
+                @foreach($rooms->take(6) as $room)
+                <div class="col-lg-3 mb-5 col-sm-6 shadow-sm mx-5">
                     <div class="accomodation_item text-center">
-                        <div class="hotel_img">
+                        <div class="hotel_img ">
                             @if($room->image->count() != 0)
                             <img src="{{ asset('/storage/uploads/' . $room->image->first()->photo) }}" height="275px"
                                 alt="">
@@ -273,12 +273,12 @@
                                 class="btn theme_btn button_hover">Book Now</a>
                         </div>
                             <h4 class="sec_h4">{{ $room->name }}</h4>
-                            <p class='fs-4 fw-boldest text-black'>
+                            <p class='fs-4 text-black'>
                                 <span class='text-capitalize'>{{ $room->type }}</span>
                                 <div class="separator separator-dashed border-dark my-3"></div>
-                                <span class='text-capitalize font-weight-bold fs-4 text-black'>&#8369;{{ $room->price }}</span>
+                                <span class='text-capitalize  fs-4 text-black'>&#8369;{{ $room->price }}</span>
                                 <div class="separator separator-dashed border-dark my-3"></div>
-                                <span class='text-capitalize font-weight-bold fs-4 text-black'>{{ $room->roomType->type_name }}</span>
+                                <span class='text-capitalize  fs-4 text-black'>{{ $room->roomType->type_name }}</span>
                             </p>
                     </div>
                 </div>
@@ -400,7 +400,7 @@
     <footer class="footer-area section_gap">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6  col-md-6 col-sm-6">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="single-footer-widget">
                         <h6 class="footer_title">About Agency</h6>
                         <p>The world has become so fast paced that people don’t want to stand by reading a page of
@@ -408,39 +408,16 @@
                             has come to a point </p>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h6 class="footer_title">Navigation Links</h6>
-                        <div class="row">
-                            <div class="col-4">
-                                <ul class="list_style">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">Feature</a></li>
-                                    <li><a href="#">Services</a></li>
-                                    <li><a href="#">Portfolio</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-4">
-                                <ul class="list_style">
-                                    <li><a href="#">Team</a></li>
-                                    <li><a href="#">Pricing</a></li>
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="border_line"></div>
             <div class="row footer-bottom d-flex justify-content-between align-items-center">
                 <p class="col-lg-8 col-sm-12 footer-text m-0">
-                    Copyright &copy; {{ date('Y') }} All rights reserved
+                    Copyright &copy; {{ date('Y') }} {{ config('app.name') }}
                 </p>
-                <div class="col-lg-4 col-sm-12 footer-social">
+                {{-- <div class="col-lg-4 col-sm-12 footer-social">
                     <a href="#"><i class="fa fa-facebook"></i></a>
                     <a href="#"><i class="fa fa-twitter"></i></a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </footer>
