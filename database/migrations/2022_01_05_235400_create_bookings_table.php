@@ -14,7 +14,8 @@ class CreateBookingsTable extends Migration
     public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->primary('id');
+            $table->id();
+
             $table->string('transaction_code')->default('-');
             $table->timestamp('arrival_date')->nullable();
             $table->timestamp('start_date')->nullable();

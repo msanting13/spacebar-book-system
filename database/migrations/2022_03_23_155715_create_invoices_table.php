@@ -16,8 +16,8 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->integer('number');
-            $table->uuid('booking_id');
-            $table->uuid('user_id');
+            $table->integer('booking_id');
+            $table->integer('user_id');
             $table->decimal('amount', 10, 2);
             $table->string('invoice_number')->unique();
             $table->softDeletes();
