@@ -55,7 +55,7 @@
                             <td class='fs-5 fw-bolder'>{{ $booking->room->name }}</td>
                             <td class='fs-5'>{{ $booking->room->roomType->type_name }}</td>
                             <td class='fs-5'>{{ $booking->room->capacity }}</td>
-                            <td class='fs-5 fw-bolder'>{{ $booking->room->price }}</td>
+                            <td class='fs-5 fw-bolder'>{{ $booking->total_price }}</td>
                             <td class='text-center'>
                                 <span class='badge bg-primary text-uppercase fs-6'>
                                     {{ $booking->status }}

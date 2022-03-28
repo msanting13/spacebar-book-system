@@ -13,6 +13,7 @@ class Booking extends Model
         'start_date',
         'end_date',
         'status',
+        'total_price',
         'room_id',
         'user_id'
     ];
@@ -34,7 +35,7 @@ class Booking extends Model
 
     public function extras()
     {
-        return $this->belongsToMany(Extra::class, 'booking_extra', 'booking_id', 'extra_id')->withTimestamps()->withDefault();
+        return $this->belongsToMany(Extra::class, 'booking_extra', 'booking_id', 'extra_id')->withTimestamps();
     }
 
     public function invoices()

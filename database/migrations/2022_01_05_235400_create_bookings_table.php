@@ -24,6 +24,7 @@ class CreateBookingsTable extends Migration
             $table->integer('room_id');
             $table->integer('user_id');
             $table->longText('message')->nullable();
+            $table->decimal('total_price', 10, 2)->nullable();
             $table->timestamps();
         });
     }

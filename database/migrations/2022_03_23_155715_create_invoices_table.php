@@ -14,12 +14,12 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary;
             $table->integer('number');
             $table->integer('booking_id');
             $table->integer('user_id');
             $table->decimal('amount', 10, 2);
-            $table->integer('invoice_number');
+            $table->string('invoice_number');
             $table->softDeletes();
             $table->timestamps();
         });

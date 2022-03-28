@@ -56,12 +56,9 @@ class BookingController extends Controller
         $pricePerDay = $room->price;  
         $extras = Extra::find($request->extras);
         $totalPricePerDay = $pricePerDay * $daysToStay;
-        if (is_null($extras)) 
-        {
+        if (is_null($extras)) {
             $totalPrice = $totalPricePerDay;
-        }
-        else
-        {
+        } else {
             $totalAmmountOfExtras = $extras->sum('price');
             $totalPrice = $pricePerDay * $daysToStay + $totalAmmountOfExtras;
         }
@@ -71,6 +68,7 @@ class BookingController extends Controller
             'status'     => 'pending',
             'start_date' => date('Y-m-d', strtotime($start_date)),
             'end_date'   => date('Y-m-d', strtotime($end_date)),
+            'total_price' => $totalPrice,
         ]);
 
         $booking->extras()->attach($request->extras);
@@ -93,7 +91,7 @@ class BookingController extends Controller
             'total'                 =>  number_format($totalPrice, 2, '.', ',')
         ];
 
-        $user->notify(new InvoiceNotification($invoiceDetails));
+        // $user->notify(new InvoiceNotification($invoiceDetails));
 
         return redirect()->route('home')->with('success', 'Booked successfully');
     }

@@ -44,7 +44,7 @@ class ExtraController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'description' => 'required|min:10|max:200',
+            'description' => 'required|max:200',
             'price' => 'required|integer',
         ]);
 
@@ -87,7 +87,7 @@ class ExtraController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'description' => 'required|min:10|max:200',
+            'description' => 'required|max:200',
             'price' => 'numeric',
         ]);
 
