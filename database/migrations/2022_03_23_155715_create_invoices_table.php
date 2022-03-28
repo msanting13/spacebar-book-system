@@ -19,7 +19,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('booking_id');
             $table->integer('user_id');
             $table->decimal('amount', 10, 2);
-            $table->string('invoice_number')->unique();
+            $table->integer('invoice_number');
             $table->softDeletes();
             $table->timestamps();
         });

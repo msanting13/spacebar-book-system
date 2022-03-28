@@ -14,8 +14,8 @@ class CreateBookingExtraTable extends Migration
     public function up()
     {
         Schema::create('booking_extra', function (Blueprint $table) {
-            $table->string('booking_id');
-            $table->string('extra_id');
+            $table->integer('booking_id');
+            $table->integer('extra_id');
             $table->timestamps();
         });
     }
