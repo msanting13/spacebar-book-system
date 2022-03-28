@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Reports\SalesController;
 use App\Http\Controllers\User\FeedbackController;
 use App\Http\Controllers\Admin\FacilityController;
+use App\Http\Controllers\User\FacilityController as UserFacilityController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\Admin\CustomerBookingController;
@@ -48,6 +49,7 @@ Route::group(['namespace' => 'User', 'middleware' => ['verified']], function () 
     // Route::get('/security-and-login', [SecurityAndLoginController::class, 'index'])->name('user.security.login');
     Route::put('update/password', [SecurityAndLoginController::class, 'updatePassword'])->name('user.update.password');
     Route::get('rooms', [RoomsController::class, 'index'])->name('user.rooms.index');
+    Route::get('facilities', [UserFacilityController::class, 'index'])->name('user.facilities.index');
 });
 
 

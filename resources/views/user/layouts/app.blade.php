@@ -136,7 +136,7 @@
                                 </span>
                             </a>
 
-                            <a href="#" class="menu-item menu-accordion">
+                            <a href="{{ route('user.facilities.index') }}" class="menu-item menu-accordion">
                                 <span class="menu-link">
                                     <span class="menu-icon">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
