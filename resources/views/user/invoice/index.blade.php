@@ -166,8 +166,8 @@
                     attributes: {
                         amount: parseInt(total / 2),
                         redirect: {
-                            success: `http://localhost:8000/success/${BOOK_ID}`,
-                            failed: 'http://localhost:8000/failed'
+                            success: `/success/${BOOK_ID}`,
+                            failed: '/failed'
                         },
                         type: 'gcash',
                         currency: 'PHP'
