@@ -15,7 +15,6 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-
             $table->string('transaction_code')->default('-');
             $table->timestamp('arrival_date')->nullable();
             $table->timestamp('start_date')->nullable();
@@ -25,6 +24,7 @@ class CreateBookingsTable extends Migration
             $table->integer('user_id');
             $table->longText('message')->nullable();
             $table->decimal('total_price', 10, 2)->nullable();
+            $table->string('source_id')->nullable();
             $table->timestamps();
         });
     }

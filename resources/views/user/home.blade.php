@@ -1,108 +1,73 @@
 @extends('user.layouts.app')
 @section('page-title', 'Dashboard')
 @prepend('page-css')
-<link href="{{ asset('/assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+<!-- DataTables -->
+<link href="/admin-assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="/admin-assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet"
+    type="text/css" />
+
+<!-- Responsive datatable examples -->
+<link href="/admin-assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
+    type="text/css" />
 @endprepend
 @section('content')
 @include('templates.success')
-<!--begin::Card-->
-<div class="card">
-    <!--begin::Card body-->
-    <div class="card-body p-0">
-        @if($bookings->count() == 0)
-        <!--begin::Wrapper-->
-        <div class="card-px text-center py-20 my-10">
-            <!--begin::Title-->
-            <h2 class="fs-2x fw-bolder mb-10">Welcome!</h2>
-            <!--end::Title-->
-            <!--begin::Description-->
-            <p class="text-gray-400 fs-4 fw-bold mb-10">There are no book added yet.</p>
-            <!--end::Description-->
-            <!--begin::Action-->
-            <a href="{{ route('user.booking.index') }}" class="btn btn-primary">Book Now!</a>
-            <!--end::Action-->
-        </div>
-        <!--end::Wrapper-->
-        <!--begin::Illustration-->
-        <div class="text-center px-4">
-            <img class="mw-100 mh-300px" alt="" src="/assets/media/illustrations/sigma-1/2.png" />
-        </div>
-        <!--end::Illustration-->
-        @else
-        {{-- DISPLAY BOOKINGS --}}
-        <div class="card">
-            <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
-                data-bs-target="#kt_account_signin_method">
-                <div class="card-title m-0">
-                </div>
-            </div>
-            <div class="card-body">
-                <table id="bookings_table" class="table table-striped table-row-bordered gy-5 gs-7 border rounded">
-                    <thead>
-                        <tr class="fw-boldest fs-6 text-uppercase px-7">
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Capacity</th>
-                            <th>Price</th>
-                            <th class='text-center'>Status</th>
-                            <th class='text-center'>Check In / Check Out.</th>
-                            <th class='text-center'>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($bookings as $booking)
-                        <tr>
-                            <td class='fs-5 fw-bolder'>{{ $booking->room->name }}</td>
-                            <td class='fs-5'>{{ $booking->room->roomType->type_name }}</td>
-                            <td class='fs-5'>{{ $booking->room->capacity }}</td>
-                            <td class='fs-5 fw-bolder'>{{ $booking->total_price }}</td>
-                            <td class='text-center'>
-                                <span class='badge bg-primary text-uppercase fs-6'>
-                                    {{ $booking->status }}
-                                </span>
-                            </td>
-                            <td class='fs-5 text-center'>{{ $booking->start_date->format('F d') }} - {{ $booking->end_date->format('d, Y') }}
-                            </td>
-                            <td class='text-center fs-5'>
-                                &nbsp;
-                                {{-- @if( !Carbon\Carbon::parse($booking->created_at)->diffInMinutes(Carbon\Carbon::now()) >= 21 )
-                                <button class='btn btn-danger btn-sm'>CANCEL</button>
-                                @else
-                                @endif --}}
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-
-            </div>
-        </div>
-
-
-        @endif
+<div class="card shadow-none">
+    <div class="card-body">
+        <table id="bookings_table" class="table table-bordered text-dark">
+            <thead>
+                <tr class="fw-boldest fs-6 text-uppercase px-7">
+                    <th>Invoice #</th>
+                    <th class='text-center'>Name</th>
+                    <th>Type</th>
+                    <th>Capacity</th>
+                    <th>Price</th>
+                    <th class='text-center'>Status</th>
+                    <th class='text-center'>Check In / Check Out.</th>
+                    <th class='text-center'>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($bookings as $booking)
+                <tr>
+                    <td class='fs-5 text-center'>
+                        <a target="_blank" href="{{ route('user.view.invoice', $booking->id) }}" class='text-info text-decoration-underline'>{{ $booking->invoices->invoice_number }}</a>
+                    </td>
+                    <td class='fs-5 text-center'>{{ $booking->room->name }}</td>
+                    <td class='fs-5 text-center'>{{ $booking->room->roomType->type_name }}</td>
+                    <td class='fs-5 text-center'>{{ $booking->room->capacity }}</td>
+                    <td class='fs-5 text-center'>{{ $booking->total_price }}</td>
+                    <td class='text-center'>
+                        <span class='badge bg-primary text-uppercase fs-6'>
+                            {{ $booking->status }}
+                        </span>
+                    </td>
+                    <td class='fs-5 text-center'>{{ $booking->start_date->format('F d') }} -
+                        {{ $booking->end_date->format('F d, Y') }}
+                    </td>
+                    <td class='text-center fs-5'>
+                        &nbsp;
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-    <!--end::Card body-->
 </div>
-<!--end::Card-->
-@push('page-scripts')
-<script src="{{ asset('/assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-<script>
-    $("#bookings_table").DataTable({
-        "language": {
-            "lengthMenu": "Show _MENU_",
-        },
-        "dom": "<'row'" +
-            "<'col-sm-6 d-flex align-items-center justify-conten-start'l>" +
-            "<'col-sm-6 d-flex align-items-center justify-content-end'f>" +
-            ">" +
-            "<'table-responsive'tr>" +
 
-            "<'row'" +
-            "<'col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start'i>" +
-            "<'col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end'p>" +
-            ">"
-    });
+
+</div>
+@push('page-scripts')
+<!-- Required datatable js -->
+<script src="/admin-assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/admin-assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<!-- Responsive examples -->
+<script src="/admin-assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/admin-assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+<script>
+    $("#bookings_table").DataTable();
+
 </script>
 @endpush
 @endsection

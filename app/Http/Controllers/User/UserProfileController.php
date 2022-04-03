@@ -33,6 +33,6 @@ class UserProfileController extends Controller
         $user->phone_number = $request->phone_number;
         $user->save();
 
-        return redirect()->back()->with('success', 'Updated successfully');
+        return redirect()->back()->with('success', 'Your Basic information successfully updated!');
     }
 }

@@ -1,90 +1,54 @@
 @extends('user.layouts.app')
 @section('page-title', 'Facilities')
 @prepend('page-css')
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 @endprepend
 @section('content')
-
-<!--begin::Container-->
-<div class="container-xxl">
-    <!--begin::Tab Content-->
-    <div class="tab-content">
-        <!--begin::Tab pane-->
-        <div id="kt_project_users_card_pane" class="tab-pane fade show active">
-            @isset($rooms)
-            <div class="row g-6 g-xl-9">
-                @foreach($rooms as $room)
-                <!--begin::Col-->
-                <div class="col-md-6 col-xxl-4">
-                    <!--begin::Card-->
-                    <div class="card">
-                        <!--begin::Card body-->
-                        <div class="card-body d-flex flex-center flex-column pt-12 p-9">
-                            @if($room->image->count() != 0)
-                                <img src="{{ asset('/storage/uploads/' . $room->image->first()->photo) }}" height="250px" class='mb-3' alt="">
-                                @else
-                                <img src="/assets/media/illustrations/sigma-1/2.png" class='img-fluid mh-250px mb-3' alt="">
-                            @endif
-                            <!--begin::Name-->
-                            <a href="#"
-                                class="fs-1 text-gray-800 text-hover-primary fw-boldest mb-1">{{ $room->name }}</a>
-                            <!--end::Name-->
-                            <!--begin::Position-->
-                            <div class="fs-4 fw-bold mb-3">{{ $room->roomType->type_name }}</div>
-                            <!--end::Position-->
-                            <!--begin::Info-->
-                            <div class="d-flex flex-wrap flex-center">
-                                <!--begin::Stats-->
-                                <div class="border border-dashed rounded min-w-75px py-3 px-4 mx-2 mb-3 text-center">
-                                    <div class="fs-2 fw-boldest">{{ $room->price }}</div>
-                                    <div class="fw-medium">Price</div>
-                                </div>
-                                <!--end::Stats-->
-                                <!--begin::Stats-->
-                                <div class="border border-dashed rounded min-w-75px py-3 px-4 mx-2 mb-3 text-center">
-                                    <div class="fs-2 fw-boldest">{{ $room->capacity }}</div>
-                                    <div class="fw-medium">Capacity</div>
-                                </div>
-                                <div class="border border-dashed rounded min-w-75px py-3 px-4 mx-2 mb-3 text-center">
-                                    <div class="fs-2 fw-boldest text-uppercase">{{ $room->type }}</div>
-                                    <div class="fw-medium">Type</div>
-                                </div>
-                                <!--end::Stats-->
-                            </div>
-                            <!--end::Info-->
-                        </div>
-                        <div class="d-grid gap-2">
-                                @if($room->bookings->count() != 0)
-                                    <a class="btn btn-danger fs-3 rounded-0 text-uppercase"
-                                        href="#">
-                                            BOOKED
-                                    </a>
-                                @else
-                                    <a class="btn btn-primary fs-3 rounded-0 text-uppercase"
-                                    href="{{ route('user.booking.bookform', [$room->id]) }}">
-                                        AVAILABLE
-                                    </a>
-                                @endif    
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Card-->
-                </div>
-                <!--end::Col-->
-
-                @endforeach
-            </div>
-            @endisset
+<div class="row justify-content-center">
+    <div class="col-lg-6">
+        <div class="text-center mb-5">
+            <h4>Choose your Facility</h4>
+            <p class="text-muted">We all live in an age that belongs to the young at heart. Life that is becoming
+                extremely fast, </p>
         </div>
-        <!--end::Tab pane-->
     </div>
-    <!--end::Tab Content-->
 </div>
-<!--end::Container-->
+<div class="row">
+    @foreach($rooms as $room)
+    <div class="col-xl-4 col-md-6">
+        <div class="card plan-box">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-start">
+                    <div class="flex-1 me-3">
+                        <h5>{{ $room->name }}</h5>
+                        <p class="text-muted">{{ Str::limit($room->description, 15, '...') }}</p>
+                    </div>
+                    <div class="ms-auto">
+                        <i class="bx bx-home-circle h1 text-primary"></i>
+                    </div>
+                </div>
+                <div class="py-4 mt-4 text-center bg-soft-light">
+                    <h1 class="m-0"><sup><small>&#8369;</small></sup> {{ (int) $room->price }}/ <span
+                            class="font-size-13">Per
+                            day</span></h1>
+                </div>
 
+                <div class="plan-features p-4 text-muted mt-2">
+                    <p><i class="mdi mdi-check-bold text-primary me-4"></i>{{ $room->capacity }} Capacity</p>
+                    @foreach(explode(',', $room->description) as $description)
+                    <p><i class="mdi mdi-check-bold text-primary me-4"></i>{{ $description }}</p>
+                    @endforeach
+                </div>
+
+                <div class="text-center">
+                    <a href="#" class="btn btn-warning waves-effect waves-light">View Images</a>
+                    <a href="{{ route('user.booking.bookform', [$room->id]) }}" class="btn btn-primary waves-effect waves-light">Book Now</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
 @endsection
 @push('page-scripts')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 @endpush

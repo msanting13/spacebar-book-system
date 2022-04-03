@@ -49,13 +49,15 @@ class BookingController extends Controller
         $user = User::find(Auth::id());
         $room = Room::find($room_id);
 
-        list($start_date, $end_date) = explode(' - ', $request->daterange);
-        $startDate = Carbon::parse($start_date);
-        $endDate = Carbon::parse($end_date);
+
+        $startDate = Carbon::parse($request->start);
+        $endDate = Carbon::parse($request->end);
+
         $daysToStay = $startDate->diffInDays($endDate) + 1;
         $pricePerDay = $room->price;  
         $extras = Extra::find($request->extras);
         $totalPricePerDay = $pricePerDay * $daysToStay;
+        
         if (is_null($extras)) {
             $totalPrice = $totalPricePerDay;
         } else {
@@ -66,8 +68,8 @@ class BookingController extends Controller
         $booking = $user->bookings()->create([
             'room_id'    => $room->id,
             'status'     => 'pending',
-            'start_date' => date('Y-m-d', strtotime($start_date)),
-            'end_date'   => date('Y-m-d', strtotime($end_date)),
+            'start_date' => date('Y-m-d', strtotime($request->start)),
+            'end_date'   => date('Y-m-d', strtotime($request->end)),
             'total_price' => $totalPrice,
         ]);
 
@@ -93,6 +95,6 @@ class BookingController extends Controller
 
         // $user->notify(new InvoiceNotification($invoiceDetails));
 
-        return redirect()->route('home')->with('success', 'Booked successfully');
+        return redirect()->route('user.view.invoice', $booking->id);
     }
 }

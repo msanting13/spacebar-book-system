@@ -2,11 +2,16 @@
 
 use App\Models\Page;
 use App\Models\Room;
+use App\Models\Booking;
 use App\Models\Facility;
 use App\Models\Feedback;
 use App\Models\RoomType;
+use Barryvdh\DomPDF\PDF;
+use Cloudinary\Cloudinary;
+use Cloudinary\Api\Upload\UploadApi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Cloudinary\Configuration\Configuration;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\RoomController;
@@ -18,11 +23,11 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Reports\SalesController;
 use App\Http\Controllers\User\FeedbackController;
 use App\Http\Controllers\Admin\FacilityController;
-use App\Http\Controllers\User\FacilityController as UserFacilityController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\Admin\CustomerBookingController;
 use App\Http\Controllers\User\SecurityAndLoginController;
+use App\Http\Controllers\User\FacilityController as UserFacilityController;
 use App\Http\Controllers\Admin\FeedbackController as CustomerFeedBackController;
 
 Route::get('/', function () {
@@ -40,15 +45,30 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['namespace' => 'User', 'middleware' => ['verified']], function () {
     Route::get('feedback', [FeedbackController::class, 'create'])->name('user.feedback.create');
     Route::post('feedback', [FeedbackController::class, 'store'])->name('user.feedback.store');
+
     Route::get('booking', [BookingController::class, 'index'])->name('user.booking.index');
     Route::post('search/booking', [BookingController::class, 'search'])->name('user.booking.search');
     Route::get('book/room/{room_id}', [BookingController::class, 'showBookForm'])->name('user.booking.bookform');
     Route::post('book/{room_id}', [BookingController::class, 'book'])->name('user.booking.book');
+
+    Route::get('view-invoice/{bookID}', function (int $bookID) {
+        $booking = Booking::find($bookID);
+        return view('user.invoice.index', compact('booking'));
+    })->name('user.view.invoice');
+
+    Route::put('booking-update/{bookID}/{sourceID}', function (int $bookID, string $sourceID) {
+        $booking = Booking::find($bookID);
+        $booking->source_id = $sourceID;
+        $booking->save();
+        return response()->json(['success' => true]);
+    });
+    
     Route::get('profile', [UserProfileController::class, 'index'])->name('user.profile');
     Route::put('update/profile/{id}', [UserProfileController::class, 'update'])->name('user.profile.update');
-    // Route::get('/security-and-login', [SecurityAndLoginController::class, 'index'])->name('user.security.login');
     Route::put('update/password', [SecurityAndLoginController::class, 'updatePassword'])->name('user.update.password');
+
     Route::get('rooms', [RoomsController::class, 'index'])->name('user.rooms.index');
+
     Route::get('facilities', [UserFacilityController::class, 'index'])->name('user.facilities.index');
 });
 
@@ -102,4 +122,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::patch('approve/booking/{booking_id}', [CustomerBookingController::class, 'approveBooking'])->name('approve.customer.booking');
 });
 
+
+Route::get('success/{bookID}', function (int $bookID) {
+    $booking = Booking::find($bookID);
+    $user = Auth::user();
+    $pdf = \App::make('dompdf.wrapper');
+    $pdf->loadView('user.payment.confirmation-letter', compact('booking', 'user'));
+    return $pdf->stream();
+});
+
+Route::get('failed', function () {
+    return view('user.payment.failed');
+});
+
+Route::get('cloudinary', function () {
+    // $response = (new UploadApi())->upload(public_path() . '\\admin-assets\\images\\users\\image_placeholder.png');
+    // dd($response['url']);
+});
 

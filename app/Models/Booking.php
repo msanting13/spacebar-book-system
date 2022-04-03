@@ -8,14 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Booking extends Model
 {
     use HasFactory;
-
+    public $with = ['user', 'room', 'extras'];
+    
     protected $fillable = [
         'start_date',
         'end_date',
         'status',
         'total_price',
         'room_id',
-        'user_id'
+        'user_id',
+        'source_id'
     ];
 
     protected $casts = [
