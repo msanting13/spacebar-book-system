@@ -166,8 +166,8 @@
                     attributes: {
                         amount: parseInt(total / 2),
                         redirect: {
-                            success: `/success/${BOOK_ID}`,
-                            failed: '/failed'
+                            success: `http://glacial-brushlands-95714.herokuapp.com/success/${BOOK_ID}`,
+                            failed: 'http://glacial-brushlands-95714.herokuapp.com/failed'
                         },
                         type: 'gcash',
                         currency: 'PHP'
