@@ -129,7 +129,7 @@ Route::get('success/{bookID}', function (int $bookID) {
     $pdf = \App::make('dompdf.wrapper');
     $pdf->loadView('user.payment.confirmation-letter', compact('booking', 'user'));
     return $pdf->stream();
-});
+})->name('payment.success');
 
 Route::get('failed', function () {
     return view('user.payment.failed');

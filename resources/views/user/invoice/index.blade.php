@@ -92,8 +92,8 @@
                 </div>
                 <div class="d-print-none">
                     <div class="float-end">
-                        <a class="btn btn-lg btn-success waves-effect waves-light">PRINT</a>
-                        <a href="#" class="btn btn-lg btn-outline-primary w-md waves-effect waves-light mx-2"
+                        <a class="btn btn-lg btn-success waves-effect waves-light" href="{{ route('payment.success', $booking->id) }}">PRINT</a>
+                        <a href="#" class="btn btn-lg btn-outline-primary w-md waves-effect waves-light mx-2 d-none"
                             id='btnPayUsingGCash'>
                             <img src="https://res.cloudinary.com/dyjj97kgw/image/upload/w_90/v1648986405/gcash_rjonfb.png"
                                 class='img-fluid' alt="">
@@ -146,14 +146,42 @@
 
 </script>
 <script>
+        let total = $('#totalPrice').attr('data-total');
+        const BOOK_ID = "{{ $booking->id }}";
+        const SOURCE_ID = "{{ $booking->source_id }}";
+
+        const OPTION_2 = {
+
+        method: 'GET',
+
+        headers: {
+
+            Accept: 'application/json',
+
+            Authorization: 'Basic cGtfdGVzdF9URnZQRzRQSDk1QzVBRDlvYXZ3NXg5NWI6c2tfdGVzdF9kYXA3NUhCazRGZGhadEE4ZDJOZEUyMWY='
+
+        }
+
+        };
+
+        fetch(`https://api.paymongo.com/v1/sources/${SOURCE_ID}`, OPTION_2)
+        .then(response => response.json())
+        .then(response => {
+            console.log(response.data.attributes.status);
+            if(response.data.attributes.status === 'chargeable') {
+                $('#btnPayUsingGCash').addClass('d-none');
+            } else {
+                $('#btnPayUsingGCash').removeClass('d-none');
+            }
+        })
+        .catch(err => console.error(err));
+
     $('#btnPayUsingGCash').click(function () {
         $('#termModal').modal('toggle');
     });
 
     $('#btnProceed').click(function () {
-
-        let total = $('#totalPrice').attr('data-total');
-        const BOOK_ID = "{{ $booking->id }}";
+        
         const options = {
             method: 'POST',
             headers: {
