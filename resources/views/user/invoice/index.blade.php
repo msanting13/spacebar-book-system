@@ -51,8 +51,8 @@
                             @foreach($booking->extras as $extras)
                             <tr>
                                 <td>{{ str_pad($loop->index + 2, 2, '0', STR_PAD_LEFT)}}</td>
-                                <td>{{ $booking->extras->name }}</td>
-                                <td class="text-end">{{ $booking->extras->price }}</td>
+                                <td>{{ $extras->name }}</td>
+                                <td class="text-end">{{ $extras->price }}</td>
                             </tr>
                             @endforeach
 
@@ -191,7 +191,6 @@
             })
             .catch(err => console.error(err));
     });
-
 </script>
 @endpush
 @endsection
