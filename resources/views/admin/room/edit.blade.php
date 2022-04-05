@@ -80,9 +80,12 @@
                             placeholder="Enter room price">
                     </div>
 
-                    <div class="form-group mb-5">
+                    <div class="form-group mb-5" id='image-field-container'>
                         <label>Image</label>
-                        <input name="image" type="file" class='form-control form-control-lg'>
+                        <div class="float-end">
+                            <button class='btn btn-success btn-sm' type='button' id='btnAddImageField'>Add</button>
+                        </div>
+                        <input name="image[]" type="file" class='form-control form-control-lg'>
                     </div>
 
                     <div class="form-group mb-5">
@@ -101,4 +104,11 @@
         </div>
     </div>
 </div>
+@push('page-scripts')
+<script>
+    $('#btnAddImageField').click(function () {
+        $('#image-field-container').append(`<input name="image[]" type="file" class='form-control form-control-lg mt-1'>`);
+    });
+</script>
+@endpush
 @endsection

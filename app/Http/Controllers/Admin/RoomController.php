@@ -55,14 +55,18 @@ class RoomController extends Controller
         ]);
 
         if($request->has('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('storage/uploads'), $imageName);
+            foreach($request->image as $image) {
+                $imageName = time() . '.' . $image->extension();
+                $image->move(public_path('storage/uploads'), $imageName);
+                $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $imageName);
 
-            RoomImage::create([
-                'photo' => $imageName,
-                'room_id' => $room->id,
-            ]);
+                RoomImage::create([
+                    'room_id' => $room->id,
+                    'photo' => $response['url'],
+                ]);
+            }
         }
+        
 
         if($request->has('video')) {
             $videoName = time() . '.' . $request->video->extension();
@@ -111,14 +115,16 @@ class RoomController extends Controller
 
         
         if($request->has('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('storage/uploads'), $imageName);
-            $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $imageName);
+            foreach($request->image as $image) {
+                $imageName = time() . '.' . $image->extension();
+                $image->move(public_path('storage/uploads'), $imageName);
+                $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $imageName);
 
-            RoomImage::updateOrCreate([
-                'room_id' => $room->id,
-                'photo' => $response['url'],
-            ]);
+                RoomImage::create([
+                    'room_id' => $room->id,
+                    'photo' => $response['url'],
+                ]);
+            }
         }
 
         if($request->has('video')) {

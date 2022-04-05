@@ -8,16 +8,18 @@
 @endprepend
 @section('content')
 <div class="modal fade" tabindex="-1" id='modal-video'>
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Room Video</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="modal-dialog modal-xl p-0 rounded-0">
+    <div class="modal-content p-0 m-0 rounded-0">
+      <div class="modal-body p-0 m-0 rounded-0" id='modalBody'>
       </div>
-      <div class="modal-body" id='modalBody'>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id='modal-image'>
+  <div class="modal-dialog modal-xl p-0 rounded-0">
+    <div class="modal-content p-0 m-0 rounded-0">
+      <div class="modal-body p-0 m-0 rounded-0" id='modalImageBody'>
       </div>
     </div>
   </div>
@@ -35,7 +37,8 @@
 </div>
 <div class="row">
     @foreach($rooms as $room)
-    
+
+                                
     <div class="col-xl-3 col-md-6">
         <div class="card plan-box">
             <div class="card-body p-4">
@@ -62,9 +65,9 @@
                 </div>
 
                 <div class="text-center">
-                    <a href="{{ $room->image()->first()->photo ?? 'https://res.cloudinary.com/dyjj97kgw/image/upload/v1649172338/783-7831792_image-not-available-png-download-graphic-design-transparent_cssnww.png' }}"
-                        class='btn btn-warning waves-effect waves-light' data-lightbox="{{ $room->id }}">Images
-                        {{  $room->image->count() == 0 ? '' : $room->image->count() }}</a>
+
+                    <button class='btn btn-warning waves-effect waves-light btn-view-image' data-url="{{ $room->image->implode('photo', '||') }}">Images
+                        {{  $room->image->count() == 0 ? '' : $room->image->count() }}</button>
                     <button type="button" class="btn btn-secondary waves-effect waves-light btn-open-video" data-url="{{ $room->videos()->first()->url ?? '' }}">
                         Video {{  $room->videos->count() == 0 ? '' : $room->videos->count() }}
                     </button> 
@@ -89,6 +92,39 @@
         let url = $(this).attr('data-url');
         $('#modalBody').html('').append(`<video id='video'  controls width="100%" class="embed-responsive-item" src="${url}"></video>`);
         $('#modal-video').modal('toggle');
+    });
+
+    $(document).on('click', '.btn-view-image', function () {
+        let url = $(this).attr('data-url').split("||");
+        let carouselItems = "";
+        $('#modal-image').modal('toggle');
+        url.forEach((link, index) => {
+            carouselItems += `
+                <div class="carousel-item ${index == 0 ? 'active' : ''}">
+                    <div class='d-flex justify-content-center'>
+                        <img class="d-block img-fluid" src="${link}" alt="First slide">
+                    </div>
+                </div>
+            `;
+        });
+
+        $('#modalImageBody').html('').append(`
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    ${carouselItems}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+        `);
     });
 
     var myModalEl = document.getElementById('modal-video')
