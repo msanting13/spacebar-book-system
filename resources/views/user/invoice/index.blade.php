@@ -72,7 +72,7 @@
                             <tr>
                                 <td colspan="2" class="text-end fw-bold">SUB TOTAL</td>
                                 <td class="text-end fw-bold">
-                                    {{ number_format($booking->total_price + $booking->extras->sum('price'), 2, ".", ",") }}
+                                    {{ number_format($booking->total_price, 2, ".", ",") }}
                                 </td>
                             </tr>
 
@@ -82,8 +82,8 @@
                                 </td>
                                 <td class="border-0 text-end">
                                     <h4 class="m-0" id="totalPrice"
-                                        data-total="{{ number_format($booking->total_price + $booking->extras->sum('price'), 2, "", "") }}">
-                                        &#8369;{{ number_format($booking->total_price + $booking->extras->sum('price'), 2, ".", ",") }}
+                                        data-total="{{ number_format($booking->total_price, 2, "", "") }}">
+                                        &#8369;{{ number_format($booking->total_price, 2, ".", ",") }}
                                     </h4>
                                 </td>
                             </tr>

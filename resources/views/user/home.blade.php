@@ -24,7 +24,8 @@
                     <th>Price</th>
                     <th class='text-center'>Status</th>
                     <th class='text-center'>Duration/s</th>
-                    <th class='text-center'>Paid Down Payment</th>
+                    <th class='text-center' nowrap>Paid Down Payment</th>
+                    <th class='text-center'>Booked At</th>
                     <th class='text-center'>Actions</th>
                 </tr>
             </thead>
@@ -44,10 +45,10 @@
                         </span>
                     </td>
                     <td class='fs-5 text-center'>
-                        @if($booking->end_date->diffInDays($booking->end_date) + 1 == 1)
-                            {{ $booking->end_date->diffInDays($booking->end_date) + 1 }} Day
+                        @if(($booking->end_date->diffInDays($booking->start_date) + 1) == 1)
+                            {{ $booking->end_date->diffInDays($booking->start_date) + 1 }} Day
                         @else 
-                            {{ $booking->end_date->diffInDays($booking->end_date) + 1 }} Days
+                            {{ $booking->end_date->diffInDays($booking->start_date)  + 1 }} Days
                         @endif 
                     </td>
                     <td class='text-center fs-5'>
@@ -56,6 +57,9 @@
                                 <i class='fas fa-check text-white'></i>
                             </button>
                         @endif
+                    </td>
+                    <td nowrap class='text-center fs-5'>
+                        {{ $booking->created_at->format('F d, Y h:i A') }}
                     </td>
                     <td class='text-center fs-5'>
                         <a href="{{ route('payment.success', $booking->id) }}" class='btn btn-info btn-lg'>PRINT</a>
