@@ -167,14 +167,11 @@
         fetch(`https://api.paymongo.com/v1/sources/${SOURCE_ID}`, OPTION_2)
         .then(response => response.json())
         .then(response => {
-            console.log(response.data.attributes.status);
             if(response.data.attributes.status === 'chargeable') {
                 $('#btnPayUsingGCash').addClass('d-none');
-            } else {
-                $('#btnPayUsingGCash').removeClass('d-none');
             }
         })
-        .catch(err => console.error(err));
+        .catch(err => $('#btnPayUsingGCash').removeClass('d-none'));
 
     $('#btnPayUsingGCash').click(function () {
         $('#termModal').modal('toggle');

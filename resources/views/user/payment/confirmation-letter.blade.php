@@ -28,11 +28,12 @@
     <span>Date: <u>{{ date('F d, Y', time()) }}</u></span>
     <br>
     <br>
-    <span>{{ $user->first_name }} {{ $user->last_name }}</span>
+    <span>{{ Str::ucfirst($user->first_name) }} {{ Str::ucfirst($user->last_name) }}</span>
+    <br>
+    <span>{{ Str::ucfirst($user->address) }}</span>
     <br>
     <br>
-    <span>Dear Sir/Ma'am {{ $user->first_name }} {{ $user->last_name }},</span>
-    <br>
+    <span>Dear Sir/Ma'am {{ Str::ucfirst($user->first_name) }} {{ Str::ucfirst($user->last_name) }},</span>
     <br>
     <p>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to confirm your booking on {{ $booking->created_at->format('F d, Y') }} for a {{ $booking->room->roomType->type_name }} for {{ $booking->end_date->diffInDays($booking->start_date) }} nights at Spacebar Beach Resort, Purok 6, Poblacion, Cagwait, Surigao del Sur. the check-in date shall be {{ $booking->start_date->format('F d, Y') }} at 2pm and the check-out date shall be on {{ $booking->end_date->format('F d, Y') }} at 12 noon.
@@ -64,7 +65,7 @@
         <br>
         <br>
 
-        We are looking forward to your visit and hope that you will enjouy your stay. Customer's satisfaction is our ultimate goal. Thank you and God Bless!
+        We are looking forward to your visit and hope that you will enjoy your stay. Customer's satisfaction is our ultimate goal. Thank you and God Bless!
 
         <br>
         <br>
