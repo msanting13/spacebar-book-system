@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\RoomVideo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Room extends Model
 {
@@ -26,5 +27,10 @@ class Room extends Model
     public function image()
     {
         return $this->hasMany(RoomImage::class, 'room_id');
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(RoomVideo::class,'room_id');
     }
 }

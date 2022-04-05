@@ -5,8 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Room;
 use App\Models\RoomType;
 use App\Models\RoomImage;
+use App\Models\RoomVideo;
+use Cloudinary\Tag\VideoTag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Cloudinary\Api\Upload\UploadApi;
+use Cloudinary\Transformation\Format;
+use Cloudinary\Transformation\Quality;
+use Cloudinary\Transformation\Delivery;
 
 class RoomController extends Controller
 {
@@ -58,6 +64,20 @@ class RoomController extends Controller
             ]);
         }
 
+        if($request->has('video')) {
+            $videoName = time() . '.' . $request->video->extension();
+            $request->video->move(public_path('storage/uploads'), $videoName);
+            $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $videoName, [
+                'overwrite' => true, 
+                'resource_type' => 'video'
+            ]);
+
+            RoomVideo::updateOrCreate([
+                'room_id' => $room->id,
+                'url' => $response['url'],
+            ]);
+        }
+
         return back()->with('success', 'You have successfully create new room');
     }
 
@@ -93,10 +113,25 @@ class RoomController extends Controller
         if($request->has('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('storage/uploads'), $imageName);
+            $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $imageName);
 
-            $roomImage = RoomImage::updateOrCreate([
+            RoomImage::updateOrCreate([
                 'room_id' => $room->id,
-                'photo' => $imageName,
+                'photo' => $response['url'],
+            ]);
+        }
+
+        if($request->has('video')) {
+            $videoName = time() . '.' . $request->video->extension();
+            $request->video->move(public_path('storage/uploads'), $videoName);
+            $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $videoName, [
+                'overwrite' => true, 
+                'resource_type' => 'video'
+            ]);
+
+            RoomVideo::updateOrCreate([
+                'room_id' => $room->id,
+                'url' => $response['url'],
             ]);
         }
 

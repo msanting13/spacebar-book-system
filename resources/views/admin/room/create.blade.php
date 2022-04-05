@@ -71,6 +71,11 @@
                     </div>
 
                     <div class="form-group mb-5">
+                        <label>Video</label>
+                        <input name="video" type="file" class='form-control form-control-lg'>
+                    </div>
+
+                    <div class="form-group mb-5">
                         <div class="float-end">
                             <input type="submit" class='btn btn-primary' value='Create new room'>
                         </div>
