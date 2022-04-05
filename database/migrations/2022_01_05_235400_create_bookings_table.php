@@ -25,6 +25,7 @@ class CreateBookingsTable extends Migration
             $table->longText('message')->nullable();
             $table->decimal('total_price', 10, 2)->nullable();
             $table->string('source_id')->nullable();
+            $table->integer('downpayment_status')->default(0);
             $table->timestamps();
         });
     }

@@ -53,12 +53,14 @@ Route::group(['namespace' => 'User', 'middleware' => ['verified']], function () 
 
     Route::get('view-invoice/{bookID}', function (int $bookID) {
         $booking = Booking::find($bookID);
-        return view('user.invoice.index', compact('booking'));
+        $downPaymentPaid = Booking::PAYMENT_DONE;
+        return view('user.invoice.index', compact('booking', 'downPaymentPaid'));
     })->name('user.view.invoice');
 
     Route::put('booking-update/{bookID}/{sourceID}', function (int $bookID, string $sourceID) {
         $booking = Booking::find($bookID);
         $booking->source_id = $sourceID;
+        $booking->downpayment_status = Booking::PAYMENT_DONE;
         $booking->save();
         return response()->json(['success' => true]);
     });

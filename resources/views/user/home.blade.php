@@ -24,6 +24,7 @@
                     <th>Price</th>
                     <th class='text-center'>Status</th>
                     <th class='text-center'>Duration/s</th>
+                    <th class='text-center'>Paid Down Payment</th>
                     <th class='text-center'>Actions</th>
                 </tr>
             </thead>
@@ -48,6 +49,13 @@
                         @else 
                             {{ $booking->end_date->diffInDays($booking->end_date) + 1 }} Days
                         @endif 
+                    </td>
+                    <td class='text-center fs-5'>
+                        @if($booking->downpayment_status === $downPaymentPaid)
+                            <button class='btn btn-success rounded-circle shadow'>
+                                <i class='fas fa-check text-white'></i>
+                            </button>
+                        @endif
                     </td>
                     <td class='text-center fs-5'>
                         <a href="{{ route('payment.success', $booking->id) }}" class='btn btn-info btn-lg'>PRINT</a>

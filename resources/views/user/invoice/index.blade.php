@@ -93,11 +93,13 @@
                 <div class="d-print-none">
                     <div class="float-end">
                         <a class="btn btn-lg btn-info waves-effect waves-light" href="{{ route('payment.success', $booking->id) }}">PRINT</a>
-                        <a href="#" class="btn btn-lg btn-outline-primary w-md waves-effect waves-light mx-2 d-none"
-                            id='btnPayUsingGCash'>
-                            <img src="https://res.cloudinary.com/dyjj97kgw/image/upload/w_90/v1648986405/gcash_rjonfb.png"
-                                class='img-fluid' alt="">
-                        </a>
+                        @if($booking->downpayment_status !== $downPaymentPaid)
+                            <a href="#" class="btn btn-lg btn-outline-primary w-md waves-effect waves-light mx-2"
+                                id='btnPayUsingGCash'>
+                                <img src="https://res.cloudinary.com/dyjj97kgw/image/upload/w_90/v1648986405/gcash_rjonfb.png"
+                                    class='img-fluid' alt="">
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -146,32 +148,8 @@
 
 </script>
 <script>
-        let total = $('#totalPrice').attr('data-total');
-        const BOOK_ID = "{{ $booking->id }}";
-        const SOURCE_ID = "{{ $booking->source_id }}";
-
-        const OPTION_2 = {
-
-        method: 'GET',
-
-        headers: {
-
-            Accept: 'application/json',
-
-            Authorization: 'Basic cGtfdGVzdF9URnZQRzRQSDk1QzVBRDlvYXZ3NXg5NWI6c2tfdGVzdF9kYXA3NUhCazRGZGhadEE4ZDJOZEUyMWY='
-
-        }
-
-        };
-
-        fetch(`https://api.paymongo.com/v1/sources/${SOURCE_ID}`, OPTION_2)
-        .then(response => response.json())
-        .then(response => {
-            if(response.data.attributes.status === 'chargeable') {
-                $('#btnPayUsingGCash').addClass('d-none');
-            }
-        })
-        .catch(err => $('#btnPayUsingGCash').removeClass('d-none'));
+    let total = $('#totalPrice').attr('data-total');
+    const BOOK_ID = "{{ $booking->id }}";
 
     $('#btnPayUsingGCash').click(function () {
         $('#termModal').modal('toggle');

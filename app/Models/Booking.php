@@ -9,6 +9,7 @@ class Booking extends Model
 {
     use HasFactory;
     public $with = ['user', 'room', 'extras'];
+    public const PAYMENT_DONE = 1;
     
     protected $fillable = [
         'start_date',
@@ -17,7 +18,8 @@ class Booking extends Model
         'total_price',
         'room_id',
         'user_id',
-        'source_id'
+        'source_id',
+        'downpayment_status'
     ];
 
     protected $casts = [
