@@ -152,6 +152,23 @@
                                     <!--end::Col-->
                                 </div>
                                 <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="row">
+                                    <!--begin::Label-->
+                                    <label class="col-lg-4 col-form-label">
+                                        <span class="required text-dark">Address</span>
+                                    </label>
+                                    <!--end::Label-->
+                                    <!--begin::Col-->
+                                    <div class="col-lg-8 mt-3">
+                                        <textarea name="address"
+                                            class="form-control">{{ Str::title(old('address', $user->address)) }}</textarea>
+                                        <div class="fv-plugins-message-container invalid-feedback"></div>
+                                    </div>
+                                    <!--end::Col-->
+                                </div>
+                                <!--end::Input group-->
                             </div>
                             <!--end::Card body-->
                             <div class="float-end">

@@ -92,7 +92,7 @@
                 </div>
                 <div class="d-print-none">
                     <div class="float-end">
-                        <a class="btn btn-lg btn-success waves-effect waves-light" href="{{ route('payment.success', $booking->id) }}">PRINT</a>
+                        <a class="btn btn-lg btn-info waves-effect waves-light" href="{{ route('payment.success', $booking->id) }}">PRINT</a>
                         <a href="#" class="btn btn-lg btn-outline-primary w-md waves-effect waves-light mx-2 d-none"
                             id='btnPayUsingGCash'>
                             <img src="https://res.cloudinary.com/dyjj97kgw/image/upload/w_90/v1648986405/gcash_rjonfb.png"

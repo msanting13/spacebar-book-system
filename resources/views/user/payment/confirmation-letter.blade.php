@@ -30,7 +30,7 @@
     <br>
     <span>{{ Str::ucfirst($user->first_name) }} {{ Str::ucfirst($user->last_name) }}</span>
     <br>
-    <span>{{ Str::ucfirst($user->address) }}</span>
+    <span>{{ Str::title($user->address) }}</span>
     <br>
     <br>
     <span>Dear Sir/Ma'am {{ Str::ucfirst($user->first_name) }} {{ Str::ucfirst($user->last_name) }},</span>
@@ -41,7 +41,7 @@
         <br>
         Further details of your booking are listed below,
         <br>
-        Number of occupants:{{ $booking->room->capacity }}
+        Number of occupants: {{ $booking->room->capacity }}
         <br>
         Room type: {{ $booking->room->roomType->type_name }}
         <br>

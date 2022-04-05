@@ -23,13 +23,13 @@
                     <th>Capacity</th>
                     <th>Price</th>
                     <th class='text-center'>Status</th>
-                    <th class='text-center'>Check In / Check Out.</th>
+                    <th class='text-center'>Duration/s</th>
                     <th class='text-center'>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($bookings as $booking)
-                <tr>
+                <tr class='align-middle'>
                     <td class='fs-5 text-center'>
                         <a target="_blank" href="{{ route('user.view.invoice', $booking->id) }}" class='text-info text-decoration-underline'>{{ $booking->invoices->invoice_number }}</a>
                     </td>
@@ -42,11 +42,15 @@
                             {{ $booking->status }}
                         </span>
                     </td>
-                    <td class='fs-5 text-center'>{{ $booking->start_date->format('F d') }} -
-                        {{ $booking->end_date->format('F d, Y') }}
+                    <td class='fs-5 text-center'>
+                        @if($booking->end_date->diffInDays($booking->end_date) + 1 == 1)
+                            {{ $booking->end_date->diffInDays($booking->end_date) + 1 }} Day
+                        @else 
+                            {{ $booking->end_date->diffInDays($booking->end_date) + 1 }} Days
+                        @endif 
                     </td>
                     <td class='text-center fs-5'>
-                        &nbsp;
+                        <a href="{{ route('payment.success', $booking->id) }}" class='btn btn-info btn-lg'>PRINT</a>
                     </td>
                 </tr>
                 @endforeach

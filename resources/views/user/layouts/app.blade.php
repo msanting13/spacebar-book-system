@@ -316,7 +316,7 @@
                                             alt="Header Avatar"
                                         />
                                         <span
-                                            class="d-none d-xl-inline-block ms-1"
+                                            class="d-none d-xl-inline-block ms-1 text-uppercase"
                                             >{{ Auth::user()->first_name }}</span
                                         >
                                         <i
@@ -408,8 +408,8 @@
 
                             <div class="mt-3">
                                 <a
-                                    href="#"
-                                    class="text-dark fw-medium font-size-16"
+                                    href="{{ route('user.profile') }}"
+                                    class="text-dark fw-medium font-size-16 text-uppercase"
                                     >{{ Auth::user()->first_name }}
                                     {{ Auth::user()->last_name }}</a
                                 >
