@@ -35,7 +35,7 @@
     <br>
     <br>
     <p>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to confirm your booking on {{ $booking->created_at->format('F d, Y') }} for a {{ $booking->room->roomType->type_name }} for {{ $booking->end_date->diffInDays($booking->start_date) + 1 }} nights at Spacebar Beach Resort, Purok 6, Poblacion, Cagwait, Surigao del Sur. the check-in date shall be {{ $booking->start_date->format('F d, Y') }} at 2pm and the check-out date shall be on {{ $booking->end_date->format('F d, Y') }} at 12 noon.
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This is to confirm your booking on {{ $booking->created_at->format('F d, Y') }} for a {{ $booking->room->roomType->type_name }} for {{ $booking->end_date->diffInDays($booking->start_date) }} nights at Spacebar Beach Resort, Purok 6, Poblacion, Cagwait, Surigao del Sur. the check-in date shall be {{ $booking->start_date->format('F d, Y') }} at 2pm and the check-out date shall be on {{ $booking->end_date->format('F d, Y') }} at 12 noon.
         <br>
         <br>
         Further details of your booking are listed below,

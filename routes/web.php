@@ -125,7 +125,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
 
 Route::get('success/{bookID}', function (int $bookID) {
     $booking = Booking::find($bookID);
-    $user = Auth::user();
+    $user = $booking->user;
     $pdf = \App::make('dompdf.wrapper');
     $pdf->loadView('user.payment.confirmation-letter', compact('booking', 'user'));
     return $pdf->stream();
