@@ -264,7 +264,7 @@
                     <div class="accomodation_item text-center">
                         <div class="hotel_img ">
                             @if($room->image->count() != 0)
-                            <img src="{{ asset('/storage/uploads/' . $room->image->first()->photo) }}" height="275px"
+                            <img src="{{ $room->image()->first()->photo }}" height="275px"
                                 alt="">
                             @else
                             <img src="{{ asset('/theme/royal/image/xroom1.jpg.pagespeed.ic.GE_Jw5sZi4.jpg') }}" alt="">
