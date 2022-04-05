@@ -1,196 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-	<!--begin::Head-->
-	
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+
 <head>
-		<title>Chill and Relax – Register</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="shortcut icon" href="{{ asset('/assets/media/logos/favicon.ico') }}" />
-		<!--begin::Fonts-->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" />
-		<!--end::Fonts-->
-		<!--begin::Global Stylesheets Bundle(used by all pages)-->
-		<link href="{{ asset('/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-		<link href="{{ asset('/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-	</head>
-	<!--end::Head-->
-	<!--begin::Body-->
-	<body id="kt_body" class="auth-bg">
-		<!--begin::Main-->
-		<div class="d-flex flex-column flex-root">
-			<!--begin::Authentication - Sign-up -->
-			<div class="d-flex flex-column flex-lg-row flex-column-fluid">
-				<!--begin::Aside-->
-				<div class="d-flex flex-column flex-lg-row-auto bg-primary w-xl-600px positon-xl-relative">
-					<!--begin::Wrapper-->
-					<div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
-						<!--begin::Header-->
-						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
-							<!--begin::Logo-->
-							<a href="{{ route('register') }}" class="py-9 pt-lg-20">
-								<img alt="Logo" src="../../assets/media/logos/logo-ellipse.svg" class="h-70px" />
-							</a>
-							<!--end::Logo-->
-							<!--begin::Title-->
-							<h1 class="fw-bolder text-white fs-2qx pb-5 pb-md-10">Welcome to Chill and Relax</h1>
-							<!--end::Title-->
-							<!--begin::Description-->
-							<p class="fw-bold fs-2 text-white">Find the <strong>place</strong> where you can just <strong>go, chill</strong> and <strong>relax</strong>.</p>
-							<!--end::Description-->
-						</div>
-						<!--end::Header-->
-						<!--begin::Illustration-->
-						<div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px" style="background-image: url(../../assets/media/illustrations/sigma-1/17.png)"></div>
-						<!--end::Illustration-->
-					</div>
-					<!--end::Wrapper-->
-				</div>
-				<!--begin::Aside-->
-				<!--begin::Body-->
-				<div class="d-flex flex-column flex-lg-row-fluid py-10">
-					<!--begin::Content-->
-					<div class="d-flex flex-center flex-column flex-column-fluid">
-						<!--begin::Wrapper-->
-						<div class="w-lg-600px p-10 p-lg-15 mx-auto">
-							<!--begin::Form-->
-							<form class="form w-100" method="POST" action="{{ route('register') }}">
-                                @csrf
-								<!--begin::Heading-->
-								<div class="mb-10 text-center">
-									<!--begin::Title-->
-									<h1 class="text-dark mb-3">Create an Account</h1>
-									<!--end::Title-->
-									<!--begin::Link-->
-									<div class="text-gray-400 fw-bold fs-4">Already have an account? 
-									<a href="{{ route('login') }}" class="link-primary fw-bolder">Sign in here</a></div>
-									<!--end::Link-->
-								</div>
-								<!--end::Heading-->
-								<!--begin::Separator-->
-								<div class="d-flex align-items-center mb-10">
-									<div class="border-bottom border-gray-300 mw-50 w-100"></div>
-									<span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
-									<div class="border-bottom border-gray-300 mw-50 w-100"></div>
-								</div>
-								<!--end::Separator-->
-								<!--begin::Input group-->
-								<div class="row fv-row mb-7">
-									<!--begin::Col-->
-									<div class="col-xl-6">
-										<label class="form-label fw-bolder text-dark fs-6">First Name</label>
-										<input class="form-control form-control-lg form-control-solid {{ $errors->has('first_name') ? 'is-invalid border-danger' : '' }}" type="text" placeholder="" value="{{ old('first_name') }}" name="first_name" autocomplete="off" />
-                                        @error('first_name')
+
+    <meta charset="utf-8" />
+	<title>{{ config('app.name') }} | Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/admin-assets/images/favicon.ico">
+
+    <!-- Bootstrap Css -->
+    <link href="/admin-assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="/admin-assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="/admin-assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div class="home-btn d-none d-sm-block">
+        <a href="index.html" class="text-dark"><i class="fas fa-home h2"></i></a>
+    </div>
+    <div class="account-pages my-5 pt-sm-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card overflow-hidden">
+                        <div class="bg-login text-center">
+                            <div class="bg-login-overlay"></div>
+                            <div class="position-relative">
+                                <h5 class="text-white font-size-20">Create an account</h5>
+                                <a href="index.html" class="logo logo-admin mt-4">
+                                    <img src="/admin-assets/images/logo-sm-dark.png" alt="" height="30">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body pt-5">
+
+                            <div class="p-2">
+                                <form class="form-horizontal" action="{{ route('register') }}" method="POST">
+									@csrf
+                                    <div class="mb-3">
+                                        <label class="form-label" for="useremail">Email</label>
+                                        <input type="email" class="form-control" id="useremail" name="email" value="{{ old('email') }}"
+                                            placeholder="Enter Email">
+										@error('email')
+                                            <span class='text-sm text-danger'>{{ $errors->first('email') }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label" for="firstname">Firstname</label>
+                                        <input type="text" class="form-control" id="firstname" name="first_name" value="{{ old('first_name') }}"
+                                            placeholder="Enter Firstname">
+										@error('first_name')
                                             <span class='text-sm text-danger'>{{ $errors->first('first_name') }}</span>
                                         @enderror
-									</div>
-									<!--end::Col-->
-									<!--begin::Col-->
-									<div class="col-xl-6">
-										<label class="form-label fw-bolder text-dark fs-6">Last Name</label>
-										<input class="form-control form-control-lg form-control-solid {{ $errors->has('last_name') ? 'is-invalid border-danger' : '' }}" value="{{ old('last_name') }}" type="text" placeholder="" name="last_name" autocomplete="off" />
-                                        @error('last_name')
+                                    </div>
+
+									<div class="mb-3">
+                                        <label class="form-label" for="lastname">Lastname</label>
+                                        <input type="text" class="form-control" id="lastname" name="last_name" value="{{ old('last_name') }}"
+                                            placeholder="Enter Lastname">
+										@error('last_name')
                                             <span class='text-sm text-danger'>{{ $errors->first('last_name') }}</span>
                                         @enderror
-									</div>
-									<!--end::Col-->
-								</div>
-								<!--end::Input group-->
-								<!--begin::Input group-->
-								<div class="fv-row mb-7">
-									<label class="form-label fw-bolder text-dark fs-6">Email</label>
-									<input class="form-control form-control-lg form-control-solid {{ $errors->has('email') ? 'is-invalid border-danger' : '' }}" type="email" value="{{ old('email') }}" placeholder="" name="email" autocomplete="off" />
-                                    @error('email')
-                                        <span class='text-sm text-danger'>{{ $errors->first('email') }}</span>
-                                    @enderror
-								</div>
-								<!--end::Input group-->
-                                <div class="fv-row mb-7">
-									<label class="form-label fw-bolder text-dark fs-6">Mobile No.</label>
-									<input class="form-control form-control-lg form-control-solid {{ $errors->has('phone_number') ? 'is-invalid border-danger' : '' }}" value="{{ old('phone_number') }}" type="text" name="phone_number" autocomplete="off" />
-                                    @error('phone_number')
-                                        <span class='text-sm text-danger'>{{ $errors->first('phone_number') }}</span>
-                                    @enderror
-								</div>
-								<!--begin::Input group-->
-								<div class="mb-10 fv-row" data-kt-password-meter="true">
-									<!--begin::Wrapper-->
-									<div class="mb-1">
-										<!--begin::Label-->
-										<label class="form-label fw-bolder text-dark fs-6">Password</label>
-										<!--end::Label-->
-										<!--begin::Input wrapper-->
-										<div class="position-relative mb-3">
-											<input class="form-control form-control-lg form-control-solid {{ $errors->has('password') ? 'border-danger' : '' }}" type="password" placeholder="" name="password" autocomplete="off" />
-											<span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
-												<small>
-                                                    Show/Hide
-                                                </small>
-											</span>
-                                            @error('password')
-                                                <span class='text-sm text-danger'>{{ $errors->first('password') }}</span>
-                                            @enderror
-										</div>
-										<!--end::Input wrapper-->
-										<!--begin::Meter-->
-										<div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
-											<div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-											<div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-											<div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-											<div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
-										</div>
-										<!--end::Meter-->
-									</div>
-									<!--end::Wrapper-->
-									<!--begin::Hint-->
-									<div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div>
-									<!--end::Hint-->
-								</div>
-								<!--end::Input group=-->
-								<!--begin::Input group-->
-								<div class="fv-row mb-5">
-									<label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
-									<input class="form-control form-control-lg form-control-solid {{ $errors->has('password') ? 'border-danger is-invalid' : '' }}" type="password" placeholder="" name="password_confirmation" autocomplete="off" />
-								</div>
-								<!--end::Input group-->
-								<!--begin::Input group-->
-								<div class="fv-row mb-10">
-									<label class="form-check form-check-custom form-check-inline form-check-solid">
-										<input class="form-check-input" type="checkbox" name="toc" value="1" />
-										<span class="form-check-label fw-bold text-gray-700 fs-6">I Agree &amp; 
-										<a href="#" class="ms-1 link-primary">Terms and conditions</a>.</span>
-									</label>
-								</div>
-								<!--end::Input group-->
-								<!--begin::Actions-->
-								<div class="text-center">
-									<button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
-										<span class="indicator-label">Submit</span>
-									</button>
-								</div>
-								<!--end::Actions-->
-							</form>
-							<!--end::Form-->
-						</div>
-						<!--end::Wrapper-->
-					</div>
-					<!--end::Content-->
-				</div>
-				<!--end::Body-->
-			</div>
-			<!--end::Authentication - Sign-up-->
-		</div>
-		<!--end::Main-->
-		<!--begin::Global Javascript Bundle(used by all pages)-->
-		<script src="{{ asset('/assets/plugins/global/plugins.bundle.js') }}"></script>
-		<script src="{{ asset('/assets/js/scripts.bundle.js') }}"></script>
-		<!--end::Global Javascript Bundle-->
-		<!--begin::Page Custom Javascript(used by this page)-->
-		<script src="{{ asset('/assets/js/custom/authentication/sign-up/general.js') }}"></script>
-		<!--end::Page Custom Javascript-->
-		<!--end::Javascript-->
-	</body>
-	<!--end::Body-->
+                                    </div>
+
+									<div class="mb-3">
+                                        <label class="form-label" for="phone_number">Mobile No.</label>
+                                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ old('phone_number') }}"
+                                            placeholder="Enter Mobile No.">
+										@error('phone_number')
+                                            <span class='text-sm text-danger'>{{ $errors->first('phone_number') }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label" for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" 
+                                            placeholder="Enter password">
+										@error('password')
+                                            <span class='text-sm text-danger'>{{ $errors->first('password') }}</span>
+                                        @enderror
+                                    </div>
+
+									<div class="mb-3">
+                                        <label class="form-label" for="retypepassword">Re-type password</label>
+                                        <input type="password" class="form-control" name="password_confirmation" id="retypepassword"
+                                            placeholder="Re-type your password">
+                                    </div>
+
+									<div class="mb-3">
+                                        <label class="form-label" for="address">Address</label>
+                                        <textarea name="address" class='form-control' id="address" rows="3">{{ old('address') }}</textarea>
+										@error('address')
+                                            <span class='text-sm text-danger'>{{ $errors->first('address') }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <button class="btn btn-primary w-100 waves-effect waves-light"
+                                            type="submit">Register</button>
+                                    </div>
+
+                                    <div class="mt-4 text-center">
+                                        <p class="mb-0">By registering you agree to the {{ config('app.name') }} <a href="#"
+                                                class="text-primary">Terms of Use</a></p>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <p>Already have an account ? <a href="pages-login.html" class="fw-medium text-primary">
+                                Login</a> </p>
+                        <p>©
+                            {{ date('Y') }} {{ config('app.name') }}. Crafted with <i class="mdi mdi-heart text-danger"></i> by {{ config('app.name') }} Team
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT -->
+    <script src="/admin-assets/libs/jquery/jquery.min.js"></>
+    <script src="/admin-assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin-assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="/admin-assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/admin-assets/libs/node-waves/waves.min.js"></script>
+    <script src="/admin-assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+
+    <script src="/admin-assets/js/app.js"></script>
+
+</body>
+
 
 </html>
