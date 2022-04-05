@@ -120,7 +120,7 @@
                             reservation.
                             Moreover, if rescheduling is desired, the customer shall inform the management 3 days prior
                             to the date of reservation.
-                            We are looking forward to your visit and hope that you will enjouy your stay. Customer's
+                            We are looking forward to your visit and hope that you will enjoy your stay. Customer's
                             satisfaction is our ultimate goal. Thank you and God Bless!
                         </p>
                     </div>
@@ -167,7 +167,7 @@
                         amount: parseInt(total / 2),
                         redirect: {
                             success: `http://glacial-brushlands-95714.herokuapp.com/success/${BOOK_ID}`,
-                            failed: 'http://glacial-brushlands-95714.herokuapp.com/failed'
+                             failed: 'http://glacial-brushlands-95714.herokuapp.com/failed'
                         },
                         type: 'gcash',
                         currency: 'PHP'
