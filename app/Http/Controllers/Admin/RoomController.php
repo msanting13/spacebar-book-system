@@ -119,12 +119,12 @@ class RoomController extends Controller
             foreach($request->image as $image) {
                 $imageName = time() . '.' . $image->extension();
                 $image->move(public_path(), $imageName);
-                $response = (new UploadApi())->upload(public_path() . '\\' . $imageName);
+                // $response = (new UploadApi())->upload(public_path() . '\\' . $imageName);
 
-                RoomImage::create([
-                    'room_id' => $room->id,
-                    'photo' => $response['url'],
-                ]);
+                // RoomImage::create([
+                //     'room_id' => $room->id,
+                //     'photo' => $response['url'],
+                // ]);
             }
         }
 
