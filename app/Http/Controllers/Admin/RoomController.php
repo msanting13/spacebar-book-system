@@ -13,12 +13,14 @@ use Cloudinary\Api\Upload\UploadApi;
 use Cloudinary\Transformation\Format;
 use Cloudinary\Transformation\Quality;
 use Cloudinary\Transformation\Delivery;
+use Cloudinary\Configuration\Configuration;
 
 class RoomController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:admin');
+
     }
 
     public function index()
@@ -57,8 +59,8 @@ class RoomController extends Controller
         if($request->has('image')) {
             foreach($request->image as $image) {
                 $imageName = time() . '.' . $image->extension();
-                $image->move(public_path(), $imageName);
-                $response = (new UploadApi())->upload(public_path() . '\\' . $imageName);
+                $image->move(public_path('storage/uploads'), $imageName);
+                $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $imageName);
 
                 RoomImage::create([
                     'room_id' => $room->id,
@@ -71,7 +73,7 @@ class RoomController extends Controller
         if($request->has('video')) {
             $videoName = time() . '.' . $request->video->extension();
             $request->video->move(public_path('storage/uploads'), $videoName);
-            $response = (new UploadApi())->upload(public_path() . '\\' . $videoName, [
+            $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $videoName, [
                 'overwrite' => true, 
                 'resource_type' => 'video'
             ]);
@@ -118,20 +120,20 @@ class RoomController extends Controller
         if($request->has('image')) {
             foreach($request->image as $image) {
                 $imageName = time() . '.' . $image->extension();
-                $image->move(public_path(), $imageName);
-                // $response = (new UploadApi())->upload(public_path() . '\\' . $imageName);
+                $image->move(public_path('storage/uploads'), $imageName);
+                $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $imageName);
 
-                // RoomImage::create([
-                //     'room_id' => $room->id,
-                //     'photo' => $response['url'],
-                // ]);
+                RoomImage::create([
+                    'room_id' => $room->id,
+                    'photo' => $response['url'],
+                ]);
             }
         }
 
         if($request->has('video')) {
             $videoName = time() . '.' . $request->video->extension();
             $request->video->move(public_path('storage/uploads'), $videoName);
-            $response = (new UploadApi())->upload(public_path() . '\\' . $videoName, [
+            $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $videoName, [
                 'overwrite' => true, 
                 'resource_type' => 'video'
             ]);
