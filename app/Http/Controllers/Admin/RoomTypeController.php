@@ -49,7 +49,7 @@ class RoomTypeController extends Controller
         ]);
 
         RoomType::find($type)->update([
-            'description' => $request->description,
+            'type_name' => $request->description,
         ]);
 
         return back()->with('success', 'You have successfully update a room type');
