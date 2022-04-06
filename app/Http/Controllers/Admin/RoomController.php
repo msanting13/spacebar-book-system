@@ -120,8 +120,8 @@ class RoomController extends Controller
         if($request->has('image')) {
             foreach($request->image as $image) {
                 $imageName = time() . '.' . $image->extension();
-                $image->move(public_path('admin-assets'), $imageName);
-                $response = (new UploadApi())->upload(public_path() . '\\admin-assets\\' . $imageName);
+                $image->move(public_path('storage'), $imageName);
+                $response = (new UploadApi())->upload(public_path() . '\\storage\\' . $imageName);
 
                 RoomImage::create([
                     'room_id' => $room->id,
