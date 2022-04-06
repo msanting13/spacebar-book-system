@@ -59,8 +59,8 @@ class RoomController extends Controller
         if($request->has('image')) {
             foreach($request->image as $image) {
                 $imageName = time() . '.' . $image->extension();
-                $image->move(public_path('storage'), $imageName);
-                $response = (new UploadApi())->upload(public_path() . '\\storage\\' . $imageName);
+                $image->move(public_path('temp_upload'), $imageName);
+                $response = (new UploadApi())->upload(public_path() . '\\temp_upload\\' . $imageName);
 
                 RoomImage::create([
                     'room_id' => $room->id,
@@ -120,8 +120,8 @@ class RoomController extends Controller
         if($request->has('image')) {
             foreach($request->image as $image) {
                 $imageName = time() . '.' . $image->extension();
-                $image->move(public_path('storage'), $imageName);
-                $response = (new UploadApi())->upload(public_path() . '\\storage\\' . $imageName);
+                $image->move(public_path('temp_upload'), $imageName);
+                $response = (new UploadApi())->upload(public_path() . '\\temp_upload\\' . $imageName);
 
                 RoomImage::create([
                     'room_id' => $room->id,
@@ -130,19 +130,19 @@ class RoomController extends Controller
             }
         }
 
-        if($request->has('video')) {
-            $videoName = time() . '.' . $request->video->extension();
-            $request->video->move(public_path('storage/uploads'), $videoName);
-            $response = (new UploadApi())->upload(public_path() . '\\storage\\uplods\\' . $videoName, [
-                'overwrite' => true, 
-                'resource_type' => 'video'
-            ]);
+        // if($request->has('video')) {
+        //     $videoName = time() . '.' . $request->video->extension();
+        //     $request->video->move(public_path('storage/uploads'), $videoName);
+        //     $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $videoName, [
+        //         'overwrite' => true, 
+        //         'resource_type' => 'video'
+        //     ]);
 
-            RoomVideo::updateOrCreate([
-                'room_id' => $room->id,
-                'url' => $response['url'],
-            ]);
-        }
+        //     RoomVideo::updateOrCreate([
+        //         'room_id' => $room->id,
+        //         'url' => $response['url'],
+        //     ]);
+        // }
 
         return back()->with('success', 'You have successfully update a room');
     }
