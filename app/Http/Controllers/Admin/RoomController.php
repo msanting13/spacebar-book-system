@@ -57,8 +57,8 @@ class RoomController extends Controller
         if($request->has('image')) {
             foreach($request->image as $image) {
                 $imageName = time() . '.' . $image->extension();
-                $image->move(public_path('storage/uploads'), $imageName);
-                $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $imageName);
+                $image->move(public_path(), $imageName);
+                $response = (new UploadApi())->upload(public_path() . '\\' . $imageName);
 
                 RoomImage::create([
                     'room_id' => $room->id,
@@ -71,7 +71,7 @@ class RoomController extends Controller
         if($request->has('video')) {
             $videoName = time() . '.' . $request->video->extension();
             $request->video->move(public_path('storage/uploads'), $videoName);
-            $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $videoName, [
+            $response = (new UploadApi())->upload(public_path() . '\\' . $videoName, [
                 'overwrite' => true, 
                 'resource_type' => 'video'
             ]);
@@ -118,8 +118,8 @@ class RoomController extends Controller
         if($request->has('image')) {
             foreach($request->image as $image) {
                 $imageName = time() . '.' . $image->extension();
-                $image->move(public_path('storage/uploads'), $imageName);
-                $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $imageName);
+                $image->move(public_path(), $imageName);
+                $response = (new UploadApi())->upload(public_path() . '\\' . $imageName);
 
                 RoomImage::create([
                     'room_id' => $room->id,
@@ -131,7 +131,7 @@ class RoomController extends Controller
         if($request->has('video')) {
             $videoName = time() . '.' . $request->video->extension();
             $request->video->move(public_path('storage/uploads'), $videoName);
-            $response = (new UploadApi())->upload(public_path() . '\\storage\\uploads\\' . $videoName, [
+            $response = (new UploadApi())->upload(public_path() . '\\' . $videoName, [
                 'overwrite' => true, 
                 'resource_type' => 'video'
             ]);
