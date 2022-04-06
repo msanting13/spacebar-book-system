@@ -66,13 +66,16 @@
 
                 <div class="text-center">
 
-                    <button class='btn btn-warning waves-effect waves-light btn-view-image' data-url="{{ $room->image->implode('photo', '||') }}">Images
-                        {{  $room->image->count() == 0 ? '' : $room->image->count() }}</button>
-                    <button type="button" class="btn btn-secondary waves-effect waves-light btn-open-video" data-url="{{ $room->videos()->first()->url ?? '' }}">
-                        Video {{  $room->videos->count() == 0 ? '' : $room->videos->count() }}
+                    <button type="button" class='btn btn-info h5 rounded-circle text-white waves-effect waves-light btn-view-image' data-url="{{ $room->image->implode('photo', '||') }}">
+                        <i class='mdi mdi-image'></i> 
+                    </button>
+                    <button type="button" class="btn btn-info h5 rounded-circle text-white waves-effect waves-light btn-open-video" data-url="{{ $room->videos()->first()->url ?? '' }}">
+                        <i class='mdi mdi-play-outline'></i>
                     </button> 
+                    <div class='d-grid gap-2 mt-1'>
                     <a href="{{ route('user.booking.bookform', [$room->id]) }}"
-                        class="btn btn-primary waves-effect waves-light">Book Now</a>
+                        class="btn btn-primary btn-block waves-effect waves-light">Book Now</a>
+                    </div>
                 </div>
 
             </div>

@@ -31,6 +31,7 @@ class UserProfileController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
         $user->save();
 
         return redirect()->back()->with('success', 'Your Basic information successfully updated!');
