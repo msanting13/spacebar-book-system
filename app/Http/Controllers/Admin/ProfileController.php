@@ -25,17 +25,24 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-        $this->validate($request, [
+        $rules = [
             'username' => 'required|unique:admins,username,' . $user->id,
-            'currentPassword' => ['required', 'nullable',  function ($attribute, $value, $fail) {
+            'fullname' => 'required',
+            'email' => 'required|unique:admins,email,' . $user->id,
+        ];
+
+        if(!is_null($request->password)) {
+            $rules['password'] = ['required', 'nullable',  'string', 'min:8', 'confirmed'];
+            $rules['currentPassword'] = ['required', 'nullable',  function ($attribute, $value, $fail) {
                 if (!Hash::check($value, Auth::user()->password)) {
                     return $fail(__('The current password is incorrect.'));
                 }
-            }],
-            'password' => ['required', 'nullable',  'string', 'min:8', 'confirmed'],
-            'fullname' => 'required',
-            'email' => 'required|unique:admins,email,' . $user->id,
-        ]);
+            }];
+        }
+
+        
+        $this->validate($request, $rules);
+        
 
         $user = Admin::find($user->id);
         $user->name = $request->fullname;

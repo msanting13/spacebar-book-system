@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Models\Page;
 use App\Models\Room;
 use App\Models\Booking;
@@ -11,6 +12,7 @@ use Cloudinary\Cloudinary;
 use Cloudinary\Api\Upload\UploadApi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use Cloudinary\Configuration\Configuration;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\PageController;
@@ -22,6 +24,7 @@ use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Reports\SalesController;
 use App\Http\Controllers\User\FeedbackController;
+use App\Http\Controllers\Admin\CheckInsController;
 use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\Admin\RoomTypeController;
 use App\Http\Controllers\User\UserProfileController;
@@ -29,6 +32,9 @@ use App\Http\Controllers\Admin\CustomerBookingController;
 use App\Http\Controllers\User\SecurityAndLoginController;
 use App\Http\Controllers\User\FacilityController as UserFacilityController;
 use App\Http\Controllers\Admin\FeedbackController as CustomerFeedBackController;
+use App\Http\Controllers\CheckOutController;
+use App\Http\Controllers\InvoicePrintController;
+use App\Models\MessageNotification;
 
 Route::get('/', function () {
     $pages = Page::orderBy('index', 'ASC')->get();
@@ -82,6 +88,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('admin.dashboard');
     Route::get('/dashboard', [HomeController::class, 'index']);
 
+    Route::get('list', [AdminUserController::class, 'index'])->name('admin.list');
+    Route::get('create', [AdminUserController::class, 'create'])->name('admin.create');
+    Route::post('create', [AdminUserController::class, 'store'])->name('admin.store');
+    Route::get('edit/{admin}', [AdminUserController::class, 'edit'])->name('admin.edit');
+
     Route::get('profile', [ProfileController::class, 'edit'])->name('admin.profile');
     Route::put('profile', [ProfileController::class, 'update'])->name('admin.profile.update');
 
@@ -120,12 +131,39 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
     Route::get('feedback/index', [CustomerFeedBackController::class, 'index'])->name('admin.feedbacks.index');
 
     Route::get('generate/report/', [SalesController::class, 'generate'])->name('reports.create');
-
+    Route::get('print/report/{from}/{to}', [SalesController::class, 'print'])->name('reports.print');
+    Route::get('print/invoice/{bookID}', [InvoicePrintController::class, 'print'])->name('invoice.print');
     Route::patch('approve/booking/{booking_id}', [CustomerBookingController::class, 'approveBooking'])->name('approve.customer.booking');
+
+    Route::get('check-ins', [CheckInsController::class, 'index'])->name('admin.check-ins.index');
+    Route::get('check-out', [CheckOutController::class, 'index'])->name('admin.check-out.index');
+    Route::post('/mark-as/{bookingID}/{status}', function (int $ID, string $status) {
+        if($status === 'paid') {
+            // mark as fully paid
+            $booking = Booking::find($ID);
+            $booking->downpayment_status = 2;
+            $booking->save();
+        } else if($status === 'check_in') {
+            $booking = Booking::find($ID);
+            $booking->status = 'check_in';
+            $booking->save();
+        } else if($status === 'check_out') {
+            $booking = Booking::find($ID);
+            $booking->status = 'check_out';
+            $booking->save();
+        }
+
+        return response()->json(['success' => true]);
+    })->name('mark-as');
+
+    Route::get('message-prepared', function () {
+        return MessageNotification::where('status', 'pending')->get();
+    });
+    
 });
 
 
-Route::get('success/{bookID}', function (int $bookID) {
+Route::get('confirmation/letter/{bookID}', function (int $bookID) {
     $booking = Booking::find($bookID);
     $user = $booking->user;
     $pdf = \App::make('dompdf.wrapper');
@@ -135,10 +173,5 @@ Route::get('success/{bookID}', function (int $bookID) {
 
 Route::get('failed', function () {
     return view('user.payment.failed');
-});
-
-Route::get('cloudinary', function () {
-    // $response = (new UploadApi())->upload(public_path() . '\\admin-assets\\images\\users\\image_placeholder.png');
-    // dd($response['url']);
 });
 

@@ -5,8 +5,25 @@
 @endprepend
 @section('content')
 
-<!--begin::Container-->
-<div class="container-xxl">
+<div class="modal fade" tabindex="-1" id='modal-video'>
+  <div class="modal-dialog modal-xl p-0 rounded-0">
+    <div class="modal-content p-0 m-0 rounded-0">
+      <div class="modal-body p-0 m-0 rounded-0" id='modalBody'>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id='modal-image'>
+  <div class="modal-dialog modal-xl p-0 rounded-0">
+    <div class="modal-content p-0 m-0 rounded-0">
+      <div class="modal-body p-0 m-0 rounded-0" id='modalImageBody'>
+      </div>
+    </div>
+  </div>
+</div>
+
+
     <!--begin::Form-->
     <form action="#">
         <!--begin::Card-->
@@ -21,142 +38,51 @@
                     <!--end::Input group-->
                     <!--begin:Action-->
                     <div class="d-flex align-items-center">
-                        <button type="submit" class="btn btn-primary me-5">Search</button>
+                        <button type="submit" class="btn btn-primary me-5 mx-2">Search</button>
 
                     </div>
                     <!--end:Action-->
                 </div>
-                <a id="kt_horizontal_search_advanced_link" class="btn btn-link collapsed" data-bs-toggle="collapse"
-                    href="#kt_advanced_search_form" aria-expanded="false">Advanced
+                <div class='my-2'></div>
+                <a id="kt_horizontal_search_advanced_link" class="font-size-15 collapsed" data-bs-toggle="collapse"
+                    href="#kt_advanced_search_form" aria-expanded="false" style="outline:none;">Advanced
                     Search</a>
                 <!--end::Compact form-->
                 <!--begin::Advance form-->
+                <div class='my-2'></div>
                 <div class="collapse" id="kt_advanced_search_form" style="">
                     <!--begin::Separator-->
                     <div class="separator separator-dashed mt-9 mb-6"></div>
 
-                    <daiv class="row">
+                    <div class="row">
                         <div class="col-lg-6">
-
                             <label class="fs-6 form-label fw-boldest text-dark">Min. Budget</label>
-                            <!--begin::Dialer-->
-                            <div class="position-relative" data-kt-dialer="true" data-kt-dialer-min="1000"
-                                data-kt-dialer-max="50000" data-kt-dialer-step="1000" data-kt-dialer-prefix="PHP"
-                                data-kt-dialer-decimals="2">
-                                <!--begin::Decrease control-->
-                                <button type="button"
-                                    class="btn btn-icon btn-active-color-gray-700 position-absolute translate-middle-y top-50 start-0"
-                                    data-kt-dialer-control="decrease">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen036.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black">
-                                            </rect>
-                                            <rect x="6.0104" y="10.9247" width="12" height="2" rx="1" fill="black">
-                                            </rect>
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </button>
-                                <!--end::Decrease control-->
-                                <!--begin::Input control-->
-                                <input type="text" class="form-control form-control-solid border-0 ps-12"
-                                    data-kt-dialer-control="input" placeholder="Amount" name="manageBudget"
-                                    readonly="readonly" value="$50">
-                                <!--end::Input control-->
-                                <!--begin::Increase control-->
-                                <button type="button"
-                                    class="btn btn-icon btn-active-color-gray-700 position-absolute translate-middle-y top-50 end-0"
-                                    data-kt-dialer-control="increase">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black">
-                                            </rect>
-                                            <rect x="10.8891" y="17.8033" width="12" height="2" rx="1"
-                                                transform="rotate(-90 10.8891 17.8033)" fill="black"></rect>
-                                            <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black">
-                                            </rect>
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </button>
-                                <!--end::Increase control-->
+                            <div>
+                                <input type="text" class="form-control"
+                                 placeholder="Amount" name="minBudget" placeholder="Minimum amount" value="500">
                             </div>
-                            <!--end::Dialer-->
-
                         </div>
                         <div class="col-lg-6">
                             <label class="fs-6 form-label fw-boldest text-dark">Max. Budget</label>
-                            <!--begin::Dialer-->
-                            <div class="position-relative" data-kt-dialer="true" data-kt-dialer-min="100"
-                                data-kt-dialer-max="50000" data-kt-dialer-step="100" data-kt-dialer-prefix="PHP"
-                                data-kt-dialer-decimals="2">
-                                <!--begin::Decrease control-->
-                                <button type="button"
-                                    class="btn btn-icon btn-active-color-gray-700 position-absolute translate-middle-y top-50 start-0"
-                                    data-kt-dialer-control="decrease">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen036.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black">
-                                            </rect>
-                                            <rect x="6.0104" y="10.9247" width="12" height="2" rx="1" fill="black">
-                                            </rect>
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </button>
-                                <!--end::Decrease control-->
-                                <!--begin::Input control-->
-                                <input type="text" class="form-control form-control-solid border-0 ps-12"
-                                    data-kt-dialer-control="input" placeholder="Amount" name="manageBudget"
-                                    readonly="readonly" value="100">
-                                <!--end::Input control-->
-                                <!--begin::Increase control-->
-                                <button type="button"
-                                    class="btn btn-icon btn-active-color-gray-700 position-absolute translate-middle-y top-50 end-0"
-                                    data-kt-dialer-control="increase">
-                                    <!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black">
-                                            </rect>
-                                            <rect x="10.8891" y="17.8033" width="12" height="2" rx="1"
-                                                transform="rotate(-90 10.8891 17.8033)" fill="black"></rect>
-                                            <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black">
-                                            </rect>
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </button>
-                                <!--end::Increase control-->
+                            <div>
+                                <input type="text" class="form-control"
+                                 placeholder="Amount" name="maxBudget" placeholder="Maximum Amount" value="5000">
                             </div>
-                            <!--end::Dialer-->
-
                         </div>
-
-
-                    </daiv>
-
+                    </div>
+                    <div class='mt-2'></div>
                     <div class='row'>
                         <div class="col-lg-6">
-                            <label class="fs-6 form-label fw-boldest text-dark">Capacity</label>
-                            <input type="text" class="form-control form-control form-control-solid" name="city">
+                            <label class="fs-6 form-label fw-boldest text-dark">Capacity (More than)</label>
+                            <input type="text" class="form-control form-control form-control-solid" name="capacity" value="1">
                         </div>
 
                         <div class="col-lg-6">
                             <label class="fs-6 form-label fw-boldest text-dark">Room types</label>
-                            <!--begin::Select-->
-                            <select class="form-control form-control-solid">
-                                <option value="" disabled></option>
-                                @foreach($roomTypes as $type)
-                                <option value="{{ $type->id }}">{{ $type->type_name }}</option>
-                                @endforeach
+                            <select class="form-control form-control-solid" name="type">
+                                <option selected value="room">Room</option>
+                                <option value="function hall">Functional Hall</option>
+                                <option value="cottage">Cottage</option>
                             </select>
                             <!--end::Select-->
                         </div>
@@ -170,93 +96,66 @@
         <!--end::Card-->
     </form>
     <!--end::Form-->
-    <!--begin::Toolbar-->
-    <div class="d-flex flex-wrap flex-stack pb-7">
-        @isset($rooms)
-        <!--begin::Title-->
-        <div class="d-flex flex-wrap align-items-center my-1">
-            <h2 class="fw-bold me-5 my-1">{{ $rooms->count() }} Room/s Found</h2>
+    @isset($rooms)
+        <div class="text-center mb-4">
+            <h4 class="fw-medium text-primary">{{ $rooms->count() }} Result/s Found</5>
         </div>
-        <!--end::Title-->
-        @endisset
-    </div>
-    <!--end::Toolbar-->
-    <!--begin::Tab Content-->
-    <div class="tab-content">
-        <!--begin::Tab pane-->
-        <div id="kt_project_users_card_pane" class="tab-pane fade show active">
-            @isset($rooms)
-            <div class="row g-6 g-xl-9">
-                @foreach($rooms as $room)
-                <!--begin::Col-->
-                <div class="col-md-6 col-xxl-4">
-                    <!--begin::Card-->
-                    <div class="card">
-                        <!--begin::Card body-->
-                        <div class="card-body d-flex flex-center flex-column pt-12 p-9">
-                            @if($room->image->count() != 0)
-                                <img src="{{ asset('/storage/uploads/' . $room->image->first()->photo) }}" height="250px" class='mb-3' alt="">
-                                @else
-                                <img src="/assets/media/illustrations/sigma-1/2.png" class='img-fluid mh-250px mb-3' alt="">
-                            @endif
-                            <!--begin::Name-->
-                            <a href="#"
-                                class="fs-1 text-gray-800 text-hover-primary fw-boldest mb-1">{{ $room->name }}</a>
-                            <!--end::Name-->
-                            <!--begin::Position-->
-                            <div class="fs-4 fw-bold mb-3">{{ $room->roomType->type_name }}</div>
-                            <!--end::Position-->
-                            <!--begin::Info-->
-                            <div class="d-flex flex-wrap flex-center">
-                                <!--begin::Stats-->
-                                <div class="border border-dashed rounded min-w-75px py-3 px-4 mx-2 mb-3 text-center">
-                                    <div class="fs-2 fw-boldest">{{ $room->price }}</div>
-                                    <div class="fw-bold">Price</div>
-                                </div>
-                                <!--end::Stats-->
-                                <!--begin::Stats-->
-                                <div class="border border-dashed rounded min-w-75px py-3 px-4 mx-2 mb-3 text-center">
-                                    <div class="fs-2 fw-boldest">{{ $room->capacity }}</div>
-                                    <div class="fw-bold">Capacity</div>
-                                </div>
-                                <div class="border border-dashed rounded min-w-75px py-3 px-4 mx-2 mb-3 text-center">
-                                    <div class="fs-2 fw-boldest text-uppercase">{{ $room->type }}</div>
-                                    <div class="fw-bold">Type</div>
-                                </div>
-                                <!--end::Stats-->
-                                <!--begin::Stats-->
-                                {{-- <div class="border border-dashed rounded min-w-75px py-3 px-4 mx-2 mb-3">
-                                    <div class="fs-6 fw-boldest text-gray-700">245</div>
-                                    <div class="fw-bold text-gray-400">Hours</div>
-                                </div> --}}
-                                <!--end::Stats-->
-                            </div>
-                            <!--end::Info-->
-                        </div>
-                        <div class="d-grid gap-2">
-                            <a class="btn btn-primary fs-3 rounded-0 text-uppercase"
-                                href="{{ route('user.booking.bookform', [$room->id, 'selected_date' => $selected_date]) }}">GET THIS
-                                {{ $room->type }}</a>
-                        </div>
-                        <!--end::Card body-->
+    @endisset
+<div class="row">
+   @isset($rooms)
+    @foreach($rooms as $room)
+    <div class="col-xl-3 col-md-6">
+        <div class="card plan-box">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-start">
+                    <div class="flex-1 me-3">
+                        <h5>{{ $room->name }}</h5>
+                        <p class="text-muted">{{ Str::limit($room->description, 15, '...') }}</p>
                     </div>
-                    <!--end::Card-->
+                    <div class="ms-auto">
+                        <i class="bx bx-building-house h1 text-primary"></i>
+                    </div>
                 </div>
-                <!--end::Col-->
+                <div class="py-4 mt-4 text-center bg-soft-light">
+                    <h1 class="m-0"><sup><small>&#8369;</small></sup> {{ (int) $room->price }}/ <span
+                            class="font-size-13">Per
+                            day</span></h1>
+                </div>
 
-                @endforeach
+                <div class="plan-features p-4 text-muted mt-2">
+                    <p><i class="mdi mdi-check-bold text-primary me-4"></i>{{ $room->capacity }} Capacity</p>
+                    @foreach(explode(',', $room->description) as $description)
+                    <p><i class="mdi mdi-check-bold text-primary me-4"></i>{{ $description }}</p>
+                    @endforeach
+                </div>
+
+                <div class="text-center">
+
+                    <button type="button" class='btn btn-info h5 rounded-circle text-white waves-effect waves-light btn-view-image' data-url="{{ $room->image->implode('photo', '||') }}">
+                        <i class='mdi mdi-image'></i> 
+                    </button>
+                    <button type="button" class="btn btn-info h5 rounded-circle text-white waves-effect waves-light btn-open-video" data-url="{{ $room->videos()->first()->url ?? '' }}">
+                        <i class='mdi mdi-play-outline'></i>
+                    </button> 
+                    <div class='d-grid gap-2 mt-1'>
+                    <a href="{{ route('user.booking.bookform', [$room->id]) }}"
+                        class="btn btn-primary btn-block waves-effect waves-light">Book Now</a>
+                    </div>
+                </div>
+
             </div>
-            @endisset
         </div>
-        <!--end::Tab pane-->
     </div>
-    <!--end::Tab Content-->
+    <!-- Modal -->
+
+    @endforeach
+   @endisset
 </div>
-<!--end::Container-->
+
+    <!--end::Tab Content-->
 
 @endsection
 @push('page-scripts')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <script>
@@ -269,5 +168,51 @@
         });
     });
 
+    
+    $(document).on('click', '.btn-open-video', function () {
+        let url = $(this).attr('data-url');
+        $('#modalBody').html('').append(`<video id='video'  controls width="100%" class="embed-responsive-item" src="${url}"></video>`);
+        $('#modal-video').modal('toggle');
+    });
+
+    $(document).on('click', '.btn-view-image', function () {
+        let url = $(this).attr('data-url').split("||");
+        let carouselItems = "";
+        $('#modal-image').modal('toggle');
+        url.forEach((link, index) => {
+            carouselItems += `
+                <div class="carousel-item ${index == 0 ? 'active' : ''}">
+                    <div class='d-flex justify-content-center'>
+                        <img class="d-block img-fluid" src="${link}" alt="No availabe Image">
+                    </div>
+                </div>
+            `;
+        });
+
+        $('#modalImageBody').html('').append(`
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    ${carouselItems}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+        `);
+    });
+
+    var myModalEl = document.getElementById('modal-video')
+    myModalEl.addEventListener('hidden.bs.modal', function (event) {
+        let video = document.querySelector('#video')
+        video.pause();
+        video.currentTime = 0;
+    })
 </script>
 @endpush

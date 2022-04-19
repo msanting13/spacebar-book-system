@@ -19,7 +19,7 @@ class CreateBookingsTable extends Migration
             $table->timestamp('arrival_date')->nullable();
             $table->timestamp('start_date')->nullable();
             $table->timestamp('end_date')->nullable();
-            $table->enum('status', ['done', 'pending', 'cancelled'])->nullable();
+            $table->enum('status', ['approved', 'pending', 'cancelled', 'check_in', 'check_out'])->nullable();
             $table->integer('room_id');
             $table->integer('user_id');
             $table->longText('message')->nullable();

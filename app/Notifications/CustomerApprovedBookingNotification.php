@@ -46,9 +46,10 @@ class CustomerApprovedBookingNotification extends Notification
 
         return (new MailMessage)
                     ->subject('Your booking for ' . $booking->room->name . ' has been approved')
-                    ->line('The introduction to the notification.')
-                    ->line('Thank you for using our application!');
+                    ->line('Please print or download the confirmation letter attached to this mail.')
+                    ->line('Thank you for trusting Space Bar Beach Resort!');
     }
+
 
     /**
      * Get the array representation of the notification.

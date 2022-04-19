@@ -24,12 +24,29 @@ class BookingController extends Controller
     {
         if ($request->has('daterange')) {
             list($start_date, $end_date) = explode(' - ', $request->daterange);
-            $rooms = Room::whereDoesntHave('bookings', function($query) use ($start_date, $end_date){
+            $query = Room::whereDoesntHave('bookings', function($query) use ($start_date, $end_date){
                 $query->whereDate('start_date', '>=', date('Y-m-d', strtotime($start_date)))->whereDate('end_date', '<=', date('Y-m-d', strtotime($end_date)));
-            })->get();
-        }
-        $roomTypes = RoomType::get();
+            });
 
+            if($request->has('minBudget')) {
+                $query->where('price', '>=', $request->minBudget);
+            }
+            
+            if($request->has('maxBudget')) {
+                $query->where('price', '<=', $request->maxBudget);
+            }
+            
+            if($request->has('capacity')) {
+                $query->where('capacity', '>=', $request->capacity);
+            }
+
+            if($request->has('type')) {
+                $query->where('type', '=', $request->type);
+            }
+            $rooms = $query->get();
+        }
+        
+        $roomTypes = RoomType::get();
         return view('user.booking')->with([
             'rooms' => (isset($rooms)) ? $rooms : null,
             'selected_date' => $request->daterange, 'roomTypes' => $roomTypes

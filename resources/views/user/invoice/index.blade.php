@@ -1,8 +1,99 @@
 @extends('user.layouts.app')
 @section('page-title', 'Invoice')
+@prepend('page-css')
+<style>
+			.invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				font-family: 'Helvetica', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+			}
+
+			.invoice-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+			}
+
+			.invoice-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
+
+			.invoice-box table tr td:nth-child(2) {
+				text-align: right;
+			}
+
+			.invoice-box table tr.top table td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.top table td.title {
+				font-size: 45px;
+				line-height: 45px;
+				color: #333;
+			}
+
+			.invoice-box table tr.information table td {
+				padding-bottom: 40px;
+			}
+
+			.invoice-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+
+			.invoice-box table tr.details td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
+
+			.invoice-box table tr.item.last td {
+				border-bottom: none;
+			}
+
+			.invoice-box table tr.total td:nth-child(2) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
+
+			@media only screen and (max-width: 600px) {
+				.invoice-box table tr.top table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+
+				.invoice-box table tr.information table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+			}
+
+
+			.invoice-box.rtl table {
+				text-align: right;
+			}
+
+			.invoice-box.rtl table tr td:nth-child(2) {
+				text-align: left;
+			}
+		</style>
+@endprepend
 @section('content')
 <div class="row">
     <div class="col-lg-12">
+        @if($booking->downpayment_status !== $downPaymentPaid && $booking->status !== 'check_out')
         <div class="alert alert-dismissible bg-primary d-flex flex-column flex-sm-row">
             <div class="d-flex flex-column text-light pe-0 pe-sm-10">
                 <h5 class="mb-2 light text-white">Important Message</h4>
@@ -11,99 +102,119 @@
             </div>
 
         </div>
-        <div class="card">
-            <div class="card-body">
-                <div class="invoice-title">
-                    <div class="mb-4">
-                        <h5 class='text-dark'>Invoice # {{ $booking->invoices->invoice_number }}</h5>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-6">
-                        <h5 class='text-dark'>BILL TO</h5>
-                        <span class='text-dark fs-6'>{{ $booking->user->fullname }}</span>
-                        <br>
-                        <span class='text-dark fs-6'>{{ $booking->user->phone_number }}</span>
-                        <br>
-                        <span class='text-dark fs-6'>{{ $booking->user->email }}</span>
-                    </div>
-                </div>
-                <div class="py-2 mt-3">
-                    <h3 class="font-size-15 fw-bold">Summary</h3>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-nowrap text-dark">
-                        <thead>
-                            <tr>
-                                <th style="width: 70px;">No.</th>
-                                <th>Description</th>
-                                <th class="text-end">Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>01</td>
-                                <td>{{ $booking->room->name }}</td>
-                                <td class="text-end">{{ $booking->room->price }}</td>
-                            </tr>
+        @endif
+        
+		<div class="invoice-box card shadow-none">
+			<table cellpadding="0" cellspacing="0">
+				<tr class="top">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td class="title">
+									<img src="https://res.cloudinary.com/dyjj97kgw/image/upload/v1649434490/space-bar-logo_zup4pc.jpg" style="width: 20%;" />
+								</td>
 
-                            @foreach($booking->extras as $extras)
-                            <tr>
-                                <td>{{ str_pad($loop->index + 2, 2, '0', STR_PAD_LEFT)}}</td>
-                                <td>{{ $extras->name }}</td>
-                                <td class="text-end">{{ $extras->price }}</td>
-                            </tr>
-                            @endforeach
+								<td nowrap>
+									Invoice #: {{ $booking->invoices->invoice_number }}<br />
+									{{ $booking->invoices->created_at->format('F d, Y') }}<br />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
 
-                            <tr>
-                                <td colspan="2" class="border-0 text-end">
-                                    <strong>DURATION</strong>
-                                </td>
-                                @if($booking->end_date->diffInDays($booking->start_date) + 1 == 1)
-                                <td class="border-0 text-end fw-bold">
-                                    {{ $booking->end_date->diffInDays($booking->start_date) + 1 }} Day</td>
-                                @else
-                                <td class="border-0 text-end fw-bold">
-                                    {{ $booking->end_date->diffInDays($booking->start_date) + 1}} Days</td>
-                                @endif
-                            </tr>
+				<tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									Spacebar Beach Resort.<br />
+									Purok 6, Poblacion<br />
+									Cagwait, Surigao del Sur
+								</td>
 
-                            <tr>
-                                <td colspan="2" class="text-end fw-bold">SUB TOTAL</td>
-                                <td class="text-end fw-bold">
-                                    {{ number_format($booking->total_price, 2, ".", ",") }}
-                                </td>
-                            </tr>
+								<td>
+									{{ ucfirst($booking->user->first_name . ' ' . $booking->user->last_name) }}<br />
+									{{ $booking->user->phone_number }}<br />
+									{{ $booking->user->email }}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
 
-                            <tr>
-                                <td colspan="2" class="border-0 fw-bold text-end">
-                                    <strong>TOTAL</strong>
-                                </td>
-                                <td class="border-0 text-end">
-                                    <h4 class="m-0" id="totalPrice"
-                                        data-total="{{ number_format($booking->total_price, 2, "", "") }}">
-                                        &#8369;{{ number_format($booking->total_price, 2, ".", ",") }}
-                                    </h4>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="d-print-none">
-                    <div class="float-end">
-                        <a class="btn btn-lg btn-info waves-effect waves-light" href="{{ route('payment.success', $booking->id) }}">PRINT</a>
-                        @if($booking->downpayment_status !== $downPaymentPaid)
-                            <a href="#" class="btn btn-lg btn-outline-primary w-md waves-effect waves-light mx-2"
-                                id='btnPayUsingGCash'>
-                                <img src="https://res.cloudinary.com/dyjj97kgw/image/upload/w_90/v1648986405/gcash_rjonfb.png"
-                                    class='img-fluid' alt="">
-                            </a>
+				<tr class="heading">
+					<td>Downpayment</td>
+
+					<td>Amount</td>
+				</tr>
+
+				<tr class="details">
+					<td>GCASH</td>
+					<td>
+                        {{ number_format($booking->total_price / 2, 2, ".", ",") }}
+                    </td>
+				</tr>
+
+				<tr class="heading">
+					<td>Description</td>
+					<td>Price</td>
+				</tr>
+
+				<tr class="item">
+					<td>{{ $booking->room->name }}</td>
+					<td>{{ number_format($booking->room->price, 2, ".", ",") }}</td>
+				</tr>
+
+				<tr class="item">
+					<td>{{ $booking->start_date->format('F d') }} - {{ $booking->end_date->format('d, Y') }} (<strong>{{ $booking->end_date->diffInDays($booking->start_date) + 1 }} day/s</strong>) </td>
+					<td>{{ number_format($booking->room->price * ( $booking->end_date->diffInDays($booking->start_date) + 1), 2, ".", ",") }}</td>
+				</tr>
+
+				@foreach($booking->extras as $extra)
+                <tr class="item last">
+					<td>{{ $extra->name }}</td>
+					<td>{{ $extra->price }}</td>
+				</tr>
+                @endforeach
+
+                @if($booking->downpayment_status === $downPaymentPaid)
+                <tr class="item">
+					<td>Downpayment</td>
+					<td> <strong>-</strong> {{ number_format($booking->total_price / 2, 2, ".", ",") }}</td>
+				</tr>
+                @endif
+
+				<tr class="total">
+					<td></td>
+                    @if($booking->downpayment_status === $downPaymentPaid)
+                        <td id='totalPrice' data-total="{{ number_format((($booking->room->price * ( $booking->end_date->diffInDays($booking->start_date) + 1) + $booking->extras->sum('price')) - ($booking->total_price / 2)), 2, "", "") }}">Total: {{ number_format((($booking->room->price * ( $booking->end_date->diffInDays($booking->start_date) + 1) + $booking->extras->sum('price')) - ($booking->total_price / 2)), 2, ".", ",") }}</td>
+                    @else
+                        <td id='totalPrice' data-total="{{ number_format($booking->total_price, 2, "", "") }}">Total: {{ number_format(($booking->room->price * ( $booking->end_date->diffInDays($booking->start_date) + 1) + $booking->extras->sum('price')), 2, ".", ",") }}</td>
+                    @endif
+				</tr>
+                
+                <tr>
+                    <td></td>
+                    <td>
+                        @if($booking->downpayment_status !== $downPaymentPaid && $booking->status !== 'check_out')
+                                <a href="#" class="btn btn-block btn-outline-primary w-md waves-effect waves-light"
+                                    id='btnPayUsingGCash'>
+                                    <img src="https://res.cloudinary.com/dyjj97kgw/image/upload/w_90/v1649433799/gcash_go2dmj.png"
+                                        class='img-fluid' alt="">
+                                </a>
                         @endif
+                    </td>
+                </tr>
+			</table>
+		</div>
+	<div class="d-print-none">
+                    <div class="text-center mt-2">
+                        <a class="btn btn-info waves-effect waves-light" href="{{ route('payment.success', $booking->id) }}">PRINT CONFIRMATION LETTER</a>
+                        <a class="btn btn-primary waves-effect waves-light" href="{{ route('invoice.print', $booking->id) }}">PRINT INVOICE</a>
+                        
                     </div>
                 </div>
-            </div>
-        </div>
         <div id="termModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -145,7 +256,6 @@
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-
 </script>
 <script>
     let total = $('#totalPrice').attr('data-total');

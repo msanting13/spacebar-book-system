@@ -18,22 +18,22 @@
                 <form action="{{ route('admin.facility.update', $facility->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="form-group mb-5">
+                    <div class="form-group mb-3">
                         <label>Title</label>
                         <input type="text" name="title" class="form-control" value="{{ old('title', $facility->title) }}" placeholder="Enter title">
                     </div>
 
-                    <div class="form-group  mb-5">
+                    <div class="form-group  mb-3">
                         <label>Content</label>
                         <textarea name="content" class='form-control' cols="30" rows="10" placeholder="Enter description">{{ old('content', $facility->content) }}</textarea>
                     </div>
 
-                    <div class="form-group mb-5">
+                    <div class="form-group mb-3">
                         <label>Image</label>
-                        <input name="image" type="file" class='form-control form-control-lg'>
+                        <input name="image" type="file" class='form-control'>
                     </div>
 
-                    <div class="form-group mb-5 mt-5">
+                    <div class="form-group">
                         <div class="float-end">
                             <input type="submit" class='btn btn-success' value='Update facility'>
                         </div>

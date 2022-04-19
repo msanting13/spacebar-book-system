@@ -80,13 +80,15 @@ class UserController extends Controller
             'firstname' => 'required',
             'lastname' => 'required',
             'email' => 'unique:users,email,' . $user->id,
-            'phone_number' => 'unique:users,phone_number,' . $user->id,
+            'phone_number' => ['regex:/((\+63)|0)\d{10}/', 'unique:users,phone_number,'. $user->id],
+            'address' => 'required|max:255'
         ]);
 
         $user->first_name = $request->firstname;
         $user->last_name = $request->lastname;
         $user->email = $request->email;
         $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
         $user->save();
 
         return back()->with('success', 'Account information successfully updated');

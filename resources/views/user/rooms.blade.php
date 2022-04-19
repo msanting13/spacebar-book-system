@@ -136,7 +136,5 @@
         video.pause();
         video.currentTime = 0;
     })
-
-
 </script>
 @endpush

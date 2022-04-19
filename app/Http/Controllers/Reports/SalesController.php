@@ -17,25 +17,56 @@ class SalesController extends Controller
 
     public function generate(Request $request)
     {
-        if($request->query('daterange') !== null) {
-            list($from, $to) = explode('-', $request->query('daterange'));
+        if($request->query('from') !== null && $request->query('to') !== null) {
+            $from = $request->query('from');
+            $to = $request->query('to');    
             $from = Carbon::parse($from);
             $to = Carbon::parse($to);
-            $bookings = Booking::with(['room', 'room.image', 'extras'])->whereBetween('start_date', [$from, $to])->where('status', 'done')->get();
+            
+            $bookings = Booking::with(['room', 'room.image', 'extras'])
+                                ->whereBetween('end_date', [$from, $to])->where('status', 'check_out')
+                                ->get();
+
             $extrasTotal = 0;
             $total = 0;
             $totalStayedDays = 0;
             
             $bookings->each(function ($booking) use(&$extrasTotal, &$total, &$totalStayedDays) {
-                $extrasTotal += $booking->extras->sum('price');
-                $stayedDays = $booking->start_date->diffInDays($booking->end_date) == 0 ? 1 : $booking->start_date->diffInDays($booking->end_date);
+                $stayedDays      =  $booking->start_date->diffInDays($booking->end_date) + 1;
                 $totalStayedDays += $stayedDays;
-                $total += $stayedDays * $booking->room->price + $booking->extras->sum('price');
+                $extrasTotal     += $booking->extras->sum('price');
+                $total           += $stayedDays * $booking->room->price + $booking->extras->sum('price');
             });
     
-            return view('admin.report.index', compact('bookings', 'extrasTotal', 'total', 'totalStayedDays'));
+            return view('admin.report.index', compact('bookings', 'extrasTotal', 'total', 'totalStayedDays', 'from', 'to'));
         } else {
             return view('admin.report.index');
         }
+    }
+
+    public function print(string $from, string $to)
+    {
+            $from = Carbon::parse($from);
+            $to = Carbon::parse($to);
+            
+            $bookings = Booking::with(['room', 'room.image', 'extras'])
+                                ->whereBetween('end_date', [$from, $to])->where('status', 'check_out')
+                                ->get();
+
+            $extrasTotal = 0;
+            $total = 0;
+            $totalStayedDays = 0;
+            $roomTotalAmount = 0;
+            $bookings->each(function ($booking) use(&$extrasTotal, &$total, &$totalStayedDays, &$roomTotalAmount) {
+                $stayedDays      =  $booking->start_date->diffInDays($booking->end_date) + 1;
+                $totalStayedDays += $stayedDays;
+                $roomTotalAmount += $booking->room->price;
+                $extrasTotal     += $booking->extras->sum('price');
+                $total           += $stayedDays * $booking->room->price + $booking->extras->sum('price');
+            });
+    
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadView('admin.report.print', compact('bookings', 'extrasTotal', 'total', 'totalStayedDays', 'roomTotalAmount', 'from', 'to'));
+            return $pdf->stream();
     }
 }

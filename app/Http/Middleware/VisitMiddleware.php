@@ -18,9 +18,9 @@ class VisitMiddleware
     public function handle(Request $request, Closure $next)
     {
         if($request->method() === 'GET') {
-            // Visitor::firstOrCreate([
-            //     'visitor' => $request->ip(),
-            // ]);
+            Visitor::firstOrCreate([
+                'visitor' => $request->ip(),
+            ]);
         }
         
         

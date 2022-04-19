@@ -26,7 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::where('user_id', Auth::id())->get();
+        $bookings = Booking::where('user_id', Auth::id())
+                            ->get();
+                            
         $downPaymentPaid = Booking::PAYMENT_DONE;
         return view('user.home', compact('bookings', 'downPaymentPaid'));
     }

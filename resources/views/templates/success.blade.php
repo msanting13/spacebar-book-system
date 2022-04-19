@@ -4,7 +4,7 @@
     <!--begin::Wrapper-->
     <div class="d-flex flex-column text-light pe-0 pe-sm-10">
         <!--begin::Title-->
-        <h5 class="mb-2 light text-white">Good Job!</h4>
+        <h5 class="mb-2 light text-white">Great!</h4>
         <!--end::Title-->
 
         <!--begin::Content-->

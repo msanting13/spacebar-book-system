@@ -1,497 +1,629 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--begin::Head-->
+    <head>
+        <meta charset="utf-8" />
+        <title>{{ config("app.name") }} | @yield('page-title')</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            content="Premium Multipurpose Admin & Dashboard Template"
+            name="description"
+        />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="/admin-assets/images/favicon.ico" />
 
-<head>
-    <title>{{ config('app.name') }} | @yield('page-title')</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="{{ asset('/assets/media/logos/favicon.ico') }}" />
-    <!--begin::Fonts-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700" />
-    <!--end::Fonts-->
-    <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="{{ asset('/assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <!--end::Global Stylesheets Bundle-->
-    @stack('page-css')
-</head>
-<!--end::Head-->
-<!--begin::Body-->
+        <!-- Bootstrap Css -->
+        <link
+            href="/admin-assets/css/bootstrap.min.css"
+            id="bootstrap-style"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <!-- Icons Css -->
+        <link
+            href="/admin-assets/css/icons.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <!-- App Css-->
+        <link
+            href="/admin-assets/css/app.min.css"
+            id="app-style"
+            rel="stylesheet"
+            type="text/css"
+        />
+        @stack('page-css')
+    </head>
 
-<body id="kt_body"
-    class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled aside-fixed aside-default-enabled">
-    <!--begin::Main-->
-    <!--begin::Root-->
-    <div class="d-flex flex-column flex-root">
-        <!--begin::Page-->
-        <div class="page d-flex flex-row flex-column-fluid">
-            <!--begin::Aside-->
-            <div id="kt_aside" class="aside aside-default aside-hoverable" data-kt-drawer="true"
-                data-kt-drawer-name="aside" data-kt-drawer-activate="{default: true, lg: false}"
-                data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'200px', '300px': '250px'}"
-                data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_aside_toggle">
-                <!--begin::Brand-->
-                <div class="aside-logo flex-column-auto pt-9 pb-5" id="kt_aside_logo">
-                    <!--begin::Logo-->
-                    <a href="{{ route('home') }}">
-                        <img alt="Logo" src="{{ asset('/assets/media/logos/logo-default.svg') }}"
-                            class="max-h-50px logo-default" />
-                        <img alt="Logo" src="{{ asset('/assets/media/logos/logo-minimize.svg') }}"
-                            class="max-h-50px logo-minimize" />
-                    </a>
-                    <!--end::Logo-->
-                </div>
-                <!--end::Brand-->
-                <!--begin::Aside menu-->
-                <div class="aside-menu flex-column-fluid">
-                    <!--begin::Aside Menu-->
-                    <!--begin::Menu-->
-                    <div class="menu menu-column menu-fit menu-rounded menu-title-gray-600 menu-icon-gray-400 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-500 fw-bold fs-5 my-5 mt-lg-2 mb-lg-0"
-                        id="kt_aside_menu" data-kt-menu="true">
-                        <div class="menu-fit hover-scroll-y me-lg-n5 pe-lg-5" id="kt_aside_menu_wrapper"
-                            data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
-                            data-kt-scroll-height="auto" data-kt-scroll-wrappers="#kt_aside_menu"
-                            data-kt-scroll-offset="20px" data-kt-scroll-dependencies="#kt_aside_logo, #kt_aside_footer">
-                            <a href="{{ route('admin.dashboard') }}" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2 text-primary">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">Dashboard</span>
-                                </span>
-                            </a>
+    <body data-layout="detached" data-topbar="colored">
+        <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
-                            <div class="menu-content mt-3">
-                                <span class="fw-bold text-muted text-uppercase fs-7">maintenance</span>
-                            </div>
-
-                            <a href="{{ route('admin.room.index') }}" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2 text-primary">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
-                                                </path>
-                                            </svg>
-                                        </span>
-
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">Rooms</span>
-                                </span>
-                            </a>
-
-                            <a href="{{ route('admin.facility.index') }}" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2 text-primary">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">Facilities</span>
-                                </span>
-                            </a>
-
-                            <a href="{{ route('extras.index') }}" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2 text-primary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                            </svg>
-                                        </span>
-
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">Extras</span>
-                                </span>
-                            </a>
-
-                            
-                            <a href="{{ route('admin.room-types.index') }}" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2 text-primary">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">Room Types</span>
-                                </span>
-                            </a>
-                            <a href="{{ route('admin.user.index') }}" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2 text-primary">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">Users</span>
-                                </span>
-                            </a>
-
-                            <div class="menu-content mt-3">
-                                <span class="fw-bold text-muted text-uppercase fs-7">content management</span>
-                            </div>
-
-                            <a href="{{ route('admin.page.index') }}" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2 text-primary">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">Landing Page</span>
-                                </span>
-                            </a>
-                            <div class="menu-content mt-3">
-                                <span class="fw-bold text-muted text-uppercase fs-7">IMPROVEMENTS</span>
-                            </div>
-                            <a href="{{ route('admin.feedbacks.index') }}" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2 text-primary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">Feedbacks</span>
-                                </span>
-                            </a>
-                            <div class="menu-content mt-3">
-                                <span class="fw-bold text-muted text-uppercase fs-7">REPORTS</span>
-                            </div>
-                            <a href="{{ route('reports.create') }}" class="menu-item menu-accordion">
-                                <span class="menu-link">
-                                    <span class="menu-icon">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
-                                        <span class="svg-icon svg-icon-2 text-primary">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </span>
-                                    <span class="menu-title">Sales</span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-                    <!--end::Menu-->
-                </div>
-                <!--end::Aside menu-->
-                <!--begin::Footer-->
-                <div class="aside-footer flex-column-auto pb-5 d-none" id="kt_aside_footer">
-                    <a href="/craft/index.html" class="btn btn-light-primary w-100">Button</a>
-                </div>
-                <!--end::Footer-->
-            </div>
-            <!--end::Aside-->
-            <!--begin::Wrapper-->
-            <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
-                <!--begin::Header-->
-                <div id="kt_header" class="header" data-kt-sticky="true" data-kt-sticky-name="header"
-                    data-kt-sticky-offset="{default: '200px', lg: '300px'}">
-                    <!--begin::Container-->
-                    <div class="container-fluid d-flex align-items-stretch justify-content-between">
-                        <!--begin::Logo bar-->
-                        <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-                            <!--begin::Aside Toggle-->
-                            <div class="d-flex align-items-center d-lg-none">
-                                <div class="btn btn-icon btn-active-color-primary ms-n2 me-1" id="kt_aside_toggle">
-                                    <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
-                                    <span class="svg-icon svg-icon-2 text-primaryx">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <path
-                                                d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
-                                                fill="black" />
-                                            <path opacity="0.3"
-                                                d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z"
-                                                fill="black" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                            </div>
-                            <!--end::Aside Toggle-->
-                            <!--begin::Logo-->
-                            <a href="{{ route('home') }}" class="d-lg-none">
-                                <img alt="Logo" src="{{ asset('/assets/media/logos/logo-compact.svg') }}"
-                                    class="mh-40px" />
-                            </a>
-                            <!--end::Logo-->
-                            <!--begin::Aside toggler-->
-                            <div class="btn btn-icon w-auto ps-0 btn-active-color-primary d-none d-lg-inline-flex me-2 me-lg-5" id="minimixe-sidebar"
-                                data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
-                                data-kt-toggle-name="aside-minimize">
-                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr060.svg-->
-                                <span class="svg-icon svg-icon-2 text-primary rotate-180">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none">
-                                        <path d="M9.60001 11H21C21.6 11 22 11.4 22 12C22 12.6 21.6 13 21 13H9.60001V11Z"
-                                            fill="black" />
-                                        <path
-                                            d="M6.2238 13.2561C5.54282 12.5572 5.54281 11.4429 6.22379 10.7439L10.377 6.48107C10.8779 5.96697 11.75 6.32158 11.75 7.03934V16.9607C11.75 17.6785 10.8779 18.0331 10.377 17.519L6.2238 13.2561Z"
-                                            fill="black" />
-                                        <rect opacity="0.3" x="2" y="4" width="2" height="16" rx="1" fill="black" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                            </div>
-                            <!--end::Aside toggler-->
-                        </div>
-                        <!--end::Logo bar-->
-                        <!--begin::Topbar-->
-                        <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
-                            <!--begin::Search-->
-                            <div class="d-flex align-items-stretch">
-                                <!--begin::Search-->
-                                <div id="kt_header_search" class="d-flex align-items-center w-lg-400px"
-                                    data-kt-search-keypress="true" data-kt-search-min-length="2"
-                                    data-kt-search-enter="enter" data-kt-search-layout="menu"
-                                    data-kt-search-responsive="lg" data-kt-menu-trigger="auto"
-                                    data-kt-menu-permanent="true" data-kt-menu-placement="bottom-start">
-                                    <!--begin::Tablet and mobile search toggle-->
-                                    <div data-kt-search-element="toggle" class="d-flex d-lg-none align-items-center">
-                                        <div class="btn btn-icon btn-icon-gray-500 btn-active-light-primary">
-                                            <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                                            <span class="svg-icon svg-icon-2 text-primary">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546"
-                                                        height="2" rx="1" transform="rotate(45 17.0365 15.1223)"
-                                                        fill="black" />
-                                                    <path
-                                                        d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
-                                                        fill="black" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->
-                                        </div>
-                                    </div>
-                                    <!--end::Tablet and mobile search toggle-->
-                                    <!--begin::Form-->
-                                    <form data-kt-search-element="form"
-                                        class="d-none d-lg-block w-100 position-relative mb-5 mb-lg-0"
-                                        autocomplete="off">
-                                        <!--begin::Hidden input(Added to disable form autocomplete)-->
-                                        <input type="hidden" />
-                                        <!--end::Hidden input-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-flush ps-10 d-none"
-                                            name="search" value="" placeholder="Search..."
-                                            data-kt-search-element="input" />
-                                        <!--end::Input-->
-                                        <!--begin::Spinner-->
-                                        <span
-                                            class="position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-1 d-none"
-                                            data-kt-search-element="spinner">
-                                            <span
-                                                class="spinner-border h-15px w-15px align-middle text-gray-400"></span>
-                                        </span>
-                                        <!--end::Spinner-->
-                                    </form>
-                                    <!--end::Form-->
-                                </div>
-                                <!--end::Search-->
-                            </div>
-                            <!--end::Search-->
-                            <!--begin::Toolbar wrapper-->
-                            <div class="d-flex align-items-stretch flex-shrink-0">
-                                <!--begin::User-->
-                                <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
-                                    <!--begin::Menu wrapper-->
-                                    <div class="cursor-pointer symbol symbol-35px symbol-lg-35px"
-                                        data-kt-menu-trigger="click" data-kt-menu-attach="parent"
-                                        data-kt-menu-placement="bottom-end">
-                                        <img alt="Pic" src="/assets/media/avatars/150-26.jpg" />
-                                    </div>
-                                    <!--begin::Menu-->
-                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
-                                        data-kt-menu="true">
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <div class="menu-content d-flex align-items-center px-3">
-                                                <!--begin::Avatar-->
-                                                <div class="symbol symbol-50px me-5">
-                                                    <img alt="Logo" src="/assets/media/avatars/150-26.jpg" />
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::Username-->
-                                                <div class="d-flex flex-column">
-                                                    <div class="fw-bolder d-flex align-items-center fs-5">Hello,
-                                                        {{ Auth::user()->name }}
-                                                        <span
-                                                            class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Verified</span>
+        <div class="container-fluid">
+            <!-- Begin page -->
+            <div id="layout-wrapper">
+                <header id="page-topbar">
+                    <div class="navbar-header">
+                        <div class="container-fluid">
+                            <div class="float-end">
+                                <div
+                                    class="dropdown d-inline-block d-lg-none ms-2"
+                                >
+                                    
+                                    <div
+                                        class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                        aria-labelledby="page-header-search-dropdown"
+                                    >
+                                        <form class="p-3">
+                                            <div class="m-0">
+                                                <div class="input-group">
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        placeholder="Search ..."
+                                                        aria-label="Recipient's username"
+                                                    />
+                                                    <div
+                                                        class="input-group-append"
+                                                    >
+                                                        <button
+                                                            class="btn btn-primary"
+                                                            type="submit"
+                                                        >
+                                                            <i
+                                                                class="mdi mdi-magnify"
+                                                            ></i>
+                                                        </button>
                                                     </div>
-                                                    <a href="#"
-                                                        class="fw-bold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
                                                 </div>
-                                                <!--end::Username-->
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="dropdown d-none d-lg-inline-block ms-1"
+                                >
+                                    <button
+                                        type="button"
+                                        class="btn header-item noti-icon waves-effect"
+                                        data-toggle="fullscreen"
+                                    >
+                                        <i class="mdi mdi-fullscreen"></i>
+                                    </button>
+                                </div>
+
+                                <div class="dropdown d-inline-block">
+                                    <button
+                                        type="button"
+                                        class="btn header-item noti-icon waves-effect"
+                                        id="page-header-notifications-dropdown"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                        <i class="mdi mdi-bell-outline"></i>
+                                        <span
+                                            class="badge rounded-pill bg-danger"
+                                            >3</span
+                                        >
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                                        aria-labelledby="page-header-notifications-dropdown"
+                                    >
+                                        <div class="p-3">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <h6 class="m-0">
+                                                        Notifications
+                                                    </h6>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <a href="#!" class="small">
+                                                        View All</a
+                                                    >
+                                                </div>
                                             </div>
                                         </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator my-2"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5 my-1">
-                                            <a href="{{ route('admin.profile') }}" class="menu-link px-5">My Account</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu separator-->
-                                        <div class="separator my-2"></div>
-                                        <!--end::Menu separator-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-5">
-                                            <a class='menu-link px-5' href="{{ route('admin.submit.logout') }}"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
-                                                    class="dropdown-item-icon mdi mdi-power text-primary"></i>Sign
-                                                Out</a>
-                                            <form id="logout-form" action="{{ route('admin.submit.logout') }}"
-                                                method="POST" class="d-none">
-                                                @csrf
-                                            </form>
-                                        </div>
-                                        <!--end::Menu item-->
-                                    </div>
-                                    <!--end::Menu-->
-                                    <!--end::Menu wrapper-->
-                                </div>
-                                <!--end::User -->
-                            </div>
-                            <!--end::Toolbar wrapper-->
-                        </div>
-                        <!--end::Topbar-->
-                    </div>
-                    <!--end::Container-->
-                </div>
-                <!--end::Header-->
-                <!--begin::Content-->
-                <div class="content fs-6 d-flex flex-column flex-column-fluid bg-gray-300" id="kt_content">
-                    <!--begin::Toolbar-->
-                    <div class="toolbar" id="kt_toolbar">
-                        <div class="container-fluid d-flex flex-stack flex-wrap flex-sm-nowrap">
-                            <!--begin::Info-->
-                            <div class="d-flex flex-column align-items-start justify-content-center flex-wrap me-2">
-                                <!--begin::Title-->
-                                <h1 class="text-dark fw-bolder my-1 fs-2">@yield('page-title')</h1>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::Info-->
-                        </div>
-                    </div>
-                    <!--end::Toolbar-->
-                    <!--begin::Post-->
-                    <div class="post fs-6 d-flex flex-column-fluid" id="kt_post">
-                        <!--begin::Container-->
-                        <div class="container-fluid">
-                            @yield('content')
-                        </div>
-                        <!--end::Container-->
-                    </div>
-                    <!--end::Post-->
-                </div>
-                <!--end::Content-->
-                <!--begin::Footer-->
-                <div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
-                    <!--begin::Container-->
-                    <div class="container-fluid d-flex flex-column flex-md-row flex-stack">
-                        <!--begin::Copyright-->
-                        <div class="text-dark order-2 order-md-1">
-                            <span class="text-muted fw-bold me-2">
-                                {{ date('Y')}} ©
-                            </span>
-                        </div>
-                        <!--end::Copyright-->
-                        <!--begin::Menu-->
-                        <!--end::Menu-->
-                    </div>
-                    <!--end::Container-->
-                </div>
-                <!--end::Footer-->
-            </div>
-            <!--end::Wrapper-->
-        </div>
-        <!--end::Page-->
-    </div>
-    <!--end::Root-->
-    <!--begin::Drawers-->
-    <!--end::Drawers-->
-    <!--end::Modals-->
-    <!--begin::Scrolltop-->
-    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
-        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-        <span class="svg-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)"
-                    fill="black" />
-                <path
-                    d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z"
-                    fill="black" />
-            </svg>
-        </span>
-        <!--end::Svg Icon-->
-    </div>
-    <!--end::Scrolltop-->
-    <!--end::Main-->
-    <!--begin::Global Javascript Bundle(used by all pages)-->
-    <script src="{{ asset('/assets/plugins/global/plugins.bundle.js') }}"></script>
-    <script src="{{ asset('/assets/js/scripts.bundle.js') }}"></script>
-    <!--end::Global Javascript Bundle-->
-    <!--end::Javascript-->
-    @stack('page-scripts')
-</body>
-<!--end::Body-->
+                                        <div
+                                            data-simplebar
+                                            style="max-height: 230px"
+                                        >
+                                            <a
+                                                href="#"
+                                                class="text-reset notification-item"
+                                            >
+                                                <div
+                                                    class="d-flex align-items-start"
+                                                >
+                                                    <div class="avatar-xs me-3">
+                                                        <span
+                                                            class="avatar-title bg-primary rounded-circle font-size-16"
+                                                        >
+                                                            <i
+                                                                class="bx bx-cart"
+                                                            ></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <h6 class="mt-0 mb-1">
+                                                            Your order is placed
+                                                        </h6>
+                                                        <div
+                                                            class="font-size-12 text-muted"
+                                                        >
+                                                            <p class="mb-1">
+                                                                If several
+                                                                languages
+                                                                coalesce the
+                                                                grammar
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                <i
+                                                                    class="mdi mdi-clock-outline"
+                                                                ></i>
+                                                                3 min ago
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a
+                                                href="#"
+                                                class="text-reset notification-item"
+                                            >
+                                                <div
+                                                    class="d-flex align-items-start"
+                                                >
+                                                    <img
+                                                        src="/admin-assets/images/users/image_placeholder.png"
+                                                        class="me-3 rounded-circle avatar-xs"
+                                                        alt="user-pic"
+                                                    />
+                                                    <div class="flex-1">
+                                                        <h6 class="mt-0 mb-1">
+                                                            James Lemire
+                                                        </h6>
+                                                        <div
+                                                            class="font-size-12 text-muted"
+                                                        >
+                                                            <p class="mb-1">
+                                                                It will seem
+                                                                like simplified
+                                                                English.
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                <i
+                                                                    class="mdi mdi-clock-outline"
+                                                                ></i>
+                                                                1 hours ago
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                            <a
+                                                href="#"
+                                                class="text-reset notification-item"
+                                            >
+                                                <div
+                                                    class="d-flex align-items-start"
+                                                >
+                                                    <div class="avatar-xs me-3">
+                                                        <span
+                                                            class="avatar-title bg-success rounded-circle font-size-16"
+                                                        >
+                                                            <i
+                                                                class="bx bx-badge-check"
+                                                            ></i>
+                                                        </span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <h6 class="mt-0 mb-1">
+                                                            Your item is shipped
+                                                        </h6>
+                                                        <div
+                                                            class="font-size-12 text-muted"
+                                                        >
+                                                            <p class="mb-1">
+                                                                If several
+                                                                languages
+                                                                coalesce the
+                                                                grammar
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                <i
+                                                                    class="mdi mdi-clock-outline"
+                                                                ></i>
+                                                                3 min ago
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
 
+                                            <a
+                                                href="#"
+                                                class="text-reset notification-item"
+                                            >
+                                                <div
+                                                    class="d-flex align-items-start"
+                                                >
+                                                    <img
+                                                        src="/admin-assets/images/users/avatar-4.jpg"
+                                                        class="me-3 rounded-circle avatar-xs"
+                                                        alt="user-pic"
+                                                    />
+                                                    <div class="flex-1">
+                                                        <h6 class="mt-0 mb-1">
+                                                            Salena Layfield
+                                                        </h6>
+                                                        <div
+                                                            class="font-size-12 text-muted"
+                                                        >
+                                                            <p class="mb-1">
+                                                                As a skeptical
+                                                                Cambridge friend
+                                                                of mine
+                                                                occidental.
+                                                            </p>
+                                                            <p class="mb-0">
+                                                                <i
+                                                                    class="mdi mdi-clock-outline"
+                                                                ></i>
+                                                                1 hours ago
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="p-2 border-top d-grid">
+                                            <a
+                                                class="btn btn-sm btn-link font-size-14"
+                                                href="javascript:void(0)"
+                                            >
+                                                <i
+                                                    class="mdi mdi-arrow-right-circle me-1"
+                                                ></i>
+                                                View More..
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown d-inline-block">
+                                    <button
+                                        type="button"
+                                        class="btn header-item waves-effect"
+                                        id="page-header-user-dropdown"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false"
+                                    >
+                                        <img
+                                            class="rounded-circle header-profile-user"
+                                            src="/admin-assets/images/users/image_placeholder.png"
+                                            alt="Header Avatar"
+                                        />
+                                        <span
+                                            class="d-none d-xl-inline-block ms-1 text-uppercase"
+                                            >{{ Auth::user()->name }}</span
+                                        >
+                                        <i
+                                            class="mdi mdi-chevron-down d-none d-xl-inline-block"
+                                        ></i>
+                                    </button>
+                                    <div
+                                        class="dropdown-menu dropdown-menu-end"
+                                    >
+                                        <!-- item-->
+                                        <a
+                                            class="dropdown-item"
+                                            href="{{ route('admin.profile') }}"
+                                            ><i
+                                                class="bx bx-user font-size-16 align-middle me-1"
+                                            ></i>
+                                            Profile</a
+                                        >
+                                        <div class="dropdown-divider"></div>
+
+                                        <a
+                                            class="dropdown-item text-danger"
+                                            href="{{
+                                                route('logout')
+                                            }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            ><i
+                                                class="bx bx-power-off font-size-16 align-middle me-1 text-danger"
+                                            ></i>
+                                            Logout</a
+                                        >
+                                        <form
+                                            id="logout-form"
+                                            action="{{
+                                                route('logout')
+                                            }}"
+                                            method="POST"
+                                            class="d-none"
+                                        >
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <!-- LOGO -->
+                                <div class="navbar-brand-box">
+                                    <a
+                                        href="{{ route('admin.auth.login') }}"
+                                        class="logo logo-light"
+                                    >
+                                        <span
+                                            class="logo-sm fs-2 text-white fw-bold"
+                                        >
+                                            <i class="fas fa-building"></i>
+                                            SPACE BAR
+                                        </span>
+                                        <span
+                                            class="logo-lg fs-2 text-white fw-bold"
+                                        >
+                                            <i class="fas fa-building"></i>
+                                            SPACE BAR
+                                        </span>
+                                    </a>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-sm px-3 font-size-16 header-item toggle-btn waves-effect"
+                                    id="vertical-menu-btn"
+                                >
+                                    <i class="fa fa-fw fa-bars"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <!-- ========== Left Sidebar Start ========== -->
+                <div class="vertical-menu">
+                    <div class="h-100">
+                        <div class="user-wid text-center py-4">
+                            <div class="user-img">
+                                <img
+                                    src="/admin-assets/images/users/image_placeholder.png"
+                                    alt=""
+                                    class="avatar-md mx-auto rounded-circle"
+                                />
+                            </div>
+
+                            <div class="mt-3">
+                                <a
+                                    href="{{ route('user.profile') }}"
+                                    class="text-dark fw-medium font-size-16 text-uppercase"
+                                    >{{ Auth::user()->name }}</a
+                                >
+                                <p class="text-body mt-1 mb-0 font-size-13">
+                                    Administrator
+                                </p>
+                            </div>
+                        </div>
+
+                        <!--- Sidemenu -->
+                        <div id="sidebar-menu">
+                            <!-- Left Menu Start -->
+                            <ul class="metismenu list-unstyled" id="side-menu">
+                                <li class="menu-title">Menu</li>
+
+                                <li>
+                                    <a
+                                        href="{{ route('admin.dashboard') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i class="mdi mdi-calendar-text"></i>
+                                        <span>Dashboard</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-title">Transactions</li>
+                                <li>
+                                    <a
+                                        href="{{ route('admin.check-ins.index') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i class="mdi mdi-warehouse"></i>
+                                        <span>Check-Ins</span> - <span class='badge bg-primary shadow h6 text-white'>{{ $no_of_check_ins }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="{{ route('admin.check-out.index') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i class="mdi mdi-warehouse"></i>
+                                        <span>Check-Outs</span> - <span class='badge bg-danger shadow h6 text-white'>{{ $no_of_check_outs }}</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-title">Maintenance</li>
+                                <li>
+                                    <a
+                                        href="{{ route('admin.room.index') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i class="mdi mdi-warehouse"></i>
+                                        <span>Rooms</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="{{ route('admin.facility.index') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i class="mdi mdi-office-building"></i>
+                                        <span>Facilities</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="{{ route('extras.index') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i
+                                            class="mdi mdi-table-column-plus-before"
+                                        ></i>
+                                        <span>Extras</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="{{ route('admin.room-types.index') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i
+                                            class="mdi mdi-home-lightbulb-outline"
+                                        ></i>
+                                        <span>Room types</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="{{ route('admin.user.index') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i
+                                            class="mdi mdi-human-child"
+                                        ></i>
+                                        <span>Users</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a
+                                        href="{{ route('admin.list') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i
+                                            class="mdi mdi-human-child"
+                                        ></i>
+                                        <span>Admins</span>
+                                    </a>
+                                </li>
+                                <li class="menu-title">Content Management</li>
+                                <li>
+                                    <a
+                                        href="{{ route('admin.page.index') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i
+                                            class="mdi mdi-page-layout-header-footer"
+                                        ></i>
+                                        <span>Landing Page</span>
+                                    </a>
+                                </li>
+
+                                <li class="menu-title">Improvements</li>
+                                <li>
+                                    <a
+                                        href="{{
+                                            route('admin.feedbacks.index')
+                                        }}"
+                                        class="waves-effect"
+                                    >
+                                        <i
+                                            class="mdi mdi-message-processing-outline"
+                                        ></i>
+                                        <span>Feedbacks</span>
+                                    </a>
+                                </li>
+                                <li class="menu-title">Reports</li>
+                                <li>
+                                    <a
+                                        href="{{
+                                            route('reports.create')
+                                        }}"
+                                        class="waves-effect"
+                                    >
+                                        <i
+                                            class="mdi mdi-chart-tree"
+                                        ></i>
+                                        <span>Sales</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Sidebar -->
+                    </div>
+                </div>
+                <!-- Left Sidebar End -->
+
+                <!-- ============================================================== -->
+                <!-- Start right Content here -->
+                <!-- ============================================================== -->
+                <div class="main-content">
+                    <div class="page-content">
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div
+                                    class="page-title-box d-flex align-items-center justify-content-between"
+                                >
+                                    <h4 class="page-title mb-0 font-size-18">
+                                        @yield('page-title')
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        @yield('content')
+                    </div>
+                    <!-- End Page-content -->
+
+                    <footer class="footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <script>
+                                        document.write(
+                                            new Date().getFullYear()
+                                        );
+                                    </script>
+                                    © {{ config("app.name") }}.
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="text-sm-end d-none d-sm-block">
+                                        Design & Develop by
+                                        {{ config("app.name") }} Team
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+                <!-- end main content-->
+            </div>
+            <!-- END layout-wrapper -->
+        </div>
+        <!-- end container-fluid -->
+
+        <!-- JAVASCRIPT -->
+        <script src="/admin-assets/libs/jquery/jquery.min.js"></script>
+        <script src="/admin-assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/admin-assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="/admin-assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="/admin-assets/libs/node-waves/waves.min.js"></script>
+        <script src="/admin-assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
+        <!-- Bootstrap rating js -->
+        <script src="/admin-assets/libs/bootstrap-rating/bootstrap-rating.min.js"></script>
+        <script src="/admin-assets/js/pages/rating-init.js"></script>
+
+        <!-- App js -->
+        <script src="/admin-assets/js/app.js"></script>
+        @stack('page-scripts')
+    </body>
 </html>

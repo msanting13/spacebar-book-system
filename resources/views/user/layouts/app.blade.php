@@ -48,16 +48,7 @@
                                 <div
                                     class="dropdown d-inline-block d-lg-none ms-2"
                                 >
-                                    <button
-                                        type="button"
-                                        class="btn header-item noti-icon waves-effect"
-                                        id="page-header-search-dropdown"
-                                        data-bs-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                    >
-                                        <i class="mdi mdi-magnify"></i>
-                                    </button>
+                                    
                                     <div
                                         class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
                                         aria-labelledby="page-header-search-dropdown"
@@ -434,6 +425,15 @@
                                         <span>Dashboard</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a
+                                        href="{{ route('user.booking.index') }}"
+                                        class="waves-effect"
+                                    >
+                                        <i class="mdi mdi-calendar-text"></i>
+                                        <span>Book now!</span>
+                                    </a>
+                                </li>
 
                                 <li>
                                     <a
@@ -527,7 +527,6 @@
         </div>
         <!-- end container-fluid -->
 
-        <!-- JAVASCRIPT -->
         <!-- JAVASCRIPT -->
         <script src="/admin-assets/libs/jquery/jquery.min.js"></script>
         <script src="/admin-assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>

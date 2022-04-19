@@ -32,7 +32,7 @@
 
                     <div class="form-group mb-5">
                         <label>Image</label>
-                        <input name="image" type="file" class='form-control form-control-lg'>
+                        <input name="image" type="file" class='form-control'>
                     </div>
 
 
