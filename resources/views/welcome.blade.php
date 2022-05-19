@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="{{ asset('/theme/royal/image/xfavicon.png.pagespeed.ic.zt2CzDLXlD.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('/theme/royal/image/space-bar-logo.png') }}" type="image/png">
     <title>Welcome to {{  config('app.name') }}</title>
     <link href="{{ asset('/assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
@@ -168,7 +168,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="navbar-brand logo_h" href="index-2.html"><img
-                        src="{{ asset('/theme/royal/image/xLogo.png.pagespeed.ic.bptWT17dNg.png') }}" alt=""></a>
+                        src="{{ asset('/theme/royal/image/site-logo.png') }}" alt="">
+                    </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -392,7 +393,7 @@
                 </div>
                 <div class="col-md-6">
                     <img class="img-fluid"
-                        src="{{ asset('/theme/royal/image/xabout_bg.jpg.pagespeed.ic.2Y8QqB4mwP.jpg') }}" alt="img">
+                        src="{{ asset('/theme/royal/image/Spacebar.jpg') }}" alt="img">
                 </div>
                 @endforeach
 

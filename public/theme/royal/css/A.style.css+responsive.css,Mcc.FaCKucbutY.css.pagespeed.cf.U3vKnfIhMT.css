@@ -309,7 +309,7 @@ button:focus {
     z-index: 1;
 }
 .banner_area .bg-parallax {
-    background: url("../image/banner_bg.jpg.webp") no-repeat scroll center 0 /
+    background: url("../image/IMG_20211012_132225.jpg") no-repeat scroll center 0 /
         cover;
     opacity: 0.5;
 }
